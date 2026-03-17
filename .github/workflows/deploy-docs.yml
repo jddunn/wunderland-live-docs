@@ -2,13 +2,7 @@ name: Deploy Documentation
 
 on:
   push:
-    branches: [master]
-    paths:
-      - 'docs-site/**'
-  pull_request:
-    branches: [master]
-    paths:
-      - 'docs-site/**'
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -33,17 +27,14 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        working-directory: docs-site
         run: npm install
 
       - name: Pull source for TypeDoc
-        working-directory: docs-site
         run: node scripts/pull-source.mjs
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
 
       - name: Build documentation
-        working-directory: docs-site
         run: npm run build
         env:
           NODE_ENV: production
@@ -51,10 +42,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs-site/build
+          path: build
 
   deploy:
-    if: github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
