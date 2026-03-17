@@ -172,19 +172,7 @@ export default function EcosystemCarousel(): JSX.Element {
             ))}
           </div>
 
-          {tab.videoSrc && (
-            <div className={styles.videoWrapper}>
-              <video
-                key={tab.id}
-                src={tab.videoSrc}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className={styles.video}
-              />
-            </div>
-          )}
+          {/* Video demos — hidden until files exist in static/products/ */}
         </div>
 
         <div className={styles.dots}>
