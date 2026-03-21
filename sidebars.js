@@ -103,6 +103,7 @@ const sidebars = {
         'guides/program-upgradeability',
         'guides/ipfs-storage',
         'guides/devlog-mood-analysis',
+        'guides/email-intelligence',
         'guides/troubleshooting',
       ],
     },
