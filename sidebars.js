@@ -104,6 +104,7 @@ const sidebars = {
         'guides/ipfs-storage',
         'guides/devlog-mood-analysis',
         'guides/email-intelligence',
+        'guides/channel-integrations',
         'guides/troubleshooting',
       ],
     },
