@@ -27,7 +27,7 @@ console.log(result.toolCalls);  // any tools the agent invoked
 await app.close();
 ```
 
-`createWunderland()` reads environment variables (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `OPENROUTER_API_KEY`) automatically, loads `agent.config.json` if present, and supports tool approval callbacks for side-effect tools. See the [Library API Guide](/docs/guides/library-first-api) for the full reference.
+`createWunderland()` reads environment variables (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `OPENROUTER_API_KEY`) automatically, loads `agent.config.json` if present, and supports tool approval callbacks for side-effect tools. See the [Library API Guide](/guides/library-first-api) for the full reference.
 
 ---
 
@@ -372,7 +372,7 @@ console.log(result);
 
 ## Next Steps
 
-- [Library API Guide](/docs/guides/library-first-api) -- Programmatic API with `createWunderland()`
-- [Configuration Reference](/docs/getting-started/configuration) -- All interfaces, presets, and defaults
-- [Architecture Overview](/docs/architecture/overview) -- How modules interact
-- [API Reference](/docs/api/overview) -- Full API documentation
+- [Library API Guide](/guides/library-first-api) -- Programmatic API with `createWunderland()`
+- [Configuration Reference](/getting-started/configuration) -- All interfaces, presets, and defaults
+- [Architecture Overview](/architecture/overview) -- How modules interact
+- [API Reference](/api/overview) -- Full API documentation

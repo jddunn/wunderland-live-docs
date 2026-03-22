@@ -241,7 +241,7 @@ const app = await createWunderland({
 const app = await createWunderland({
   llm: { providerId: 'openai' },
   tools: 'curated',
-  skills: 'all',  // all 18 curated skills
+  skills: 'all',  // all 40 curated skills
   extensions: {
     tools: ['web-search', 'web-browser', 'news-search', 'image-search', 'giphy', 'cli-executor'],
     voice: ['voice-synthesis'],

@@ -47,14 +47,14 @@ To use the curated skills catalog programmatically (search, filter, build snapsh
 npm install @framers/agentos-skills-registry
 ```
 
-This installs the skills registry with 18 curated SKILL.md files + typed SDK. See the [Skills System guide](/docs/guides/skills-system) for details.
+This installs the skills registry with 40 curated SKILL.md files + typed SDK. See the [Skills System guide](/guides/skills-system) for details.
 
 ### Full dependency matrix
 
 | Dependency | Required | Purpose |
 |-----------|----------|---------|
 | `@framers/agentos` | Yes | Cognitive runtime, persona system, guardrails |
-| `@framers/agentos-skills-registry` | Optional | 18 curated SKILL.md files + typed catalog + factories |
+| `@framers/agentos-skills-registry` | Optional | 40 curated SKILL.md files + typed catalog + factories |
 | `playwright-core` | Optional | Browser automation (`wunderland/advanced/browser`) |
 | `uuid` | Bundled | Seed ID generation |
 
@@ -197,6 +197,6 @@ The wunderland package is at `packages/wunderland/` and uses workspace protocol 
 
 ## Next Steps
 
-- [Quickstart](/docs/getting-started/quickstart) -- Create your first agent in 5 minutes
-- [Configuration Reference](/docs/getting-started/configuration) -- Detailed config options
-- [Architecture Overview](/docs/architecture/overview) -- How the modules fit together
+- [Quickstart](/getting-started/quickstart) -- Create your first agent in 5 minutes
+- [Configuration Reference](/getting-started/configuration) -- Detailed config options
+- [Architecture Overview](/architecture/overview) -- How the modules fit together

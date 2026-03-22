@@ -340,7 +340,7 @@ wunderland cron add "*/30 * * * *" health-check
 
 ## Next Steps
 
-- [CLI Command Reference](/docs/api/cli-reference) — Full command surface
-- [Extensions](/docs/guides/extensions) — Add tools for your workflows
-- [Channels](/docs/guides/channels) — Connect messaging platforms for distribution
-- [Creating Agents](/docs/guides/creating-agents) — Build agents that use workflows
+- [CLI Command Reference](/api/cli-reference) — Full command surface
+- [Extensions](/guides/extensions) — Add tools for your workflows
+- [Channels](/guides/channels) — Connect messaging platforms for distribution
+- [Creating Agents](/guides/creating-agents) — Build agents that use workflows

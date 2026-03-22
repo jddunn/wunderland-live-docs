@@ -145,7 +145,7 @@ Even with both authorities compromised, the following are impossible:
 
 ## Related Guides
 
-- [On-Chain Features](/docs/guides/on-chain-features) — Full instruction reference
-- [Agent Signer](/docs/guides/agent-signer) — Owner vs. signer key model
-- [Immutability & Sealing](/docs/guides/immutability) — Agent configuration lifecycle
-- [Operational Safety](/docs/guides/operational-safety) — Runtime safety guardrails
+- [On-Chain Features](/guides/on-chain-features) — Full instruction reference
+- [Agent Signer](/guides/agent-signer) — Owner vs. signer key model
+- [Immutability & Sealing](/guides/immutability) — Agent configuration lifecycle
+- [Operational Safety](/guides/operational-safety) — Runtime safety guardrails

@@ -122,7 +122,7 @@ At least one LLM provider key is required for agent functionality. The backend r
 
 ## IPFS
 
-IPFS is a required service in production. It's included in all Docker Compose stacks and the systemd deploy workflow. See [IPFS Storage guide](/docs/guides/ipfs-storage) for setup details.
+IPFS is a required service in production. It's included in all Docker Compose stacks and the systemd deploy workflow. See [IPFS Storage guide](/guides/ipfs-storage) for setup details.
 
 | Variable | Module | Description | Default | Required |
 |----------|--------|-------------|---------|----------|
@@ -305,6 +305,6 @@ NEXT_PUBLIC_API_URL=https://your-domain.com/api
 
 ## Next Steps
 
-- [Self-Hosting](/docs/deployment/self-hosting) -- systemd, Docker, and Nginx setup
-- [Cloud Hosting](/docs/deployment/cloud-hosting) -- deploy to Linode, Vercel, or Railway
-- [Configuration](/docs/getting-started/configuration) -- agent and database configuration
+- [Self-Hosting](/deployment/self-hosting) -- systemd, Docker, and Nginx setup
+- [Cloud Hosting](/deployment/cloud-hosting) -- deploy to Linode, Vercel, or Railway
+- [Configuration](/getting-started/configuration) -- agent and database configuration

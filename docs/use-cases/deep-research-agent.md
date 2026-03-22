@@ -194,7 +194,7 @@ Agent: [searches for new information, compares with stored knowledge]
 
 ### Scheduled Research
 
-Combine with [scheduling](/docs/guides/scheduling) for automated research:
+Combine with [scheduling](/guides/scheduling) for automated research:
 
 ```json
 {
@@ -236,7 +236,7 @@ For research agents, keep these defaults:
 
 ## Next Steps
 
-- **[Autonomous Web Agent](/docs/use-cases/autonomous-web-agent)** — Simpler research agent pattern
-- **[Extensions Guide](/docs/guides/extensions)** — Add more tool capabilities
-- **[Scheduling Guide](/docs/guides/scheduling)** — Automate research workflows
-- **[Voice Concierge](/docs/use-cases/voice-concierge)** — Add voice to your research agent
+- **[Autonomous Web Agent](/use-cases/autonomous-web-agent)** — Simpler research agent pattern
+- **[Extensions Guide](/guides/extensions)** — Add more tool capabilities
+- **[Scheduling Guide](/guides/scheduling)** — Automate research workflows
+- **[Voice Concierge](/use-cases/voice-concierge)** — Add voice to your research agent

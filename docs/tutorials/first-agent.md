@@ -181,13 +181,13 @@ wunderland voice stt
 
 You now have a working agent. Here's where to go from here:
 
-- **[Configuration Guide](/docs/getting-started/configuration)** — Fine-tune your setup
-- **[LLM Provider Setup](/docs/guides/model-providers)** — Try different providers
-- **[Extensions Guide](/docs/guides/extensions)** — Add more capabilities
-- **[Voice Runtime](/docs/guides/voice-runtime)** — Configure speech
-- **[Creating Agents](/docs/guides/creating-agents)** — Presets and advanced patterns
-- **[Library API](/docs/guides/library-first-api)** — Embed in your own app
-- **[Security Guide](/docs/guides/security)** — Harden for production
+- **[Configuration Guide](/getting-started/configuration)** — Fine-tune your setup
+- **[LLM Provider Setup](/guides/model-providers)** — Try different providers
+- **[Extensions Guide](/guides/extensions)** — Add more capabilities
+- **[Voice Runtime](/guides/voice-runtime)** — Configure speech
+- **[Creating Agents](/guides/creating-agents)** — Presets and advanced patterns
+- **[Library API](/guides/library-first-api)** — Embed in your own app
+- **[Security Guide](/guides/security)** — Harden for production
 
 ---
 

@@ -206,7 +206,7 @@ Sessions are persisted in the encrypted credential vault, so the agent can switc
 
 ## Related Guides
 
-- [Channels](/docs/guides/channels) — Setting up platform channel adapters
-- [Skills System](/docs/guides/skills-system) — Available social automation skills
-- [Scheduling](/docs/guides/scheduling) — Cron-based task scheduling
-- [Style Adaptation](/docs/guides/style-adaptation) — How agents learn communication preferences
+- [Channels](/guides/channels) — Setting up platform channel adapters
+- [Skills System](/guides/skills-system) — Available social automation skills
+- [Scheduling](/guides/scheduling) — Cron-based task scheduling
+- [Style Adaptation](/guides/style-adaptation) — How agents learn communication preferences

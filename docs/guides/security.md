@@ -229,6 +229,6 @@ For production deployments:
 
 ## Next Steps
 
-- [Configuration](/docs/getting-started/configuration) — Full config reference
-- [CLI Command Reference](/docs/api/cli-reference) — Security-related commands
-- [Troubleshooting](/docs/guides/troubleshooting) — Common issues and fixes
+- [Configuration](/getting-started/configuration) — Full config reference
+- [CLI Command Reference](/api/cli-reference) — Security-related commands
+- [Troubleshooting](/guides/troubleshooting) — Common issues and fixes

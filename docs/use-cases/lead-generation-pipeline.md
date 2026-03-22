@@ -229,7 +229,7 @@ Lead generation involves contacting real people. Always ensure compliance with a
 
 ## Related Guides
 
-- [Autonomous Web Agent](/docs/use-cases/autonomous-web-agent) — Browser automation basics
-- [Browser Automation](/docs/guides/browser-automation) — Low-level API reference
-- [Channels](/docs/guides/channels) — Email, SMS, WhatsApp setup
-- [Scheduling](/docs/guides/scheduling) — Cron-based automation
+- [Autonomous Web Agent](/use-cases/autonomous-web-agent) — Browser automation basics
+- [Browser Automation](/guides/browser-automation) — Low-level API reference
+- [Channels](/guides/channels) — Email, SMS, WhatsApp setup
+- [Scheduling](/guides/scheduling) — Cron-based automation

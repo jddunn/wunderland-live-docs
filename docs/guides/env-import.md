@@ -86,7 +86,7 @@ Wunderland recognizes the following 22 environment variable keys from its extens
 | `GOOGLE_REFRESH_TOKEN` | Google OAuth 2.0 refresh token | Optional |
 
 :::warning
-The full list above covers the core extension secrets. Additional platform-specific keys (iMessage, Google Chat, Teams, Matrix, Twilio, Telnyx, Plivo, Zalo, Email/SMTP) are also supported. See the [Messaging Channels](/docs/guides/channels) guide for the complete list of per-platform secrets.
+The full list above covers the core extension secrets. Additional platform-specific keys (iMessage, Google Chat, Teams, Matrix, Twilio, Telnyx, Plivo, Zalo, Email/SMTP) are also supported. See the [Messaging Channels](/guides/channels) guide for the complete list of per-platform secrets.
 :::
 
 ## Example `.env` Block

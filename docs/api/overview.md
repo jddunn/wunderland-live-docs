@@ -21,7 +21,7 @@ console.log(result.text);
 await app.close();
 ```
 
-See the [Library API Guide](/docs/guides/library-first-api) for full documentation.
+See the [Library API Guide](/guides/library-first-api) for full documentation.
 
 ## Package Exports
 
@@ -51,10 +51,11 @@ The skills system is also available as standalone NPM packages for use outside o
 
 | Package | Import | Key Exports |
 |---|---|---|
-| `@framers/agentos-skills-registry` | Data + SDK | 18 SKILL.md files, `registry.json`, `SKILLS_CATALOG`, `searchSkills`, `getSkillsByCategory`, `createCuratedSkillRegistry` |
+| `@framers/agentos-skills` | Runtime | `SkillRegistry`, `loadSkillsFromDir`, `parseSkillFrontmatter`, `resolveDefaultSkillsDirs` |
+| `@framers/agentos-skills-registry` | Data + SDK | 40 SKILL.md files, `registry.json`, `SKILLS_CATALOG`, `searchSkills`, `getSkillsByCategory`, `createCuratedSkillRegistry` |
 | `@framers/agentos-skills-registry/catalog` | Lightweight | Same query helpers, zero peer deps |
 
-See [Skills System](/docs/guides/skills-system) for full documentation.
+See [Skills System](/guides/skills-system) for full documentation.
 
 ## Quick Import Examples
 

@@ -54,8 +54,8 @@ Wunderland is organized into 12 focused modules. Each module can be imported ind
 
 ## Quick Links
 
-- [Installation](/docs/getting-started/installation) -- Install the package and peer dependencies
-- [Quickstart](/docs/getting-started/quickstart) -- Create your first agent in 5 minutes
-- [Configuration Reference](/docs/getting-started/configuration) -- All config interfaces and defaults
-- [Architecture Overview](/docs/architecture/overview) -- System design and module interactions
-- [API Reference](/docs/api/overview) -- Full API documentation
+- [Installation](/getting-started/installation) -- Install the package and peer dependencies
+- [Quickstart](/getting-started/quickstart) -- Create your first agent in 5 minutes
+- [Configuration Reference](/getting-started/configuration) -- All config interfaces and defaults
+- [Architecture Overview](/architecture/overview) -- System design and module interactions
+- [API Reference](/api/overview) -- Full API documentation

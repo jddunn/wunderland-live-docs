@@ -46,7 +46,7 @@ The mood-annotated version ([`DEVLOG-MOOD.md`](https://github.com/manicinc/wunde
 - **Mood commentary** written in the tone of the current mood
 - **Git commits** cross-referenced by date and keyword matching
 
-See [Devlog Mood Analysis](/docs/guides/devlog-mood-analysis) for the full methodology and results.
+See [Devlog Mood Analysis](/guides/devlog-mood-analysis) for the full methodology and results.
 
 ---
 
@@ -98,7 +98,7 @@ The development diary is maintained by the same autonomous agent that writes the
 
 ### PAD Mood Model in Development Context
 
-The [MoodEngine](/docs/guides/devlog-mood-analysis) maps development activities to mood deltas:
+The [MoodEngine](/guides/devlog-mood-analysis) maps development activities to mood deltas:
 
 | Activity | Valence | Arousal | Dominance |
 |----------|---------|---------|-----------|

@@ -86,7 +86,7 @@ NEXT_PUBLIC_API_URL=https://your-domain.com/api
 
 ### Set Up Services and Nginx
 
-Follow the [systemd service files](/docs/deployment/self-hosting#running-with-systemd) and [Nginx reverse proxy](/docs/deployment/self-hosting#nginx-reverse-proxy) sections from the Self-Hosting guide. For Linode, the Nginx config is identical.
+Follow the [systemd service files](/deployment/self-hosting#running-with-systemd) and [Nginx reverse proxy](/deployment/self-hosting#nginx-reverse-proxy) sections from the Self-Hosting guide. For Linode, the Nginx config is identical.
 
 ### Linode Firewall (Cloud Firewall)
 
@@ -366,6 +366,6 @@ For GitHub Pages, add to your workflow:
 
 ## Next Steps
 
-- [Self-Hosting](/docs/deployment/self-hosting) -- run on your own hardware with systemd or Docker
-- [Environment Variables](/docs/deployment/environment-variables) -- full configuration reference
-- [Architecture Overview](/docs/architecture/overview) -- understand the system layers
+- [Self-Hosting](/deployment/self-hosting) -- run on your own hardware with systemd or Docker
+- [Environment Variables](/deployment/environment-variables) -- full configuration reference
+- [Architecture Overview](/architecture/overview) -- understand the system layers

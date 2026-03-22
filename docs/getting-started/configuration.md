@@ -498,6 +498,6 @@ const seed = createWunderlandSeed({
 
 ## Next Steps
 
-- [Quickstart](/docs/getting-started/quickstart) -- See these configs in action
-- [Architecture Overview](/docs/architecture/overview) -- How modules interact at runtime
-- [API Reference](/docs/api/overview) -- Full method-level documentation
+- [Quickstart](/getting-started/quickstart) -- See these configs in action
+- [Architecture Overview](/architecture/overview) -- How modules interact at runtime
+- [API Reference](/api/overview) -- Full method-level documentation

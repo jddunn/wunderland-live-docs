@@ -226,8 +226,8 @@ The agent routes alerts based on urgency:
 
 ## Related Guides
 
-- [Autonomous Web Agent](/docs/use-cases/autonomous-web-agent) — Browser automation for web tasks
-- [Deep Research Agent](/docs/use-cases/deep-research-agent) — Multi-source research
-- [Browser Automation](/docs/guides/browser-automation) — Low-level browser API
-- [Scheduling](/docs/guides/scheduling) — Cron-based monitoring
-- [Channels](/docs/guides/channels) — Alert delivery channels
+- [Autonomous Web Agent](/use-cases/autonomous-web-agent) — Browser automation for web tasks
+- [Deep Research Agent](/use-cases/deep-research-agent) — Multi-source research
+- [Browser Automation](/guides/browser-automation) — Low-level browser API
+- [Scheduling](/guides/scheduling) — Cron-based monitoring
+- [Channels](/guides/channels) — Alert delivery channels

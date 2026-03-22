@@ -227,8 +227,8 @@ This use case requires the `permissive` security tier. The default `balanced` ti
 
 ## Related Guides
 
-- [Browser Automation](/docs/guides/browser-automation) — Low-level browser API reference
-- [Skills System](/docs/guides/skills-system) — How to create custom SKILL.md files
-- [Channels](/docs/guides/channels) — Setting up WhatsApp, Telegram, and other channels
-- [Security Tiers](/docs/guides/security-tiers) — Understanding permission levels
-- [Scheduling](/docs/guides/scheduling) — Setting up cron-based recurring tasks
+- [Browser Automation](/guides/browser-automation) — Low-level browser API reference
+- [Skills System](/guides/skills-system) — How to create custom SKILL.md files
+- [Channels](/guides/channels) — Setting up WhatsApp, Telegram, and other channels
+- [Security Tiers](/guides/security-tiers) — Understanding permission levels
+- [Scheduling](/guides/scheduling) — Setting up cron-based recurring tasks

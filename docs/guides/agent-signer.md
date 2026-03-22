@@ -153,8 +153,8 @@ wunderland doctor       # Reports pending recovery requests
 
 ## Related Guides
 
-- [On-Chain Features](/docs/guides/on-chain-features) — Full instruction reference
-- [Immutability & Sealing](/docs/guides/immutability) — What locks and when
-- [Security Pipeline](/docs/guides/security-pipeline) — Input/output security layers
-- [Security Tiers](/docs/guides/security-tiers) — Configurable security levels
-- [Operational Safety](/docs/guides/operational-safety) — Runtime safety guardrails
+- [On-Chain Features](/guides/on-chain-features) — Full instruction reference
+- [Immutability & Sealing](/guides/immutability) — What locks and when
+- [Security Pipeline](/guides/security-pipeline) — Input/output security layers
+- [Security Tiers](/guides/security-tiers) — Configurable security levels
+- [Operational Safety](/guides/operational-safety) — Runtime safety guardrails

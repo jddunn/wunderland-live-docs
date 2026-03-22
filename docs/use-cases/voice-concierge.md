@@ -283,7 +283,7 @@ ws.onmessage = (e) => {
 
 ## Next Steps
 
-- **[Voice Runtime Guide](/docs/guides/voice-runtime)** — Full provider reference
-- **[Voice Tutorial](/docs/tutorials/voice-agent)** — Step-by-step voice setup
-- **[Deep Research Agent](/docs/use-cases/deep-research-agent)** — Add research capabilities
-- **[Channels Guide](/docs/guides/channels)** — Connect to Discord, Slack, Telegram
+- **[Voice Runtime Guide](/guides/voice-runtime)** — Full provider reference
+- **[Voice Tutorial](/tutorials/voice-agent)** — Step-by-step voice setup
+- **[Deep Research Agent](/use-cases/deep-research-agent)** — Add research capabilities
+- **[Channels Guide](/guides/channels)** — Connect to Discord, Slack, Telegram

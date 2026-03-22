@@ -123,7 +123,7 @@ curl -X POST http://localhost:3777/chat \
   -d '{"message": "Hello, what can you help me with?"}'
 ```
 
-See the [Chat Server guide](/docs/guides/chat-server) for the full API reference.
+See the [Chat Server guide](/guides/chat-server) for the full API reference.
 
 ## SQLite Local Storage
 

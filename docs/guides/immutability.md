@@ -186,4 +186,4 @@ All sealed-state violations are logged for audit purposes.
 
 ## On-Chain Anchoring
 
-For agents deployed with Solana integration, the `configHash` can be written to a Solana program account, providing cryptographic proof that the agent's configuration has not been modified. See the [On-Chain Features](/docs/guides/on-chain-features) guide for details.
+For agents deployed with Solana integration, the `configHash` can be written to a Solana program account, providing cryptographic proof that the agent's configuration has not been modified. See the [On-Chain Features](/guides/on-chain-features) guide for details.

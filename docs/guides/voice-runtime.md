@@ -438,7 +438,7 @@ wunderland config set voiceProvider openai
 
 ## Next Steps
 
-- [CLI Command Reference](/docs/api/cli-reference) — Full command surface
-- [Voice Concierge Use Case](/docs/use-cases/voice-concierge) — Build a speech-enabled assistant
-- [LLM Provider Setup](/docs/guides/model-providers) — Configure your LLM backend
-- [Configuration](/docs/getting-started/configuration) — Full config reference
+- [CLI Command Reference](/api/cli-reference) — Full command surface
+- [Voice Concierge Use Case](/use-cases/voice-concierge) — Build a speech-enabled assistant
+- [LLM Provider Setup](/guides/model-providers) — Configure your LLM backend
+- [Configuration](/getting-started/configuration) — Full config reference

@@ -13,7 +13,7 @@ This tutorial covers adding text-to-speech (TTS) and speech-to-text (STT) to an 
 
 ## Prerequisites
 
-- A working Wunderland agent (see [Build Your First Agent](/docs/tutorials/first-agent))
+- A working Wunderland agent (see [Build Your First Agent](/tutorials/first-agent))
 - One of:
   - An `OPENAI_API_KEY` (covers both TTS and Whisper STT)
   - An `ELEVENLABS_API_KEY` (premium TTS)
@@ -302,7 +302,7 @@ which whisper
 
 ## Next Steps
 
-- **[Voice Runtime Guide](/docs/guides/voice-runtime)** — Full provider reference
-- **[Voice Concierge Use Case](/docs/use-cases/voice-concierge)** — Build a full voice assistant
-- **[CLI Reference](/docs/api/cli-reference)** — All voice commands
-- **[Troubleshooting](/docs/guides/troubleshooting)** — More help
+- **[Voice Runtime Guide](/guides/voice-runtime)** — Full provider reference
+- **[Voice Concierge Use Case](/use-cases/voice-concierge)** — Build a full voice assistant
+- **[CLI Reference](/api/cli-reference)** — All voice commands
+- **[Troubleshooting](/guides/troubleshooting)** — More help

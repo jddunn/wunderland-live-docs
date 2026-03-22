@@ -291,7 +291,7 @@ import { createWunderlandTools } from 'wunderland/tools';
 import { SkillRegistry, loadSkillsFromDir } from 'wunderland/advanced/skills';
 ```
 
-See the [API Overview](/docs/api/overview) for the full export map.
+See the [API Overview](/api/overview) for the full export map.
 
 ## Complete Example
 
