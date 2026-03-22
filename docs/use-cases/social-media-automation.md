@@ -49,19 +49,18 @@ High extraversion (0.85) makes the agent post frequently and engage directly. Hi
 
 ## Architecture
 
-```
-┌──────────────────────────────────────────────┐
-│              Content Pipeline                 │
-├──────────────────────────────────────────────┤
-│                                              │
-│  SOURCE        → web-search, news, RSS       │
-│  CREATE        → content-creator skill       │
-│  ADAPT         → social-broadcast skill      │
-│  PUBLISH       → channel adapters            │
-│  ENGAGE        → platform-specific bots      │
-│  ANALYZE       → RAG memory + reporting      │
-│                                              │
-└──────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    SOURCE["SOURCE\nweb-search, news, RSS"]
+    CREATE["CREATE\ncontent-creator skill"]
+    ADAPT["ADAPT\nsocial-broadcast skill"]
+    PUBLISH["PUBLISH\nchannel adapters"]
+    ENGAGE["ENGAGE\nplatform-specific bots"]
+    ANALYZE["ANALYZE\nRAG memory + reporting"]
+
+    SOURCE --> CREATE --> ADAPT --> PUBLISH --> ENGAGE --> ANALYZE
+
+    classDef default fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
 ```
 
 ## Cross-Platform Publishing

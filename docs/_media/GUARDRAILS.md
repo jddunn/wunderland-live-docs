@@ -25,18 +25,30 @@ The Safe Guardrails system provides defense-in-depth security for Wunderland age
 
 ### Architecture
 
-```
-Tool Call Request
-    ↓
-Safe Guardrails (Validation)
-    ↓
-Folder Permission Check
-    ├─ Match glob patterns
-    ├─ Check read/write access
-    └─ Inherit from security tier
-    ↓
-[ALLOWED] → Execute Tool
-[DENIED] → Log Violation → Notify → Return Error
+```mermaid
+flowchart TD
+    REQ["Tool Call Request"]
+    GUARD["Safe Guardrails\n(Validation)"]
+    PERM{"Folder Permission Check\n- Match glob patterns\n- Check read/write access\n- Inherit from security tier"}
+    ALLOW["Execute Tool"]
+    DENY["Return Error"]
+    LOG["Log Violation"]
+    NOTIFY["Notify"]
+
+    REQ --> GUARD
+    GUARD --> PERM
+    PERM -->|"ALLOWED"| ALLOW
+    PERM -->|"DENIED"| LOG
+    LOG --> NOTIFY
+    NOTIFY --> DENY
+
+    style REQ fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    style GUARD fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    style PERM fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    style ALLOW fill:#1c1c28,stroke:#10b981,color:#f2f2fa
+    style DENY fill:#1c1c28,stroke:#ef4444,color:#f2f2fa
+    style LOG fill:#1c1c28,stroke:#ef4444,color:#f2f2fa
+    style NOTIFY fill:#1c1c28,stroke:#ef4444,color:#f2f2fa
 ```
 
 ---

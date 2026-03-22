@@ -47,19 +47,18 @@ An agreeableness of 0.4 means the agent won't sugarcoat findings — it will giv
 
 ## Monitoring Pipeline
 
-```
-┌─────────────────────────────────────────────┐
-│         Competitive Intelligence             │
-├─────────────────────────────────────────────┤
-│                                             │
-│  MONITOR   → Scheduled web scraping         │
-│  DETECT    → Change detection + diffing     │
-│  RESEARCH  → Deep investigation on changes  │
-│  ANALYZE   → Impact assessment              │
-│  ALERT     → Real-time notifications        │
-│  REPORT    → Weekly/monthly summaries       │
-│                                             │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    MONITOR["MONITOR\nScheduled web scraping"]
+    DETECT["DETECT\nChange detection + diffing"]
+    RESEARCH["RESEARCH\nDeep investigation on changes"]
+    ANALYZE["ANALYZE\nImpact assessment"]
+    ALERT["ALERT\nReal-time notifications"]
+    REPORT["REPORT\nWeekly/monthly summaries"]
+
+    MONITOR --> DETECT --> RESEARCH --> ANALYZE --> ALERT --> REPORT
+
+    classDef default fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
 ```
 
 ## Use Case 1: Price Monitoring

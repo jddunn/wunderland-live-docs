@@ -10,36 +10,21 @@ The result: agents that form memories, forget gracefully, consolidate knowledge 
 
 ## Architecture at a Glance
 
-```
-  User message
-       │
-       ▼
-┌─────────────────┐     ┌───────────────────┐
-│  Working Memory  │◄────│  Prospective Mem   │
-│  (7±2 slots)     │     │  (goals/reminders) │
-└────────┬────────┘     └───────────────────┘
-         │ encode
-         ▼
-┌─────────────────┐     ┌───────────────────┐
-│  Encoding Model  │────►│   Memory Store     │
-│  (HEXACO-tuned)  │     │  (vectors + graph) │
-└─────────────────┘     └────────┬──────────┘
-                                 │ retrieve
-         ┌───────────────────────┤
-         ▼                       ▼
-┌─────────────────┐     ┌───────────────────┐
-│  Decay Model     │     │ Spreading Activation│
-│  (Ebbinghaus)    │     │ (ACT-R graph walk) │
-└─────────────────┘     └───────────────────┘
-         │                       │
-         ▼                       ▼
-┌──────────────────────────────────────────┐
-│         Memory Prompt Assembler           │
-│  (token-budgeted, personality-formatted)  │
-└──────────────────────────────────────────┘
-         │
-         ▼
-   Agent response
+```mermaid
+graph TD
+    A["User message"]:::primary --> B["Working Memory\n(7±2 slots)"]:::memory
+    C["Prospective Memory\n(goals/reminders)"]:::memory --> B
+    B -- encode --> D["Encoding Model\n(HEXACO-tuned)"]:::processing
+    D --> E["Memory Store\n(vectors + graph)"]:::memory
+    E -- retrieve --> F["Decay Model\n(Ebbinghaus)"]:::processing
+    E -- retrieve --> G["Spreading Activation\n(ACT-R graph walk)"]:::processing
+    F --> H["Memory Prompt Assembler\n(token-budgeted, personality-formatted)"]:::primary
+    G --> H
+    H --> I["Agent response"]:::primary
+
+    classDef primary fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef memory fill:#1c1c28,stroke:#00f5ff,color:#f2f2fa
+    classDef processing fill:#1c1c28,stroke:#8b5cf6,color:#f2f2fa
 ```
 
 Every conversation turn runs through this pipeline: encode the new information, retrieve what's relevant, assemble it into the prompt within a strict token budget, and let decay naturally prune what's no longer needed.

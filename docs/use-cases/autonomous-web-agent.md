@@ -43,20 +43,22 @@ Build an agent that autonomously navigates websites, fills forms, extracts data,
 
 The agent chains together multiple capabilities in an autonomous loop:
 
-```
-┌─────────────────────────────────────────────┐
-│                Planning Engine               │
-│  (ReAct strategy — reason + act in a loop)   │
-├─────────────────────────────────────────────┤
-│                                             │
-│  1. SEARCH    → browserNavigate + browserFill│
-│  2. EXTRACT   → browserExtract + snapshot    │
-│  3. CONTACT   → browserFill (forms/messages) │
-│  4. TRACK     → RAG memory (store results)   │
-│  5. REPORT    → WhatsApp/Telegram channel    │
-│  6. LOOP      → Planning Engine continues    │
-│                                             │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    TITLE["Planning Engine\nReAct strategy — reason + act in a loop"]
+    SEARCH["1. SEARCH\nbrowserNavigate + browserFill"]
+    EXTRACT["2. EXTRACT\nbrowserExtract + snapshot"]
+    CONTACT["3. CONTACT\nbrowserFill — forms/messages"]
+    TRACK["4. TRACK\nRAG memory — store results"]
+    REPORT["5. REPORT\nWhatsApp/Telegram channel"]
+    LOOP["6. LOOP\nPlanning Engine continues"]
+
+    TITLE --> SEARCH --> EXTRACT --> CONTACT --> TRACK --> REPORT --> LOOP
+    LOOP -->|"next cycle"| SEARCH
+
+    classDef default fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef titleStyle fill:#151520,stroke:#00f5ff,color:#f2f2fa
+    class TITLE titleStyle
 ```
 
 ## Example: Real Estate Listing Monitor

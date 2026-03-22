@@ -23,20 +23,32 @@ Sealing provides:
 
 When an agent is first created, it enters the **Setup** phase. During this phase, everything is configurable:
 
-```
-Agent Created  ──>  Configure Identity
-                         |
-                    Configure HEXACO Personality
-                         |
-                    Bind Messaging Channels
-                         |
-                    Set Up Cron Schedules
-                         |
-                    Configure Extensions & Tools
-                         |
-                    Test & Iterate
-                         |
-                    Ready to Seal ──>  SEAL
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#1c1c28','primaryTextColor':'#f2f2fa','primaryBorderColor':'#c9a227','lineColor':'#c9a227','secondaryColor':'#1c1c28','tertiaryColor':'#1c1c28'}}}%%
+stateDiagram-v2
+    classDef dark fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef sealed fill:#1c1c28,stroke:#00f5ff,color:#00f5ff
+
+    [*] --> Setup:::dark
+    state Setup {
+        AgentCreated: Agent Created
+        Identity: Configure Identity
+        HEXACO: Configure HEXACO Personality
+        Channels: Bind Messaging Channels
+        Cron: Set Up Cron Schedules
+        Extensions: Configure Extensions & Tools
+        Test: Test & Iterate
+        Ready: Ready to Seal
+
+        AgentCreated --> Identity
+        Identity --> HEXACO
+        HEXACO --> Channels
+        Channels --> Cron
+        Cron --> Extensions
+        Extensions --> Test
+        Test --> Ready
+    }
+    Setup --> Sealed:::sealed : SEAL (one‑way)
 ```
 
 During Setup, the operator can freely:
@@ -54,23 +66,20 @@ During Setup, the operator can freely:
 
 Once the operator is satisfied with the configuration, they **seal** the agent. This is a one-way operation.
 
-```
-SEALED
-  |
-  |── Profile changes .............. BLOCKED
-  |── HEXACO trait changes ......... BLOCKED
-  |── Channel binding CRUD ......... BLOCKED
-  |── Cron schedule CRUD ........... BLOCKED
-  |── Extension changes ............ BLOCKED
-  |── System prompt changes ........ BLOCKED
-  |── Credential create/delete ..... BLOCKED
-  |
-  |── Credential rotation .......... ALLOWED
-  |── Runtime start / stop ......... ALLOWED
-  |── Conversation history ......... ALLOWED (append-only)
-  |── Tool execution ............... ALLOWED (per existing config)
-  |── Cron execution ............... ALLOWED (per existing schedules)
-```
+| Operation | Sealed Status |
+|-----------|---------------|
+| Profile changes | BLOCKED |
+| HEXACO trait changes | BLOCKED |
+| Channel binding CRUD | BLOCKED |
+| Cron schedule CRUD | BLOCKED |
+| Extension changes | BLOCKED |
+| System prompt changes | BLOCKED |
+| Credential create/delete | BLOCKED |
+| Credential rotation | ALLOWED |
+| Runtime start / stop | ALLOWED |
+| Conversation history | ALLOWED (append-only) |
+| Tool execution | ALLOWED (per existing config) |
+| Cron execution | ALLOWED (per existing schedules) |
 
 ## What Gets Blocked After Sealing
 

@@ -17,30 +17,35 @@ Build a multi-agent pipeline that scrapes leads from the web, enriches contact d
 
 This use case benefits from the Agency system — multiple specialized agents coordinating via a shared communication bus.
 
-```
-┌────────────────────────────────────────────────────┐
-│                 Agency: Lead Pipeline               │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  Agent 1: PROSPECTOR                               │
-│  ├── web-scraper skill                             │
-│  ├── browser-automation extension                  │
-│  └── Searches directories, extracts lead data      │
-│                                                    │
-│  Agent 2: ENRICHER                                 │
-│  ├── deep-research skill                           │
-│  ├── content-extraction extension                  │
-│  └── Enriches leads with company/social data       │
-│                                                    │
-│  Agent 3: OUTREACH                                 │
-│  ├── content-creator skill                         │
-│  ├── email/sms/whatsapp channels                   │
-│  └── Sends personalized messages, tracks replies   │
-│                                                    │
-│              Communication Bus                     │
-│  Prospector → Enricher → Outreach → Report         │
-│                                                    │
-└────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Agency["Agency: Lead Pipeline"]
+        subgraph P["Agent 1: PROSPECTOR"]
+            P1["web-scraper skill"]
+            P2["browser-automation extension"]
+            P3["Searches directories, extracts lead data"]
+        end
+        subgraph E["Agent 2: ENRICHER"]
+            E1["deep-research skill"]
+            E2["content-extraction extension"]
+            E3["Enriches leads with company/social data"]
+        end
+        subgraph O["Agent 3: OUTREACH"]
+            O1["content-creator skill"]
+            O2["email/sms/whatsapp channels"]
+            O3["Sends personalized messages, tracks replies"]
+        end
+        BUS(["Communication Bus"])
+        P --> BUS --> E
+        E --> BUS
+        BUS --> O
+        O --> REPORT["Report"]
+    end
+
+    classDef default fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef busStyle fill:#151520,stroke:#00f5ff,color:#f2f2fa
+    class BUS busStyle
+    class Agency fill:#151520,stroke:#c9a227,color:#f2f2fa
 ```
 
 ## Agent Configurations

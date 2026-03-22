@@ -96,10 +96,16 @@ When observations exceed 40,000 tokens, the Reflector condenses them — merging
 
 The result is a three-tier system:
 
-```
-Recent messages  →  exact conversation history (current task)
-Observations     →  what the Observer has seen (compressed)
-Reflections      →  condensed observations (highly compressed)
+```mermaid
+graph TD
+    A["Recent messages\nexact conversation history (current task)"]:::primary
+    B["Observations\nwhat the Observer has seen (compressed)"]:::memory
+    C["Reflections\ncondensed observations (highly compressed)"]:::processing
+    A --> B --> C
+
+    classDef primary fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef memory fill:#1c1c28,stroke:#00f5ff,color:#f2f2fa
+    classDef processing fill:#1c1c28,stroke:#8b5cf6,color:#f2f2fa
 ```
 
 ### Consolidation Pipeline (Hourly)
@@ -320,50 +326,60 @@ Subsystems sharing the database:
 
 ## Architecture Diagram
 
-```
-USER MESSAGE
-     │
-     ▼
-ObservationBuffer (token counting)
-     │
-     ├─── < 30K tokens ──→ [buffer continues]
-     │
-     └─── ≥ 30K tokens ──→ MemoryObserver (LLM)
-                                │
-                                ▼
-                        ObservationNotes (6 types)
-                                │
-                    ┌───────────┴───────────┐
-                    │                       │
-              < 40K tokens          ≥ 40K tokens
-                    │                       │
-              [notes accumulate]    MemoryReflector (LLM)
-                                            │
-                                            ▼
-                                    MemoryTraces (LTM)
-                                            │
-              ┌─────────────────────────────┼─────────────────┐
-              │                             │                 │
-              ▼                             ▼                 ▼
-       Memory Graph              Vector Store          Working Memory
-    (co-activation)            (semantic search)       (7±2 slots)
-              │                             │                 │
-              └─────────────────────────────┴─────────────────┘
-                                            │
-                                    assembleForPrompt()
-                                            │
-                                            ▼
-                                    [PROMPT INJECTION]
-                                    WM: 15% budget
-                                    Semantic: 45%
-                                    Episodic: 25%
-                                    Prospective: 5%
-                                    Graph: 5%
-                                    Observations: 5%
+```mermaid
+graph TD
+    subgraph Input
+        A["USER MESSAGE"]:::primary
+    end
 
-BACKGROUND (every 1 hour):
-ConsolidationPipeline → decay, co-activation, schema, conflicts, reinforcement
+    subgraph Observation
+        B["ObservationBuffer\n(token counting)"]:::processing
+        C["buffer continues"]:::memory
+        D["MemoryObserver (LLM)"]:::processing
+        E["ObservationNotes\n(6 types)"]:::memory
+    end
 
-CONTEXT WINDOW (per turn):
-ContextWindowManager → compaction at 75% → sliding/hierarchical/hybrid strategy
+    subgraph Reflection
+        F["notes accumulate"]:::memory
+        G["MemoryReflector (LLM)"]:::processing
+        H["MemoryTraces (LTM)"]:::memory
+    end
+
+    subgraph Retrieval
+        I["Memory Graph\n(co-activation)"]:::memory
+        J["Vector Store\n(semantic search)"]:::memory
+        K["Working Memory\n(7±2 slots)"]:::memory
+    end
+
+    subgraph Assembly
+        L["assembleForPrompt()"]:::processing
+        M["PROMPT INJECTION\nWM 15% · Semantic 45% · Episodic 25%\nProspective 5% · Graph 5% · Observations 5%"]:::primary
+    end
+
+    subgraph Background["Background (every 1 hour)"]
+        N["ConsolidationPipeline\ndecay · co-activation · schema · conflicts · reinforcement"]:::processing
+    end
+
+    subgraph Context["Context Window (per turn)"]
+        O["ContextWindowManager\ncompaction at 75% · sliding / hierarchical / hybrid"]:::processing
+    end
+
+    A --> B
+    B -- "< 30K tokens" --> C
+    B -- "≥ 30K tokens" --> D
+    D --> E
+    E -- "< 40K tokens" --> F
+    E -- "≥ 40K tokens" --> G
+    G --> H
+    H --> I
+    H --> J
+    H --> K
+    I --> L
+    J --> L
+    K --> L
+    L --> M
+
+    classDef primary fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
+    classDef memory fill:#1c1c28,stroke:#00f5ff,color:#f2f2fa
+    classDef processing fill:#1c1c28,stroke:#8b5cf6,color:#f2f2fa
 ```
