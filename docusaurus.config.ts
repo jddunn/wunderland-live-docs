@@ -136,6 +136,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
+          showLastUpdateTime: true,
           editUrl:
             'https://github.com/manicinc/wunderland-sol/tree/master/docs-site/',
         },
