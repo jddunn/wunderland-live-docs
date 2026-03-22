@@ -27,6 +27,7 @@ const config: Config = {
 
   themes: [
     '@docusaurus/theme-mermaid',
+    'docusaurus-plugin-image-zoom',
     [
       '@easyops-cn/docusaurus-search-local',
       {
@@ -66,6 +67,8 @@ const config: Config = {
   },
 
   plugins: [
+    'docusaurus-plugin-sass',
+    '@docusaurus/plugin-ideal-image',
     [
       'docusaurus-plugin-typedoc',
       {
@@ -235,6 +238,13 @@ const config: Config = {
     },
     mermaid: {
       theme: {light: 'neutral', dark: 'dark'},
+    },
+    zoom: {
+      selector: '.markdown img',
+      background: {
+        light: 'rgba(255, 255, 255, 0.9)',
+        dark: 'rgba(0, 0, 0, 0.9)',
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
