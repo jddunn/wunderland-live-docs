@@ -381,6 +381,12 @@ Memory context competes for prompt space. The `MemoryPromptAssembler` allocates 
 
 Higher-scoring sections can steal budget from lower-scoring ones when they have more relevant content (overflow redistribution). The assembler also formats memories differently based on personality — structured tables for high-Conscientiousness agents, narrative paragraphs for high-Openness, emotionally-annotated for high-Emotionality.
 
+### Persistent Markdown Working Memory
+
+In addition to the cognitive memory system above, each agent has a persistent markdown file at `~/.wunderland/agents/{seedId}/working-memory.md`. This is a Mastra-style scratchpad the agent reads and rewrites via `update_working_memory` / `read_working_memory` tools. It's injected into every prompt as `## Persistent Memory` (5% token budget) and survives across sessions.
+
+See the [Working Memory Guide](./working-memory.md) for configuration and usage details.
+
 ## Storage
 
 Each agent gets its own SQLite database at `~/.wunderland/agents/{seedId}/agent.db`. A shared `StorageAdapter` serves four subsystems:

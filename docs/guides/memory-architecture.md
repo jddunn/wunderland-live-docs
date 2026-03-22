@@ -312,6 +312,7 @@ Subsystems sharing the database:
 | Observer | 30K threshold | 30K threshold |
 | Reflector | 40K threshold | 40K threshold |
 | Working memory | N/A | Baddeley 7±2 slots |
+| Persistent markdown memory | Working memory file | `working-memory.md` per agent (5% budget) |
 | Personality-aware | No | Yes (HEXACO) |
 | Mood-sensitive | No | Yes (PAD model) |
 | Ebbinghaus decay | No | Yes |
@@ -353,7 +354,7 @@ graph TD
 
     subgraph Assembly
         L["assembleForPrompt()"]:::processing
-        M["PROMPT INJECTION\nWM 15% · Semantic 45% · Episodic 25%\nProspective 5% · Graph 5% · Observations 5%"]:::primary
+        M["PROMPT INJECTION\nWM 15% · Persistent 5% · Semantic 40% · Episodic 25%\nProspective 5% · Graph 5% · Observations 5%"]:::primary
     end
 
     subgraph Background["Background (every 1 hour)"]
