@@ -195,6 +195,11 @@ const config: Config = {
           label: 'API Reference',
         },
         {
+          to: '/docs/getting-started/changelog',
+          label: 'Changelog',
+          position: 'left',
+        },
+        {
           href: 'https://wunderland.sh',
           label: 'App',
           position: 'right',
