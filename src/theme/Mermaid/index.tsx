@@ -13,9 +13,23 @@ export default function MermaidWrapper(props: any): JSX.Element {
   const dragStart = useRef({ x: 0, y: 0 });
   const posRef = useRef({ x: 0, y: 0 });
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const openFullscreen = useCallback(() => {
+    // Calculate optimal scale to fit the diagram nicely in the viewport
+    const svgEl = containerRef.current?.querySelector('svg');
+    if (svgEl) {
+      const svgRect = svgEl.getBoundingClientRect();
+      const vpW = window.innerWidth * 0.85;
+      const vpH = window.innerHeight * 0.8;
+      const fitScale = Math.min(vpW / svgRect.width, vpH / svgRect.height);
+      // Use the fit scale but cap between 1.2x and 3x for readability
+      const optimalScale = Math.max(1.2, Math.min(3, fitScale));
+      setScale(optimalScale);
+    } else {
+      setScale(1.5);
+    }
     setIsFullscreen(true);
-    setScale(1);
     setPosition({ x: 0, y: 0 });
     posRef.current = { x: 0, y: 0 };
   }, []);
@@ -61,6 +75,7 @@ export default function MermaidWrapper(props: any): JSX.Element {
     <>
       {/* Inline diagram with click hint */}
       <div
+        ref={containerRef}
         onClick={openFullscreen}
         style={{ cursor: 'zoom-in', position: 'relative' }}
         title="Click to expand"
