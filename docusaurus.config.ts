@@ -234,6 +234,7 @@ const config: Config = {
             {label: 'GitHub', href: 'https://github.com/jddunn/wunderland'},
             {label: 'Discord', href: 'https://discord.gg/KxF9b6HY6h'},
             {label: 'Twitter', href: 'https://twitter.com/wunderlandsh'},
+            {label: 'Contact: hi@rabbithole.inc', href: 'mailto:hi@rabbithole.inc'},
           ],
         },
         {
