@@ -303,6 +303,41 @@ The `MemoryReflector` processes observation notes and consolidates them into hig
 
 Together, observer + reflector form a continuous learning loop where raw conversation data is refined into structured knowledge.
 
+## Auto-Ingest Pipeline
+
+Complementing the Observer/Reflector system, the **Auto-Ingest Pipeline** runs after every single conversation turn (non-blocking). It uses a cheap LLM (gpt-4o-mini or claude-haiku) to extract structured facts from the latest exchange and store them in the `auto_memories` vector collection.
+
+### How It Works
+
+1. The latest user message and assistant response are sent to a cheap LLM for fact extraction.
+2. Each candidate fact is tagged with a category and raw importance score (0–1).
+3. The agent's HEXACO personality modulates the importance threshold — e.g., high Openness lowers the bar, high Conscientiousness boosts goal/action-item facts.
+4. Facts above the threshold are deduplicated against existing memories (cosine similarity, default 0.85) and stored in the vector DB.
+
+### Categories
+
+- **`user_preference`** — likes, dislikes, stated preferences
+- **`episodic`** — what happened in the conversation
+- **`goal`** — what the user wants to achieve
+- **`knowledge`** — technical or domain facts learned
+- **`correction`** — corrections to prior beliefs
+
+### Personality-Scored Importance
+
+| HEXACO Trait (> 0.6) | Effect |
+|----------------------|--------|
+| Openness | Lowers threshold, +1 fact/turn, enables emotional context |
+| Conscientiousness | Boosts goals/action items, tighter dedup (0.92) |
+| Agreeableness | Boosts user preferences, +2 retrieval topK |
+| Emotionality | Enables sentiment tracking, boosts episodic |
+| Honesty | Boosts corrections, loosens dedup (0.75) |
+
+### Difference from Observer/Reflector
+
+The auto-ingest pipeline is a **per-turn** extraction — it catches details before they scroll out of context. The Observer/Reflector is **threshold-based batch consolidation** (30K/40K tokens) that compresses and reorganizes accumulated knowledge. Both feed the same retrieval pipeline, so facts from either source are surfaced by RAG queries scored by the same composite formula.
+
+See the [Memory Auto-Ingest Guide](/features/memory-auto-ingest) for full configuration and integration details.
+
 ## Consolidation Pipeline
 
 Runs hourly (configurable). Think of it as overnight memory consolidation in biological systems:
