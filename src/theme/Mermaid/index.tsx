@@ -24,6 +24,16 @@ export default function MermaidWrapper(props: any): JSX.Element {
     setIsFullscreen(false);
   }, []);
 
+  // Close on Escape key
+  React.useEffect(() => {
+    if (!isFullscreen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeFullscreen();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen, closeFullscreen]);
+
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault();
     e.stopPropagation();
