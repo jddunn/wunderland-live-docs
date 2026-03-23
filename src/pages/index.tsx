@@ -129,43 +129,97 @@ function HomepageHeader() {
 
 const CODE_TABS = [
   {
-    label: 'Quick Start',
+    label: '⚡ CLI',
+    language: 'bash',
+    code: `# Install
+$ npm install -g wunderland
+
+# Start an agent (interactive TUI dashboard)
+$ wunderland start --preset enterprise --security-tier strict
+  ✓ Loading agent config: enterprise.json
+  ✓ Security tier: strict
+  ✓ Guardrail packs: pii-redaction, ml-classifiers, code-safety (3 of 5 active)
+  ✓ LLM provider: openai (gpt-4o)
+  ✓ Agent running on http://localhost:3000
+  ✓ Press Ctrl+C to stop
+
+# Chat with an agent (streaming + guardrails)
+$ wunderland chat --guardrails=pii,code,grounding
+  [wunderland] Security tier: balanced
+  [wunderland] Guardrail packs: pii-redaction, code-safety, grounding-guard
+  You: What's John Smith's SSN?
+  Agent: I can't provide personal information like SSNs. [PII_REDACTED]
+
+# List available skills
+$ wunderland skills
+  🔍 web-search          Search the web (requires SERPER_API_KEY)
+  💻 coding-agent        Write, debug, and refactor code
+  🛡️ pii-redaction       Detect and redact PII
+  🔬 deep-research       Multi-step research pipeline
+  ... 40+ skills available
+
+# Seal an agent config (immutable, auditable)
+$ wunderland seal --output agent-v1.sealed.json
+  ✓ Config sealed with SHA-256: a3f8c2...
+  ✓ Saved to agent-v1.sealed.json
+
+# Deploy with Docker
+$ wunderland export --format docker
+  ✓ Generated Dockerfile + docker-compose.yml
+  ✓ Run: docker compose up`,
+  },
+  {
+    label: '🚀 Quick Start',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
 
 const app = createWunderland({
   provider: { id: 'openai', apiKey: process.env.OPENAI_API_KEY },
   model: 'gpt-4o',
+  security: { tier: 'balanced' }, // PII redaction + code safety
 });
 
-const session = await app.chat('What are the key principles of distributed systems?');
+// Stream a response
+const session = await app.chat('Explain microservices vs monolith trade-offs');
 for await (const chunk of session) {
   process.stdout.write(chunk.text);
-}`,
+}
+// Output: "Microservices offer independent deployment and scaling..."`,
   },
   {
-    label: 'Multi-Agent',
+    label: '🤝 Multi-Agent',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
-import { createWunderlandChatRuntime } from 'wunderland/api';
 
-const runtime = await createWunderlandChatRuntime({
+const app = createWunderland({
   provider: { id: 'openai', apiKey: process.env.OPENAI_API_KEY },
   model: 'gpt-4o',
   workflow: {
     tasks: [
-      // These two run in PARALLEL (no dependencies)
-      { id: 'research', role: 'researcher', prompt: 'Research competitor pricing' },
-      { id: 'analyze', role: 'analyst', prompt: 'Analyze our current market position' },
-      // This runs AFTER both complete (sequential dependency)
-      { id: 'synthesize', role: 'strategist', prompt: 'Create pricing strategy',
-        dependsOn: ['research', 'analyze'] },
+      // ── PARALLEL: run simultaneously (no dependencies) ──
+      { id: 'research', role: 'researcher',
+        prompt: 'Research top 3 competitors in AI agent frameworks',
+        dependsOn: [] },
+      { id: 'data', role: 'analyst',
+        prompt: 'Analyze market size and growth trends',
+        dependsOn: [] },
+
+      // ── SEQUENTIAL: waits for BOTH parallel tasks ──
+      { id: 'strategy', role: 'strategist',
+        prompt: 'Create pricing strategy from research + data',
+        dependsOn: ['research', 'data'] }, // receives their outputs
+
+      // ── SEQUENTIAL: waits for strategy ──
+      { id: 'report', role: 'writer',
+        prompt: 'Write executive summary',
+        dependsOn: ['strategy'] },
     ],
   },
-});`,
+});
+// Execution: research ∥ data → strategy → report`,
   },
   {
-    label: 'Security Tiers',
+    label: '🛡️ Security',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
 
@@ -173,27 +227,20 @@ const app = createWunderland({
   provider: { id: 'anthropic', apiKey: process.env.ANTHROPIC_API_KEY },
   model: 'claude-sonnet-4-20250514',
   security: {
-    tier: 'strict', // PII redaction + ML classifiers + code safety
+    tier: 'strict',
+    // Override individual packs beyond what the tier provides
     guardrailPacks: {
-      groundingGuard: true, // Also enable RAG grounding
+      piiRedaction: true,     // 4-tier: regex → NLP → NER → LLM judge
+      mlClassifiers: true,    // BERT toxicity + injection + jailbreak
+      codeSafety: true,       // 25 OWASP regex rules
+      groundingGuard: true,   // NLI entailment vs RAG sources
+      topicality: false,      // disabled — not needed for this use case
     },
   },
-});`,
-  },
-  {
-    label: 'CLI',
-    language: 'bash',
-    code: `# Install globally
-npm install -g wunderland
+});
 
-# Start an agent with a preset
-wunderland start --preset enterprise --security-tier strict
-
-# Interactive chat with guardrails
-wunderland chat --guardrails=pii,code,grounding
-
-# Create a multi-agent agency
-wunderland agency create --roles researcher,analyst,strategist`,
+// All input/output automatically scanned
+// PII redacted, toxic content blocked, code checked, claims verified`,
   },
 ];
 
