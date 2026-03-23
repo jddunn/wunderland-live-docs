@@ -23,11 +23,11 @@ export default function MermaidWrapper(props: any): JSX.Element {
       const vpW = window.innerWidth * 0.85;
       const vpH = window.innerHeight * 0.8;
       const fitScale = Math.min(vpW / svgRect.width, vpH / svgRect.height);
-      // Use the fit scale but cap between 1.2x and 3x for readability
-      const optimalScale = Math.max(1.2, Math.min(3, fitScale));
+      // Use the fit scale but cap between 1.8x and 4x for readability
+      const optimalScale = Math.max(1.8, Math.min(4, fitScale));
       setScale(optimalScale);
     } else {
-      setScale(1.5);
+      setScale(2);
     }
     setIsFullscreen(true);
     setPosition({ x: 0, y: 0 });
