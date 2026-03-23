@@ -478,6 +478,57 @@ Agents can interact with their own memory through built-in tools:
 
 These are registered automatically when the cognitive memory extension is loaded.
 
+## Per-Turn Retrieval Pipeline
+
+Every conversation turn triggers an 8-step retrieval pipeline that assembles memory context before the LLM generates a response. The pipeline is non-blocking — any step that fails is silently skipped so that the conversation is never interrupted by a memory subsystem error.
+
+```mermaid
+flowchart TD
+    Input["User message"] --> Observe1["memory.observe('user', input)"]
+    Observe1 --> VectorQ["Vector store query<br/><i>auto_memories collection</i>"]
+    VectorQ --> GraphQ["GraphRAG localSearch<br/><i>entity context</i>"]
+    GraphQ --> ReadMD["Read working-memory.md<br/><i>persistent notes</i>"]
+    ReadMD --> Assemble["Assemble context<br/><i>## Persistent Memory<br/>## Recalled Memories<br/>## Knowledge Graph Context</i>"]
+    Assemble --> Inject["Inject as system message"]
+    Inject --> LLM["runToolCallingTurn()"]
+    LLM --> Observe2["memory.observe('assistant', reply)"]
+    Observe2 --> Ingest["autoIngestPipeline<br/><i>extract new facts</i>"]
+```
+
+### Budget Allocation
+
+The total retrieval budget (default 4 000 tokens, configurable via `memory.retrievalBudgetTokens` in `agent.config.json`) is split across sections:
+
+| Section | Share |
+|---------|-------|
+| Persistent markdown memory | 5% |
+| Recalled vector memories | 55% |
+| Knowledge Graph (GraphRAG) | 10% |
+| Overhead (formatting, truncation markers) | 30% |
+
+When a section produces no content its budget is not redistributed — the final context simply uses fewer tokens.
+
+### Failure Handling
+
+All retrieval is non-blocking. If the vector store throws, the outer `try/catch` returns `null` and the turn proceeds without memory context. GraphRAG failures are caught independently so vector-based recall still surfaces. Markdown read failures return an empty string.
+
+### GraphRAG
+
+GraphRAG is lazy-loaded and optional. It requires the `graphology` peer dependency. When a `graphRAG` instance is passed to `createMemorySystem`, entity-based context is included in the `## Knowledge Graph Context` section. Without it, that section is omitted silently.
+
+### Configuration
+
+```json
+{
+  "memory": {
+    "enabled": true,
+    "retrievalBudgetTokens": 4000
+  }
+}
+```
+
+Set `memory.enabled` to `false` to disable the entire retrieval pipeline. The budget can be tuned per agent depending on context window size and prompt complexity.
+
 ## Key Files
 
 | File | Purpose |
