@@ -359,6 +359,7 @@ graph TD
         I["Memory Graph\n(co-activation)"]:::memory
         J["Vector Store\n(semantic search)\n+ auto_memories"]:::memory
         K["Working Memory\n(7±2 slots)"]:::memory
+        S["GraphRAG localSearch\n(entity context, lazy-loaded)"]:::processing
     end
 
     subgraph Assembly
@@ -391,6 +392,8 @@ graph TD
     I --> L
     J --> L
     K --> L
+    A --> S
+    S --> L
     L --> M
 
     classDef primary fill:#1c1c28,stroke:#c9a227,color:#f2f2fa
