@@ -346,9 +346,18 @@ graph TD
         H["MemoryTraces (LTM)"]:::memory
     end
 
+    subgraph AutoIngest["Auto-Ingest Pipeline (every turn)"]
+        P["LLM Fact Extraction\n(cheap model)"]:::processing
+        Q["Personality Scoring\n(HEXACO thresholds)"]:::processing
+    end
+
+    subgraph PersistentWM["Persistent Markdown Working Memory"]
+        R["working-memory.md\n(read/write tools)"]:::memory
+    end
+
     subgraph Retrieval
         I["Memory Graph\n(co-activation)"]:::memory
-        J["Vector Store\n(semantic search)"]:::memory
+        J["Vector Store\n(semantic search)\n+ auto_memories"]:::memory
         K["Working Memory\n(7±2 slots)"]:::memory
     end
 
@@ -366,6 +375,9 @@ graph TD
     end
 
     A --> B
+    A --> P
+    P --> Q
+    Q --> J
     B -- "< 30K tokens" --> C
     B -- "≥ 30K tokens" --> D
     D --> E
@@ -375,6 +387,7 @@ graph TD
     H --> I
     H --> J
     H --> K
+    R --> L
     I --> L
     J --> L
     K --> L
