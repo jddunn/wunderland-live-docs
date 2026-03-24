@@ -34,6 +34,7 @@ const sidebars = {
       items: [
         'tutorials/first-agent',
         'tutorials/voice-agent',
+        'tutorials/ivr-phone-agent',
       ],
     },
     {
