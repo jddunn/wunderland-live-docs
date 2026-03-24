@@ -192,7 +192,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'apiSidebar',
           position: 'left',
-          label: 'API Reference',
+          label: 'API',
         },
         {
           to: '/docs/getting-started/changelog',
@@ -225,7 +225,7 @@ const config: Config = {
             {label: 'Getting Started', to: '/docs/'},
             {label: 'Architecture', to: '/docs/architecture/overview'},
             {label: 'Guides', to: '/docs/guides/creating-agents'},
-            {label: 'API Reference', to: '/docs/api/overview'},
+            {label: 'API', to: '/docs/api/overview'},
           ],
         },
         {
