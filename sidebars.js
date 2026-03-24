@@ -1,21 +1,18 @@
 // @ts-check
 
-// Try to import TypeDoc-generated sidebars (may not exist on first build)
-let publicTypedocSidebarItems = [];
-let internalTypedocSidebarItems = [];
-try {
-  const loaded = require('./docs/api-reference/public/typedoc-sidebar.cjs');
-  publicTypedocSidebarItems = Array.isArray(loaded) ? loaded : loaded?.items ?? [];
-} catch {
-  // Public TypeDoc sidebar not yet generated — will be created during build
+function loadOptionalTypedocSidebar(modulePath) {
+  try {
+    // The TypeDoc sidebar files are generated only after the API docs build runs.
+    // Keep typecheck/build resilient on first run and in partial docs environments.
+    const loaded = require(modulePath);
+    return Array.isArray(loaded) ? loaded : loaded?.items ?? [];
+  } catch {
+    return [];
+  }
 }
 
-try {
-  const loaded = require('./docs/api-reference/modules/typedoc-sidebar.cjs');
-  internalTypedocSidebarItems = Array.isArray(loaded) ? loaded : loaded?.items ?? [];
-} catch {
-  // Internal TypeDoc sidebar not yet generated — will be created during build
-}
+const publicTypedocSidebarItems = loadOptionalTypedocSidebar('./docs/api-reference/public/typedoc-sidebar.cjs');
+const internalTypedocSidebarItems = loadOptionalTypedocSidebar('./docs/api-reference/modules/typedoc-sidebar.cjs');
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
@@ -96,6 +93,7 @@ const sidebars = {
         'guides/openai-oauth',
         'guides/full-channel-list',
         'guides/voice-runtime',
+        'guides/telephony-setup',
         'guides/security',
         'guides/security-tiers',
         'guides/operational-safety',
