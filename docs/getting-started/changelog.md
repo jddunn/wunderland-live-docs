@@ -5,6 +5,38 @@ sidebar_position: 10
 
 # Changelog
 
+## [0.46.0] - 2026-03-24
+
+### Added
+- feat(voice): real-time streaming voice pipeline with 6-state conversational loop
+  - `VoicePipelineOrchestrator` with LISTENING → PROCESSING → SPEAKING cycle
+  - Barge-in detection (hard-cut and soft-fade modes)
+  - Three-tier endpointing: acoustic, heuristic, semantic (LLM-based)
+  - Speaker diarization with provider delegation and local x-vector clustering
+- feat(voice): 6 streaming extension packs
+  - Deepgram real-time STT (`@framers/agentos-ext-streaming-stt-deepgram`)
+  - Whisper chunked STT (`@framers/agentos-ext-streaming-stt-whisper`)
+  - OpenAI streaming TTS (`@framers/agentos-ext-streaming-tts-openai`)
+  - ElevenLabs streaming TTS (`@framers/agentos-ext-streaming-tts-elevenlabs`)
+  - Diarization engine (`@framers/agentos-ext-diarization`)
+  - Semantic endpoint detector (`@framers/agentos-ext-endpoint-semantic`)
+- feat(speech): SpeechProviderResolver with capability-based resolution, priority chains, and automatic fallback
+- feat(speech): 4 new core providers — Deepgram batch, AssemblyAI, Azure STT, Azure TTS
+- feat(speech): 7 provider extension packs — Google STT/TTS, Amazon Polly, Vosk, Piper, Porcupine, OpenWakeWord
+- feat(voice): Twilio, Telnyx, Plivo telephony providers with webhook verification
+- feat(voice): TelephonyStreamTransport bridging phone calls to streaming pipeline
+- feat(voice): DTMF event support — digits surfaced to LLM context
+- feat(voice): TwiML/XML generation for all 3 telephony providers
+- feat(cli): `--voice` flags for chat command (STT, TTS, endpointing, diarization, barge-in, port)
+- feat(cli): telephony webhook server and CLI flags
+
+### Changed
+- refactor(voice): streaming-pipeline.ts rebuilt as reusable pipeline handle
+- fix(voice): chat --voice wired with real agent-session adapter
+- fix(session): session.stream() reworked to wrap real sendText() path
+
+---
+
 ## [0.45.0] - 2026-03-22
 
 ### Added
@@ -24,7 +56,7 @@ sidebar_position: 10
   - `balanced` — PII + code safety
   - `strict` — PII + ML classifiers + code safety
   - `paranoid` — all 5 packs enabled
-- feat: rename `@framers/agentos-ext-skills` to `@framers/agentos-skills`
+- fix: keep the skills tools extension published as `@framers/agentos-ext-skills` so it stays distinct from the `@framers/agentos-skills` runtime package
 - feat(api): new sub-path exports: `wunderland/config`, `wunderland/security`, `wunderland/runtime`, `wunderland/storage`, `wunderland/guardrails`, `wunderland/voice`
 - feat(api): barrel exports for config, guardrails, and voice modules
 
