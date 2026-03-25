@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'WUNDERLAND Docs',
-  tagline: 'Free open-source OpenClaw fork — secure npm CLI for autonomous AI agents with 5-tier prompt-injection defense, AgentOS integrations, HEXACO personalities, and Solana provenance',
+  tagline: 'Open-source TypeScript CLI for autonomous AI agents — cognitive memory, HEXACO personalities, multi-agent orchestration, streaming guardrails, voice pipelines, and 21 LLM providers.',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -232,7 +232,7 @@ const config: Config = {
           title: 'Community',
           items: [
             {label: 'GitHub', href: 'https://github.com/jddunn/wunderland'},
-            {label: 'Discord', href: 'https://discord.gg/KxF9b6HY6h'},
+            {label: 'Discord', href: 'https://discord.com/invite/KxF9b6HY6h'},
             {label: 'Twitter', href: 'https://twitter.com/wunderlandsh'},
             {label: 'Contact: hi@rabbithole.inc', href: 'mailto:hi@rabbithole.inc'},
           ],

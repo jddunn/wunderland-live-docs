@@ -2,8 +2,6 @@
 
 function loadOptionalTypedocSidebar(modulePath) {
   try {
-    // The TypeDoc sidebar files are generated only after the API docs build runs.
-    // Keep typecheck/build resilient on first run and in partial docs environments.
     const loaded = require(modulePath);
     return Array.isArray(loaded) ? loaded : loaded?.items ?? [];
   } catch {
@@ -18,9 +16,12 @@ const internalTypedocSidebarItems = loadOptionalTypedocSidebar('./docs/api-refer
 const sidebars = {
   guideSidebar: [
     'intro',
+
+    // ── Getting Started ──
     {
       type: 'category',
       label: 'Getting Started',
+      collapsed: false,
       items: [
         'getting-started/installation',
         'getting-started/quickstart',
@@ -28,6 +29,8 @@ const sidebars = {
         'getting-started/agent-config-reference',
       ],
     },
+
+    // ── Tutorials ──
     {
       type: 'category',
       label: 'Tutorials',
@@ -37,80 +40,148 @@ const sidebars = {
         'tutorials/ivr-phone-agent',
       ],
     },
+
+    // ── Core Concepts ──
     {
       type: 'category',
-      label: 'Architecture',
+      label: 'Core Concepts',
       items: [
         'architecture/overview',
         'architecture/agentos-integration',
-        'architecture/personality-system',
-        'architecture/solana-integration',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Guides',
-      items: [
         'guides/creating-agents',
+        'guides/preset-agents',
         'guides/cli-reference',
         'guides/library-first-api',
+        'guides/model-providers',
+      ],
+    },
+
+    // ── Agents & Personality ──
+    {
+      type: 'category',
+      label: 'Agents & Personality',
+      items: [
+        'architecture/personality-system',
         'guides/hexaco-personality',
+        'guides/style-adaptation',
+        'guides/llm-sentiment',
+        'guides/emergent-capabilities',
+      ],
+    },
+
+    // ── Memory & RAG ──
+    {
+      type: 'category',
+      label: 'Memory & RAG',
+      items: [
         'guides/memory-system',
         'guides/memory-architecture',
-        'guides/security-pipeline',
-        'guides/inference-routing',
-        'guides/step-up-authorization',
-        'guides/social-features',
-        'guides/agentic-engagement',
-        'guides/browser-automation',
-        'guides/skills-system',
+        'guides/hyde-retrieval',
+        'guides/capability-discovery',
+        'guides/discovery-configuration',
+        'guides/deep-research',
+      ],
+    },
+
+    // ── Tools & Extensions ──
+    {
+      type: 'category',
+      label: 'Tools & Extensions',
+      items: [
         'guides/tools',
-        'guides/scheduling',
-        'guides/guardrails',
-        'guides/on-chain-features',
-        'guides/earnings-and-payouts',
-        'guides/job-board',
-        'guides/ollama-local',
-        'guides/env-import',
-        'guides/channels',
-        'guides/immutability',
         'guides/extensions',
         'guides/extension-configuration',
-        'guides/hyde-retrieval',
+        'guides/skills-system',
+        'guides/browser-automation',
         'guides/stealth-browser',
         'guides/image-generation',
         'guides/tool-failure-learning',
-        'guides/capability-discovery',
-        'guides/discovery-configuration',
-        'guides/pairing',
-        'guides/deep-research',
-        'guides/http-streaming-api',
-        'guides/chat-server',
-        'guides/preset-agents',
-        'guides/style-adaptation',
-        'guides/llm-sentiment',
-        'guides/model-providers',
-        'guides/gemini-setup',
-        'guides/openai-oauth',
-        'guides/full-channel-list',
+        'guides/scheduling',
+      ],
+    },
+
+    // ── Voice & Telephony ──
+    {
+      type: 'category',
+      label: 'Voice & Telephony',
+      items: [
         'guides/voice-runtime',
         'guides/telephony-setup',
         'guides/speaker-diarization',
         'guides/turn-detection',
         'guides/voice-production',
-        'guides/security',
-        'guides/security-tiers',
-        'guides/operational-safety',
-        'guides/agent-signer',
-        'guides/program-upgradeability',
-        'guides/ipfs-storage',
-        'guides/devlog-mood-analysis',
-        'guides/email-intelligence',
-        'guides/channel-integrations',
-        'guides/emergent-capabilities',
-        'guides/troubleshooting',
       ],
     },
+
+    // ── Channels & Integrations ──
+    {
+      type: 'category',
+      label: 'Channels & Integrations',
+      items: [
+        'guides/channels',
+        'guides/full-channel-list',
+        'guides/channel-integrations',
+        'guides/pairing',
+        'guides/email-intelligence',
+        'guides/social-features',
+        'guides/agentic-engagement',
+      ],
+    },
+
+    // ── Security & Guardrails ──
+    {
+      type: 'category',
+      label: 'Security & Guardrails',
+      items: [
+        'guides/security',
+        'guides/security-tiers',
+        'guides/security-pipeline',
+        'guides/guardrails',
+        'guides/step-up-authorization',
+        'guides/operational-safety',
+        'guides/immutability',
+        'guides/agent-signer',
+      ],
+    },
+
+    // ── LLM Providers ──
+    {
+      type: 'category',
+      label: 'LLM Providers',
+      items: [
+        'guides/inference-routing',
+        'guides/ollama-local',
+        'guides/gemini-setup',
+        'guides/openai-oauth',
+        'guides/env-import',
+      ],
+    },
+
+    // ── Backend & Streaming ──
+    {
+      type: 'category',
+      label: 'Backend & Streaming',
+      items: [
+        'guides/http-streaming-api',
+        'guides/chat-server',
+      ],
+    },
+
+    // ── Decentralization (Solana) ──
+    {
+      type: 'category',
+      label: 'Decentralization (Solana)',
+      items: [
+        'architecture/solana-integration',
+        'guides/on-chain-features',
+        'guides/earnings-and-payouts',
+        'guides/job-board',
+        'guides/ipfs-storage',
+        'guides/program-upgradeability',
+      ],
+    },
+
+    // ── Use Cases ──
     {
       type: 'category',
       label: 'Use Cases',
@@ -123,6 +194,8 @@ const sidebars = {
         'use-cases/competitive-intelligence',
       ],
     },
+
+    // ── Deployment ──
     {
       type: 'category',
       label: 'Deployment',
@@ -134,7 +207,17 @@ const sidebars = {
         'deployment/local-first',
       ],
     },
-    'development-diary',
+
+    // ── Troubleshooting ──
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      items: [
+        'guides/troubleshooting',
+        'guides/devlog-mood-analysis',
+        'development-diary',
+      ],
+    },
   ],
 
   apiSidebar: [
