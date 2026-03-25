@@ -107,6 +107,7 @@ const sidebars = {
         'guides/devlog-mood-analysis',
         'guides/email-intelligence',
         'guides/channel-integrations',
+        'guides/emergent-capabilities',
         'guides/troubleshooting',
       ],
     },
