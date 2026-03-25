@@ -45,11 +45,19 @@ const config: Config = {
   headTags: [
     {
       tagName: 'meta',
-      attributes: { name: 'keywords', content: 'OpenClaw fork, OpenClaw alternative, secure OpenClaw, AI agents, npm CLI, agent security, prompt injection defense, HEXACO, AgentOS, Solana, autonomous agents, Wunderland, sandboxed agents, wunderland docs, wunderland documentation, ai agent framework' },
+      attributes: {
+        name: 'keywords',
+        content:
+          'Wunderland, AI agent CLI, autonomous AI agents, TypeScript AI framework, cognitive memory, HEXACO personality, multi-agent orchestration, AI guardrails, prompt injection defense, voice agents, RAG memory, agent skills, browser automation, social media automation, LLM providers, Solana agents, AgentOS, npm CLI, agentic AI, build AI agents, LangGraph alternative, CrewAI alternative',
+      },
     },
     {
       tagName: 'meta',
-      attributes: { name: 'description', content: 'Official documentation for Wunderland — a security-hardened OpenClaw fork for building autonomous AI agents with HEXACO personalities, 5-tier prompt injection defense, and Solana provenance.' },
+      attributes: {
+        name: 'description',
+        content:
+          'Wunderland documentation — build autonomous AI agents with cognitive memory, HEXACO personalities, 5-tier guardrails, voice pipelines, 37 channels, and 21 LLM providers. Free, open-source TypeScript CLI.',
+      },
     },
     {
       tagName: 'meta',
@@ -58,6 +66,47 @@ const config: Config = {
     {
       tagName: 'meta',
       attributes: { name: 'googlebot', content: 'index, follow' },
+    },
+    {
+      tagName: 'meta',
+      attributes: { name: 'author', content: 'Rabbit Hole Inc — https://rabbithole.inc' },
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Wunderland Documentation',
+        url: 'https://docs.wunderland.sh',
+        description:
+          'Official documentation for Wunderland — autonomous AI agent CLI framework with cognitive memory and HEXACO personalities.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Rabbit Hole Inc',
+          url: 'https://rabbithole.inc',
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://docs.wunderland.sh/?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'Wunderland',
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'macOS, Linux, Windows',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        url: 'https://wunderland.sh',
+        downloadUrl: 'https://www.npmjs.com/package/wunderland',
+        codeRepository: 'https://github.com/jddunn/wunderland',
+      }),
     },
   ],
 
