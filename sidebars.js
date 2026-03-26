@@ -95,6 +95,8 @@ const sidebars = {
         'guides/browser-automation',
         'guides/stealth-browser',
         'guides/image-generation',
+        'guides/image-editing',
+        'guides/vision-pipeline',
         'guides/tool-failure-learning',
         'guides/scheduling',
       ],
@@ -149,6 +151,7 @@ const sidebars = {
       type: 'category',
       label: 'LLM Providers',
       items: [
+        'guides/llm-providers',
         'guides/inference-routing',
         'guides/ollama-local',
         'guides/gemini-setup',
