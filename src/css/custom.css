@@ -528,6 +528,74 @@ h2 {
   background: rgba(212, 168, 68, 0.35);
 }
 
+/* ── Mobile navbar / sidebar ───────────────────────────────────── */
+/* Docusaurus mobile sidebar must have visible bg, text, and links */
+[data-theme='dark'] .navbar-sidebar {
+  background-color: #0d0c16;
+  border-right: 1px solid rgba(212, 168, 68, 0.15);
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link {
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link:hover {
+  color: var(--wl-gold);
+  background-color: rgba(212, 168, 68, 0.08);
+}
+
+[data-theme='dark'] .navbar-sidebar .menu__link--active {
+  color: var(--wl-gold);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .navbar-sidebar__brand {
+  border-bottom: 1px solid rgba(212, 168, 68, 0.15);
+}
+
+[data-theme='dark'] .navbar-sidebar__close {
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] .navbar-sidebar__back {
+  color: #e2e8f0;
+}
+
+/* Overlay behind mobile sidebar */
+[data-theme='dark'] .navbar-sidebar__backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Hamburger toggle icon — always visible */
+[data-theme='dark'] .navbar__toggle {
+  color: #e2e8f0;
+}
+
+/* Navbar items in mobile sidebar */
+[data-theme='dark'] .navbar-sidebar .navbar__link {
+  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme='dark'] .navbar-sidebar .navbar__link:hover {
+  color: var(--wl-gold);
+  background-color: rgba(212, 168, 68, 0.06);
+}
+
+[data-theme='dark'] .navbar-sidebar .navbar__link--active {
+  color: var(--wl-gold);
+}
+
+/* Light mode mobile sidebar */
+[data-theme='light'] .navbar-sidebar {
+  background-color: #faf8f3;
+  border-right: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+[data-theme='light'] .navbar-sidebar .navbar__link:hover {
+  background-color: rgba(201, 162, 39, 0.06);
+}
+
 /* ── Art Deco decorative divider (utility class) ────────────────── */
 .art-deco-divider {
   height: 1px;
