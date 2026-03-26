@@ -12,7 +12,7 @@
  */
 
 /* ── Google Fonts ───────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ── Light mode (default) ───────────────────────────────────────── */
 :root {
@@ -26,7 +26,7 @@
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
   --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  --ifm-font-family-monospace: 'JetBrains Mono', 'Space Mono', 'Fira Code', monospace;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
   --docusaurus-highlighted-code-line-bg: rgba(201, 162, 39, 0.12);
 
   /* Art Deco accents */
@@ -77,7 +77,7 @@ h2 {
 }
 
 [data-theme='dark'] .navbar__title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--wl-gold);
@@ -96,7 +96,7 @@ h2 {
 }
 
 [data-theme='light'] .navbar__title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -151,7 +151,7 @@ h2 {
 }
 
 .hero__title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: linear-gradient(135deg, #d4a844 0%, #ebd298 30%, #9945ff 70%, #7dd3fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -169,7 +169,7 @@ h2 {
 }
 
 .hero__subtitle {
-  font-family: 'Space Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 1.05rem;
   letter-spacing: 0.02em;
   opacity: 0.85;
@@ -272,7 +272,7 @@ h2 {
 
 /* Sidebar category labels */
 [data-theme='dark'] .menu__link--sublist {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.78rem;
@@ -322,7 +322,7 @@ h2 {
 [data-theme='dark'] .codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
   background-color: rgba(212, 168, 68, 0.08) !important;
   border-bottom: 1px solid rgba(212, 168, 68, 0.12);
-  font-family: 'Space Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.02em;
 }
 
@@ -361,7 +361,7 @@ h2 {
 }
 
 [data-theme='dark'] .footer__title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.8rem;
@@ -386,7 +386,7 @@ h2 {
 }
 
 [data-theme='light'] .footer__title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.8rem;
@@ -464,7 +464,7 @@ h2 {
 }
 
 [data-theme='dark'] table thead th {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   text-transform: uppercase;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
@@ -512,7 +512,7 @@ h2 {
 }
 
 [data-theme='dark'] .pagination-nav__sublabel {
-  font-family: 'Space Mono', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;

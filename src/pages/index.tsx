@@ -499,6 +499,46 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
     ],
   },
   {
+    heading: 'Skills',
+    packages: [
+      {
+        name: '@framers/agentos-skills',
+        description: 'Skills engine \u2014 parser, loader, and SkillRegistry runtime for SKILL.md modules.',
+        npm: '@framers/agentos-skills',
+      },
+      {
+        name: '@framers/agentos-skills-registry',
+        description: '40+ curated skills \u2014 web search, coding, research, social media, and more.',
+        npm: '@framers/agentos-skills-registry',
+      },
+      {
+        name: '@framers/agentos-ext-skills',
+        description: 'Skills discovery and enablement tools \u2014 curated SKILL.md pack loading.',
+        npm: '@framers/agentos-ext-skills',
+      },
+    ],
+  },
+  {
+    heading: 'Extensions',
+    packages: [
+      {
+        name: '@framers/agentos-extensions',
+        description: '45+ extensions \u2014 channel adapters, tools, voice providers, browser automation.',
+        npm: '@framers/agentos-extensions',
+      },
+      {
+        name: '@framers/agentos-extensions-registry',
+        description: 'Extension catalog \u2014 channel, tool, and provider metadata with dynamic loading.',
+        npm: '@framers/agentos-extensions-registry',
+      },
+      {
+        name: '@framers/agentos-ext-http-api',
+        description: 'Express router helpers for exposing RAG + HITL HTTP APIs (host-agnostic).',
+        npm: '@framers/agentos-ext-http-api',
+      },
+    ],
+  },
+  {
     heading: 'Guardrails',
     packages: [
       {
@@ -525,36 +565,6 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
         name: '@framers/agentos-ext-topicality',
         description: 'Embedding-based on/off-topic enforcement with LLM fallback.',
         npm: '@framers/agentos-ext-topicality',
-      },
-    ],
-  },
-  {
-    heading: 'Skills',
-    packages: [
-      {
-        name: '@framers/agentos-skills',
-        description: 'Skills engine \u2014 parser, loader, and SkillRegistry runtime for SKILL.md modules.',
-        npm: '@framers/agentos-skills',
-      },
-      {
-        name: '@framers/agentos-skills-registry',
-        description: '40+ curated skills \u2014 web search, coding, research, social media, and more.',
-        npm: '@framers/agentos-skills-registry',
-      },
-    ],
-  },
-  {
-    heading: 'Extensions',
-    packages: [
-      {
-        name: '@framers/agentos-extensions',
-        description: '45+ extensions \u2014 channel adapters, tools, voice providers, browser automation.',
-        npm: '@framers/agentos-extensions',
-      },
-      {
-        name: '@framers/agentos-extensions-registry',
-        description: 'Extension catalog \u2014 channel, tool, and provider metadata with dynamic loading.',
-        npm: '@framers/agentos-extensions-registry',
       },
     ],
   },
