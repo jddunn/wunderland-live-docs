@@ -17,33 +17,40 @@ import styles from './index.module.css';
 /* ── Badges ────────────────────────────────────────────────────────── */
 
 function Badges() {
-  const s = 'flat-square';
+  const s = 'for-the-badge';
   const bg = '08070e';
+
+  const badges: { href: string; src: string; alt: string }[] = [
+    {
+      href: 'https://www.npmjs.com/package/wunderland',
+      src: `https://img.shields.io/npm/v/wunderland?style=${s}&logo=npm&logoColor=white&label=npm&color=9945ff&labelColor=${bg}`,
+      alt: 'npm version',
+    },
+    {
+      href: 'https://codecov.io/gh/jddunn/wunderland',
+      src: `https://img.shields.io/codecov/c/github/jddunn/wunderland?style=${s}&logo=codecov&logoColor=white&label=coverage&color=22c55e&labelColor=${bg}`,
+      alt: 'Test Coverage',
+    },
+    {
+      href: 'https://github.com/jddunn/wunderland/stargazers',
+      src: `https://img.shields.io/github/stars/jddunn/wunderland?style=${s}&logo=github&logoColor=white&label=stars&color=c9a227&labelColor=${bg}`,
+      alt: 'GitHub Stars',
+    },
+    {
+      href: 'https://github.com/jddunn/wunderland/network/members',
+      src: `https://img.shields.io/github/forks/jddunn/wunderland?style=${s}&logo=github&logoColor=white&label=forks&color=6e7681&labelColor=${bg}`,
+      alt: 'GitHub Forks',
+    },
+  ];
 
   return (
     <div className={styles.badgesWrapper}>
-      {/* Row 1: Library version + CI + Coverage */}
       <div className={styles.badges}>
-        <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/npm/v/wunderland?style=${s}&label=wunderland&color=9945ff&labelColor=${bg}`} alt="wunderland version" height={22} />
-        </a>
-        <a href="https://github.com/jddunn/wunderland/actions" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/github/actions/workflow/status/jddunn/wunderland/publish.yml?style=${s}&label=CI&logo=githubactions&logoColor=white&labelColor=${bg}`} alt="CI" height={22} />
-        </a>
-        <a href="https://codecov.io/gh/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/codecov/c/github/jddunn/wunderland?style=${s}&label=coverage&logo=codecov&logoColor=white&color=22c55e&labelColor=${bg}`} alt="Coverage" height={22} />
-        </a>
-        <img src={`https://img.shields.io/badge/TypeScript-5.x-3178c6?style=${s}&logo=typescript&logoColor=white&labelColor=${bg}`} alt="TypeScript" height={22} />
-        <img src={`https://img.shields.io/badge/license-Apache%202.0-c9a227?style=${s}&labelColor=${bg}`} alt="License" height={22} />
-      </div>
-      {/* Row 2: GitHub social — large format with counts */}
-      <div className={styles.githubSocial}>
-        <a href="https://github.com/jddunn/wunderland/stargazers" target="_blank" rel="noopener noreferrer">
-          <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=social" alt="GitHub Stars" />
-        </a>
-        <a href="https://github.com/jddunn/wunderland/network/members" target="_blank" rel="noopener noreferrer">
-          <img src="https://img.shields.io/github/forks/jddunn/wunderland?style=social" alt="GitHub Forks" />
-        </a>
+        {badges.map((b) => (
+          <a key={b.alt} href={b.href} target="_blank" rel="noopener noreferrer">
+            <img src={b.src} alt={b.alt} />
+          </a>
+        ))}
       </div>
     </div>
   );
