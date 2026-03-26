@@ -17,26 +17,39 @@ import styles from './index.module.css';
 /* ── Badges ────────────────────────────────────────────────────────── */
 
 function Badges() {
+  const badgeHeight = 22;
+  const shieldStyle = 'flat-square';
+  const labelColor = '08070e';
+
   return (
-    <div className={styles.badges}>
-      <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-        <img
-          src="https://img.shields.io/github/stars/jddunn/wunderland?style=flat-square&logo=github&color=c9a227&labelColor=08070e"
-          alt="GitHub Stars"
-        />
-      </a>
-      <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-        <img
-          src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&color=9945ff&labelColor=08070e"
-          alt="npm version"
-        />
-      </a>
-      <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-        <img
-          src="https://img.shields.io/npm/dm/wunderland?style=flat-square&color=0ea5e9&labelColor=08070e"
-          alt="npm downloads"
-        />
-      </a>
+    <div className={styles.badgesWrapper}>
+      {/* Row 1: Package badges */}
+      <div className={styles.badges}>
+        <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/npm/v/wunderland?style=${shieldStyle}&logo=npm&color=9945ff&labelColor=${labelColor}`} alt="npm version" height={badgeHeight} />
+        </a>
+        <img src={`https://img.shields.io/badge/TypeScript-5.x-3178c6?style=${shieldStyle}&logo=typescript&logoColor=white&labelColor=${labelColor}`} alt="TypeScript" height={badgeHeight} />
+        <img src={`https://img.shields.io/badge/license-Apache%202.0-c9a227?style=${shieldStyle}&labelColor=${labelColor}`} alt="License" height={badgeHeight} />
+        <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/npm/dm/wunderland?style=${shieldStyle}&label=downloads&color=0ea5e9&labelColor=${labelColor}`} alt="npm downloads" height={badgeHeight} />
+        </a>
+        <img src={`https://img.shields.io/badge/node-%3E%3D18-339933?style=${shieldStyle}&logo=node.js&logoColor=white&labelColor=${labelColor}`} alt="Node.js" height={badgeHeight} />
+      </div>
+      {/* Row 2: GitHub social badges */}
+      <div className={styles.badges}>
+        <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/github/stars/jddunn/wunderland?style=${shieldStyle}&logo=github&label=stars&color=c9a227&labelColor=${labelColor}`} alt="GitHub Stars" height={badgeHeight} />
+        </a>
+        <a href="https://github.com/jddunn/wunderland/network/members" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/github/forks/jddunn/wunderland?style=${shieldStyle}&logo=github&label=forks&color=6e7681&labelColor=${labelColor}`} alt="GitHub Forks" height={badgeHeight} />
+        </a>
+        <a href="https://github.com/jddunn/wunderland/issues" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/github/issues/jddunn/wunderland?style=${shieldStyle}&logo=github&label=issues&color=d97706&labelColor=${labelColor}`} alt="GitHub Issues" height={badgeHeight} />
+        </a>
+        <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
+          <img src={`https://img.shields.io/github/last-commit/jddunn/wunderland?style=${shieldStyle}&logo=github&label=last%20commit&color=22c55e&labelColor=${labelColor}`} alt="Last Commit" height={badgeHeight} />
+        </a>
+      </div>
     </div>
   );
 }
