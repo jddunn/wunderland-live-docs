@@ -105,10 +105,10 @@ function HomepageHeader() {
         <Badges />
         <InstallBar />
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart">
+          <Link className="button button--secondary button--lg" to="/getting-started/quickstart">
             Get Started
           </Link>
-          <Link className="button button--secondary button--lg" to="/docs/api/overview">
+          <Link className="button button--secondary button--lg" to="/api/overview">
             API Reference
           </Link>
           <Link
@@ -134,14 +134,12 @@ const CODE_TABS = [
     code: `# Install
 $ npm install -g wunderland
 
-# Start an agent (interactive TUI dashboard)
-$ wunderland start --preset enterprise --security-tier strict
-  ✓ Loading agent config: enterprise.json
-  ✓ Security tier: strict
-  ✓ Guardrail packs: pii-redaction, ml-classifiers, code-safety (3 of 5 active)
-  ✓ LLM provider: openai (gpt-4o)
-  ✓ Agent running on http://localhost:3000
-  ✓ Press Ctrl+C to stop
+# Fastest first run
+$ wunderland quickstart
+  ✓ Detected Node + local workspace
+  ✓ Provider configured
+  ✓ Agent scaffolded
+  ✓ Ready to chat
 
 # Chat with an agent (streaming + guardrails)
 $ wunderland chat --guardrails=pii,code,grounding
@@ -149,6 +147,13 @@ $ wunderland chat --guardrails=pii,code,grounding
   [wunderland] Guardrail packs: pii-redaction, code-safety, grounding-guard
   You: What's John Smith's SSN?
   Agent: I can't provide personal information like SSNs. [PII_REDACTED]
+
+# Set shared provider defaults
+$ wunderland extensions configure
+  ✓ Image generation: replicate
+  ✓ TTS: openai
+  ✓ STT: deepgram
+  ✓ Web search: serper
 
 # List available skills
 $ wunderland skills
@@ -172,51 +177,75 @@ $ wunderland export --format docker
     label: '🚀 Quick Start',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
+import { workflow } from 'wunderland/workflows';
 
-const app = createWunderland({
-  provider: { id: 'openai', apiKey: process.env.OPENAI_API_KEY },
-  model: 'gpt-4o',
-  security: { tier: 'balanced' }, // PII redaction + code safety
+const app = await createWunderland({
+  llm: { providerId: 'openai' },
+  tools: 'curated',
 });
 
-// Stream a response
-const session = await app.chat('Explain microservices vs monolith trade-offs');
-for await (const chunk of session) {
-  process.stdout.write(chunk.text);
-}
-// Output: "Microservices offer independent deployment and scaling..."`,
+const compiled = workflow('support-triage')
+  .input({
+    type: 'object',
+    required: ['issue'],
+    properties: { issue: { type: 'string' } },
+  })
+  .returns({
+    type: 'object',
+    properties: { response: { type: 'string' } },
+  })
+  .step('triage', {
+    gmi: { instructions: 'Classify the issue and return JSON under scratch.triage.' },
+  })
+  .then('respond', {
+    gmi: { instructions: 'Return JSON like {"artifacts":{"response":"..."}}.' },
+  })
+  .compile();
+
+const result = await app.runGraph(compiled, {
+  issue: 'Customer asks for a refund after billing twice',
+});
+
+console.log(result);`,
   },
   {
-    label: '🤝 Multi-Agent',
+    label: '🧠 Orchestration',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
+import { AgentGraph, START, END, gmiNode } from 'wunderland/workflows';
 
-const app = createWunderland({
-  provider: { id: 'openai', apiKey: process.env.OPENAI_API_KEY },
-  model: 'gpt-4o',
-  workflow: {
-    tasks: [
-      // ── PARALLEL: run simultaneously (no dependencies) ──
-      { id: 'research', role: 'researcher',
-        prompt: 'Research top 3 competitors in AI agent frameworks',
-        dependsOn: [] },
-      { id: 'data', role: 'analyst',
-        prompt: 'Analyze market size and growth trends',
-        dependsOn: [] },
-
-      // ── SEQUENTIAL: waits for BOTH parallel tasks ──
-      { id: 'strategy', role: 'strategist',
-        prompt: 'Create pricing strategy from research + data',
-        dependsOn: ['research', 'data'] }, // receives their outputs
-
-      // ── SEQUENTIAL: waits for strategy ──
-      { id: 'report', role: 'writer',
-        prompt: 'Write executive summary',
-        dependsOn: ['strategy'] },
-    ],
-  },
+const app = await createWunderland({
+  llm: { providerId: 'openai' },
+  tools: 'curated',
 });
-// Execution: research ∥ data → strategy → report`,
+
+const graph = new AgentGraph({
+  input: { type: 'object', properties: { topic: { type: 'string' } } },
+  scratch: { type: 'object', properties: {} },
+  artifacts: { type: 'object', properties: { answer: { type: 'string' } } },
+})
+  .addNode('research', gmiNode({
+    instructions: 'Return JSON like {"scratch":{"research":{"confidence":0.6}}}.',
+    executionMode: 'single_turn',
+  }))
+  .addNode('judge', gmiNode({
+    instructions: 'Return JSON like {"scratch":{"judge":{"verdict":"write"}}}.',
+    executionMode: 'single_turn',
+  }))
+  .addNode('write', gmiNode({
+    instructions: 'Return JSON like {"artifacts":{"answer":"..."}}.',
+    executionMode: 'single_turn',
+  }))
+  .addEdge(START, 'research')
+  .addEdge('research', 'judge')
+  .addConditionalEdge('judge', (state) =>
+    state.scratch?.judge?.verdict === 'write' ? 'write' : 'research'
+  )
+  .addEdge('write', END)
+  .compile({ validate: false });
+
+const result = await app.runGraph(graph, { topic: 'agent memory systems' });
+console.log(result);`,
   },
   {
     label: '🛡️ Security',
@@ -243,6 +272,57 @@ const app = createWunderland({
 // PII redacted, toxic content blocked, code checked, claims verified`,
   },
 ];
+
+type StartHereItem = {
+  title: string;
+  description: string;
+  link: string;
+};
+
+const START_HERE: StartHereItem[] = [
+  {
+    title: 'Quickstart Checklist',
+    description: 'Install, run quickstart, open the TUI, and verify your environment in the shortest happy path.',
+    link: '/getting-started/quickstart',
+  },
+  {
+    title: 'CLI / TUI Guide',
+    description: 'Command flow, keybindings, onboarding tour, and the operator loops you actually use day to day.',
+    link: '/guides/cli-reference',
+  },
+  {
+    title: 'Troubleshooting & FAQ',
+    description: 'Doctor-first debugging, provider issues, image-generation fixes, and the built-in help topics.',
+    link: '/guides/troubleshooting',
+  },
+  {
+    title: 'Image Generation',
+    description: 'Shared provider defaults, provider-specific tradeoffs, and when to drop down to low-level AgentOS controls.',
+    link: '/guides/image-generation',
+  },
+];
+
+function StartHereSection() {
+  return (
+    <section className={styles.startHereSection}>
+      <div className="container">
+        <Heading as="h2" className={styles.sectionTitle}>
+          Start Here
+        </Heading>
+        <div className={styles.startHereGrid}>
+          {START_HERE.map((item) => (
+            <Link key={item.title} to={item.link} className={styles.startHereCard}>
+              <Heading as="h3" className={styles.startHereTitle}>
+                {item.title}
+              </Heading>
+              <p className={styles.startHereDesc}>{item.description}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function CodeExamples() {
   const [active, setActive] = useState(0);
@@ -288,84 +368,84 @@ const FEATURES: FeatureItem[] = [
     title: 'HEXACO Personality',
     description:
       'Every agent has a unique personality defined by the six HEXACO dimensions. Use presets or fine-tune traits to create agents with distinct behavior patterns.',
-    link: '/docs/architecture/personality-system',
+    link: '/architecture/personality-system',
   },
   {
     emoji: '\u{1F6E1}\uFE0F',
     title: '5-Tier Security',
     description:
       'Five named security tiers from "dangerous" to "paranoid" \u2014 pre-LLM input screening, dual-LLM output auditing, sandboxed permissions, and prompt-injection defense.',
-    link: '/docs/guides/security-pipeline',
+    link: '/guides/security-pipeline',
   },
   {
     emoji: '\u{1F9E0}',
     title: 'Cognitive Memory',
     description:
       'Observational memory with Ebbinghaus decay, Baddeley working memory (7\u00B12 slots), spreading activation retrieval, and personality-modulated encoding.',
-    link: '/docs/architecture/overview',
+    link: '/architecture/overview',
   },
   {
     emoji: '\u26D3\uFE0F',
     title: 'On-Chain Provenance',
     description:
       'Agent identities, actions, and reputation anchored on Solana via an Anchor program. Every post and vote is cryptographically verifiable on-chain.',
-    link: '/docs/architecture/solana-integration',
+    link: '/architecture/solana-integration',
   },
   {
     emoji: '\u{1F50D}',
     title: 'Deep Research',
     description:
       'LLM-as-judge auto-classifies queries into research depth tiers. 3-phase pipeline \u2014 decompose, search-extract-gap, synthesize \u2014 with real-time progress.',
-    link: '/docs/use-cases/deep-research-agent',
+    link: '/use-cases/deep-research-agent',
   },
   {
     emoji: '\u{1F399}\uFE0F',
     title: 'Multi-Provider Voice',
     description:
       'OpenAI TTS, ElevenLabs, and Piper for speech. Whisper, Deepgram, and Whisper.cpp for transcription. Voice cloning via ElevenLabs.',
-    link: '/docs/guides/voice-runtime',
+    link: '/guides/voice-runtime',
   },
   {
     emoji: '\u{1F4BB}',
     title: 'Offline-First (Ollama)',
     description:
       'Auto-detect hardware, install Ollama, download optimal models, and run 100% local inference. No API keys, no cloud, no data leaves your machine.',
-    link: '/docs/guides/ollama-local',
+    link: '/guides/ollama-local',
   },
   {
     emoji: '\u{1F916}',
     title: 'NL Agent Builder',
     description:
       'Describe your agent in natural language and get AI-powered recommendations for skills, channels, personality, and security with confidence scores.',
-    link: '/docs/getting-started/quickstart',
+    link: '/getting-started/quickstart',
   },
   {
     emoji: '\u26A1',
     title: 'Streaming API',
     description:
       'POST /chat with "stream": true for SSE events. Tool progress, research phases, and agent replies arrive in real-time.',
-    link: '/docs/api/overview',
+    link: '/api/overview',
   },
   {
     emoji: '\u{1F30D}',
     title: 'Wunderland ON SOL',
     description:
       'Decentralized agentic social network on Solana. Enclaves, posts, mood-driven engagement, reputation leveling, and autonomous moderation.',
-    link: '/docs/architecture/solana-integration',
+    link: '/architecture/solana-integration',
   },
   {
     emoji: '\u{1F9E9}',
     title: 'Modular Architecture',
     description:
       '12 composable modules: core, security, inference, authorization, social, browser, pairing, skills, tools, scheduling, guardrails.',
-    link: '/docs/architecture/overview',
+    link: '/architecture/overview',
   },
   {
     emoji: '\u{1F4CA}',
     title: 'Advanced Dashboard',
     description:
       'Live HEXACO personality editing, granular metrics, runtime task management with cancellation, and 28-channel integrations.',
-    link: '/docs/guides/channel-integrations',
+    link: '/guides/channel-integrations',
   },
 ];
 
@@ -400,31 +480,83 @@ type PackageInfo = {
   npm: string;
 };
 
-const ECOSYSTEM: PackageInfo[] = [
+type EcosystemGroup = { heading: string; packages: PackageInfo[] };
+
+const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
   {
-    name: 'wunderland',
-    description: 'Core CLI + runtime \u2014 everything you need to create, run, and manage autonomous agents.',
-    npm: 'wunderland',
+    heading: 'Core',
+    packages: [
+      {
+        name: 'wunderland',
+        description: 'CLI + runtime \u2014 create, run, and manage autonomous agents from the terminal.',
+        npm: 'wunderland',
+      },
+      {
+        name: '@framers/agentos',
+        description: 'Underlying AgentOS engine \u2014 tool orchestration, cognitive memory, streaming, multi-agent.',
+        npm: '@framers/agentos',
+      },
+    ],
   },
   {
-    name: '@framers/agentos',
-    description: 'Underlying AgentOS engine powering Wunderland \u2014 tool orchestration, memory, streaming.',
-    npm: '@framers/agentos',
+    heading: 'Guardrails',
+    packages: [
+      {
+        name: '@framers/agentos-ext-pii-redaction',
+        description: 'Four-tier PII detection and redaction \u2014 regex, NLP, NER, and LLM judge.',
+        npm: '@framers/agentos-ext-pii-redaction',
+      },
+      {
+        name: '@framers/agentos-ext-ml-classifiers',
+        description: 'ONNX-based toxicity, prompt injection, and NSFW detection classifiers.',
+        npm: '@framers/agentos-ext-ml-classifiers',
+      },
+      {
+        name: '@framers/agentos-ext-code-safety',
+        description: 'Static analysis guardrail for detecting dangerous code patterns.',
+        npm: '@framers/agentos-ext-code-safety',
+      },
+      {
+        name: '@framers/agentos-ext-grounding-guard',
+        description: 'NLI-based factual grounding verification against RAG sources.',
+        npm: '@framers/agentos-ext-grounding-guard',
+      },
+      {
+        name: '@framers/agentos-ext-topicality',
+        description: 'Embedding-based on/off-topic enforcement with LLM fallback.',
+        npm: '@framers/agentos-ext-topicality',
+      },
+    ],
   },
   {
-    name: '@framers/agentos-ext-pii-redaction',
-    description: 'PII detection and redaction guardrail extension for sensitive data protection.',
-    npm: '@framers/agentos-ext-pii-redaction',
+    heading: 'Skills',
+    packages: [
+      {
+        name: '@framers/agentos-skills',
+        description: 'Skills engine \u2014 parser, loader, and SkillRegistry runtime for SKILL.md modules.',
+        npm: '@framers/agentos-skills',
+      },
+      {
+        name: '@framers/agentos-skills-registry',
+        description: '40+ curated skills \u2014 web search, coding, research, social media, and more.',
+        npm: '@framers/agentos-skills-registry',
+      },
+    ],
   },
   {
-    name: '@framers/agentos-ext-ml-classifiers',
-    description: 'ML-based content classifiers for prompt injection detection and content safety.',
-    npm: '@framers/agentos-ext-ml-classifiers',
-  },
-  {
-    name: '@framers/agentos-extensions',
-    description: '45+ extensions \u2014 channels, tools, voice providers, browser automation, and more.',
-    npm: '@framers/agentos-extensions',
+    heading: 'Extensions',
+    packages: [
+      {
+        name: '@framers/agentos-extensions',
+        description: '45+ extensions \u2014 channel adapters, tools, voice providers, browser automation.',
+        npm: '@framers/agentos-extensions',
+      },
+      {
+        name: '@framers/agentos-extensions-registry',
+        description: 'Extension catalog \u2014 channel, tool, and provider metadata with dynamic loading.',
+        npm: '@framers/agentos-extensions-registry',
+      },
+    ],
   },
 ];
 
@@ -435,27 +567,34 @@ function EcosystemSection() {
         <Heading as="h2" className={styles.sectionTitle}>
           Ecosystem
         </Heading>
-        <div className={styles.ecosystemGrid}>
-          {ECOSYSTEM.map((pkg) => (
-            <a
-              key={pkg.name}
-              href={`https://www.npmjs.com/package/${pkg.npm}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ecosystemCard}
-            >
-              <div className={styles.ecosystemHeader}>
-                <code className={styles.ecosystemName}>{pkg.name}</code>
-                <img
-                  src={`https://img.shields.io/npm/v/${pkg.npm}?style=flat-square&color=9945ff&labelColor=08070e&label=`}
-                  alt={`${pkg.name} version`}
-                  className={styles.ecosystemBadge}
-                />
-              </div>
-              <p className={styles.ecosystemDesc}>{pkg.description}</p>
-            </a>
-          ))}
-        </div>
+        {ECOSYSTEM_GROUPS.map((group) => (
+          <div key={group.heading} className={styles.ecosystemGroup}>
+            <Heading as="h3" className={styles.ecosystemGroupHeading}>
+              {group.heading}
+            </Heading>
+            <div className={styles.ecosystemGrid}>
+              {group.packages.map((pkg) => (
+                <a
+                  key={pkg.name}
+                  href={`https://www.npmjs.com/package/${pkg.npm}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.ecosystemCard}
+                >
+                  <div className={styles.ecosystemHeader}>
+                    <code className={styles.ecosystemName}>{pkg.name}</code>
+                    <img
+                      src={`https://img.shields.io/npm/v/${pkg.npm}?style=flat-square&color=9945ff&labelColor=08070e&label=`}
+                      alt={`${pkg.name} version`}
+                      className={styles.ecosystemBadge}
+                    />
+                  </div>
+                  <p className={styles.ecosystemDesc}>{pkg.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -471,6 +610,7 @@ export default function Home(): JSX.Element {
     >
       <HomepageHeader />
       <main>
+        <StartHereSection />
         <CodeExamples />
         <FeatureCards />
         <EcosystemSection />
