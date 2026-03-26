@@ -54,8 +54,9 @@
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
 
-    <!-- Frame highlight -->
-    <linearGradient id="frameHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Frame highlight — animated via CSS rotation -->
+    <linearGradient id="frameHighlight" x1="0%" y1="0%" x2="100%" y2="100%"
+                    gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
       <stop offset="50%" stop-color="#c9a227" stop-opacity="0.4"/>
       <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.6"/>
@@ -64,15 +65,78 @@
     <filter id="frameShadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.5"/>
     </filter>
+
+    <!-- Shimmer sweep clip -->
+    <clipPath id="shimmerClip">
+      <rect x="16" y="48" width="68" height="4"/>
+    </clipPath>
   </defs>
+
+  <style>
+    /* W draw-on animation */
+    @keyframes drawW {
+      0% { stroke-dashoffset: 160; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    /* Reflected W pulse opacity */
+    @keyframes reflectionPulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.3; }
+    }
+
+    /* Corner accent pulse */
+    @keyframes cornerPulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+
+    /* Shimmer sweep left-to-right */
+    @keyframes shimmerSweep {
+      0% { transform: translateX(-80px); }
+      100% { transform: translateX(80px); }
+    }
+
+    /* Frame highlight gradient rotation via opacity cycling */
+    @keyframes frameGlow {
+      0% { opacity: 0.4; stroke-width: 1.5; }
+      50% { opacity: 0.9; stroke-width: 2; }
+      100% { opacity: 0.4; stroke-width: 1.5; }
+    }
+
+    .w-main {
+      stroke-dasharray: 160;
+      stroke-dashoffset: 160;
+      animation: drawW 2s ease-out forwards;
+    }
+
+    .w-reflection {
+      animation: reflectionPulse 4s ease-in-out infinite;
+    }
+
+    .corner-accent {
+      animation: cornerPulse 3s ease-in-out infinite;
+    }
+
+    .shimmer-bar {
+      animation: shimmerSweep 3s ease-in-out infinite;
+    }
+
+    .frame-highlight {
+      animation: frameGlow 5s ease-in-out infinite;
+    }
+  </style>
 
   <!-- Outer frame with shadow -->
   <polygon points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
            fill="url(#frameGrad)"
            filter="url(#frameShadow)"/>
 
-  <!-- Outer frame edge highlight -->
-  <polygon points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
+  <!-- Outer frame edge highlight — animated glow -->
+  <polygon class="frame-highlight"
+           points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
            fill="none"
            stroke="url(#frameHighlight)"
            stroke-width="1.5"/>
@@ -87,30 +151,38 @@
            stroke="url(#blueGrad)"
            stroke-width="2"/>
 
-  <!-- The W - main, bold -->
-  <path d="M24,28 L34,50 L50,32 L66,50 L76,28"
+  <!-- The W — main, with draw-on animation -->
+  <path class="w-main"
+        d="M24,28 L34,50 L50,32 L66,50 L76,28"
         fill="none"
         stroke="url(#primaryGrad)"
         stroke-width="5"
         stroke-linecap="round"
         stroke-linejoin="round"/>
 
-  <!-- Mirror surface line - the glass edge -->
+  <!-- Mirror surface line — the glass edge -->
   <line x1="16" y1="50" x2="84" y2="50"
         stroke="url(#mirrorShimmer)"
         stroke-width="2.5"/>
 
-  <!-- Reflected W - perfect mirror, fading -->
-  <path d="M24,72 L34,50 L50,68 L66,50 L76,72"
+  <!-- Shimmer sweep overlay -->
+  <g clip-path="url(#shimmerClip)">
+    <rect class="shimmer-bar" x="16" y="48" width="20" height="4" rx="2"
+          fill="white" opacity="0.6"/>
+  </g>
+
+  <!-- Reflected W — with pulse animation -->
+  <path class="w-reflection"
+        d="M24,72 L34,50 L50,68 L66,50 L76,72"
         fill="none"
         stroke="url(#reflectionGrad)"
         stroke-width="5"
         stroke-linecap="round"
         stroke-linejoin="round"/>
 
-  <!-- Corner accents - art deco gold -->
-  <line x1="50" y1="2" x2="50" y2="10" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="50" y1="90" x2="50" y2="98" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="2" y1="50" x2="12" y2="50" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="88" y1="50" x2="98" y2="50" stroke="url(#goldGrad)" stroke-width="2"/>
+  <!-- Corner accents — animated pulse -->
+  <line class="corner-accent" x1="50" y1="2" x2="50" y2="10" stroke="url(#goldGrad)" stroke-width="2"/>
+  <line class="corner-accent" x1="50" y1="90" x2="50" y2="98" stroke="url(#goldGrad)" stroke-width="2" style="animation-delay: 0.75s"/>
+  <line class="corner-accent" x1="2" y1="50" x2="12" y2="50" stroke="url(#goldGrad)" stroke-width="2" style="animation-delay: 1.5s"/>
+  <line class="corner-accent" x1="88" y1="50" x2="98" y2="50" stroke="url(#goldGrad)" stroke-width="2" style="animation-delay: 2.25s"/>
 </svg>
