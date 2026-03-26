@@ -124,9 +124,22 @@ h2 {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(212, 168, 68, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 50% at 80% 30%, rgba(153, 69, 255, 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(212, 168, 68, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 30%, rgba(153, 69, 255, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 70%, rgba(14, 165, 233, 0.04) 0%, transparent 60%);
   pointer-events: none;
+  animation: heroGlowDark 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlowDark {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
 }
 
 .hero--primary::after {
@@ -146,8 +159,54 @@ h2 {
 }
 
 [data-theme='light'] .hero--primary {
-  background: linear-gradient(135deg, #fdf9f0 0%, #f5ecd7 30%, #ede2c8 60%, #faf6eb 100%);
+  background: linear-gradient(135deg, #fdf9f0 0%, #f5ecd7 25%, #ede2c8 50%, #f0e8d8 75%, #faf6eb 100%);
   color: #1a1510;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light mode luminescence — warm gold glow + purple accent */
+[data-theme='light'] .hero--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 25% 40%, rgba(201, 162, 39, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 75% 30%, rgba(153, 69, 255, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 80%, rgba(14, 165, 233, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  animation: heroGlowLight 8s ease-in-out infinite alternate;
+}
+
+/* Warm gold bottom border — matches dark mode */
+[data-theme='light'] .hero--primary::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 39, 0.4) 30%,
+    rgba(153, 69, 255, 0.25) 70%,
+    transparent 100%
+  );
+}
+
+@keyframes heroGlowLight {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
 }
 
 .hero__title {
@@ -519,15 +578,143 @@ h2 {
   color: rgba(212, 168, 68, 0.5);
 }
 
-/* ── Search ─────────────────────────────────────────────────────── */
-[data-theme='dark'] .DocSearch-Button {
-  border: 1px solid rgba(212, 168, 68, 0.15);
+/* ── Search — Enhanced styling ──────────────────────────────────── */
+
+/* Dark mode search button */
+[data-theme='dark'] .DocSearch-Button,
+[data-theme='dark'] .navbar__search-input,
+[data-theme='dark'] [class*="searchBar"] input {
+  border: 1px solid rgba(212, 168, 68, 0.2);
   background: rgba(212, 168, 68, 0.04);
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
-[data-theme='dark'] .DocSearch-Button:hover {
-  border-color: rgba(212, 168, 68, 0.3);
-  box-shadow: 0 0 12px rgba(212, 168, 68, 0.06);
+[data-theme='dark'] .DocSearch-Button:hover,
+[data-theme='dark'] .navbar__search-input:focus,
+[data-theme='dark'] [class*="searchBar"] input:focus {
+  border-color: rgba(212, 168, 68, 0.5);
+  box-shadow: 0 0 20px rgba(212, 168, 68, 0.08), 0 0 0 1px rgba(212, 168, 68, 0.15);
+  background: rgba(212, 168, 68, 0.06);
+}
+
+/* Light mode search button */
+[data-theme='light'] .DocSearch-Button,
+[data-theme='light'] .navbar__search-input,
+[data-theme='light'] [class*="searchBar"] input {
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  color: #1e293b;
+  transition: all 0.3s ease;
+}
+
+[data-theme='light'] .DocSearch-Button:hover,
+[data-theme='light'] .navbar__search-input:focus,
+[data-theme='light'] [class*="searchBar"] input:focus {
+  border-color: rgba(201, 162, 39, 0.5);
+  box-shadow: 0 0 16px rgba(201, 162, 39, 0.1), 0 0 0 1px rgba(201, 162, 39, 0.2);
+  background: #ffffff;
+}
+
+/* Search modal — dark mode */
+[data-theme='dark'] [class*="searchModal"],
+[data-theme='dark'] [class*="searchResultsColumn"] {
+  background: #0d0c16;
+  border: 1px solid rgba(212, 168, 68, 0.15);
+}
+
+[data-theme='dark'] [class*="searchModal"] input {
+  background: rgba(212, 168, 68, 0.04);
+  border: 1px solid rgba(212, 168, 68, 0.2);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9375rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme='dark'] [class*="searchModal"] input:focus {
+  border-color: rgba(212, 168, 68, 0.5);
+  box-shadow: 0 0 16px rgba(212, 168, 68, 0.08);
+  outline: none;
+}
+
+[data-theme='dark'] [class*="searchModal"] input::placeholder {
+  color: rgba(212, 168, 68, 0.4);
+  font-style: italic;
+}
+
+/* Search results — dark mode */
+[data-theme='dark'] [class*="searchResult"] {
+  border-bottom: 1px solid rgba(212, 168, 68, 0.06);
+  transition: background 0.2s ease;
+}
+
+[data-theme='dark'] [class*="searchResult"]:hover,
+[data-theme='dark'] [class*="searchResult"][class*="active"],
+[data-theme='dark'] [class*="searchResultItem"]:hover {
+  background: rgba(212, 168, 68, 0.06);
+}
+
+[data-theme='dark'] [class*="searchResult"] mark,
+[data-theme='dark'] [class*="searchResultItem"] mark {
+  background: rgba(212, 168, 68, 0.25);
+  color: var(--wl-gold);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* Search modal — light mode */
+[data-theme='light'] [class*="searchModal"],
+[data-theme='light'] [class*="searchResultsColumn"] {
+  background: #fefdfb;
+  border: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+[data-theme='light'] [class*="searchModal"] input {
+  background: #ffffff;
+  border: 1px solid rgba(201, 162, 39, 0.25);
+  border-radius: 8px;
+  color: #1e293b;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.9375rem;
+  padding: 0.75rem 1rem;
+}
+
+[data-theme='light'] [class*="searchModal"] input:focus {
+  border-color: rgba(201, 162, 39, 0.5);
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.08);
+}
+
+[data-theme='light'] [class*="searchResult"] mark,
+[data-theme='light'] [class*="searchResultItem"] mark {
+  background: rgba(201, 162, 39, 0.2);
+  color: #92710e;
+}
+
+/* Search backdrop overlay */
+[data-theme='dark'] [class*="searchOverlay"],
+[data-theme='dark'] [class*="searchBackdrop"] {
+  background: rgba(8, 7, 14, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='light'] [class*="searchOverlay"],
+[data-theme='light'] [class*="searchBackdrop"] {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* Keyboard shortcut badge in search */
+[data-theme='dark'] .DocSearch-Button-Keys kbd,
+[data-theme='dark'] [class*="searchHint"] kbd {
+  background: rgba(212, 168, 68, 0.1);
+  border: 1px solid rgba(212, 168, 68, 0.2);
+  color: rgba(212, 168, 68, 0.6);
+  border-radius: 4px;
+  font-size: 0.6875rem;
 }
 
 /* ── Mermaid diagrams ───────────────────────────────────────────── */
