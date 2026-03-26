@@ -48,40 +48,28 @@
   height: 22px;
 }
 
-/* ── GitHub stats (stars / forks with monochromatic icons) ─────── */
+/* ── GitHub social badges (stars / forks with visible counts) ──── */
 
-.githubStats {
+.githubSocial {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
-  margin-top: 0.25rem;
+  gap: 1rem;
+  margin-top: 0.375rem;
 }
 
-.githubStat {
+.githubSocial a {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  color: #a1a1aa;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  font-family: var(--ifm-font-family-monospace);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  letter-spacing: 0.01em;
+  transition: opacity 0.2s ease;
 }
 
-.githubStat:hover {
-  color: #c9a227;
-  text-decoration: none;
+.githubSocial a:hover {
+  opacity: 0.8;
 }
 
-[data-theme='light'] .githubStat {
-  color: #6b7280;
-}
-
-[data-theme='light'] .githubStat:hover {
-  color: #92710a;
+.githubSocial img {
+  height: 24px;
 }
 
 /* ── Install bar ───────────────────────────────────────────────────── */
