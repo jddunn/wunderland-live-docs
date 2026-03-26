@@ -16,38 +16,54 @@ import styles from './index.module.css';
 
 /* ── Badges ────────────────────────────────────────────────────────── */
 
-function Badges() {
-  const badgeHeight = 22;
-  const shieldStyle = 'flat-square';
-  const labelColor = '08070e';
+/** Inline SVG star icon (monochromatic). */
+function StarIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style={{ verticalAlign: '-2px' }}>
+      <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z" />
+    </svg>
+  );
+}
 
+/** Inline SVG fork icon (monochromatic). */
+function ForkIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style={{ verticalAlign: '-2px' }}>
+      <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z" />
+    </svg>
+  );
+}
+
+function Badges() {
   return (
     <div className={styles.badgesWrapper}>
-      {/* Row 1: Package badges */}
+      {/* Row 1: npm version only */}
       <div className={styles.badges}>
         <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/npm/v/wunderland?style=${shieldStyle}&logo=npm&color=9945ff&labelColor=${labelColor}`} alt="npm version" height={badgeHeight} />
+          <img
+            src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&color=9945ff&labelColor=08070e"
+            alt="npm version"
+            height={22}
+          />
         </a>
-        <img src={`https://img.shields.io/badge/TypeScript-5.x-3178c6?style=${shieldStyle}&logo=typescript&logoColor=white&labelColor=${labelColor}`} alt="TypeScript" height={badgeHeight} />
-        <img src={`https://img.shields.io/badge/license-Apache%202.0-c9a227?style=${shieldStyle}&labelColor=${labelColor}`} alt="License" height={badgeHeight} />
-        <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/npm/dm/wunderland?style=${shieldStyle}&label=downloads&color=0ea5e9&labelColor=${labelColor}`} alt="npm downloads" height={badgeHeight} />
-        </a>
-        <img src={`https://img.shields.io/badge/node-%3E%3D18-339933?style=${shieldStyle}&logo=node.js&logoColor=white&labelColor=${labelColor}`} alt="Node.js" height={badgeHeight} />
       </div>
-      {/* Row 2: GitHub social badges */}
-      <div className={styles.badges}>
-        <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/github/stars/jddunn/wunderland?style=${shieldStyle}&logo=github&label=stars&color=c9a227&labelColor=${labelColor}`} alt="GitHub Stars" height={badgeHeight} />
+      {/* Row 2: GitHub stars + forks with custom icons */}
+      <div className={styles.githubStats}>
+        <a
+          href="https://github.com/jddunn/wunderland/stargazers"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubStat}
+        >
+          <StarIcon /> Stars
         </a>
-        <a href="https://github.com/jddunn/wunderland/network/members" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/github/forks/jddunn/wunderland?style=${shieldStyle}&logo=github&label=forks&color=6e7681&labelColor=${labelColor}`} alt="GitHub Forks" height={badgeHeight} />
-        </a>
-        <a href="https://github.com/jddunn/wunderland/issues" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/github/issues/jddunn/wunderland?style=${shieldStyle}&logo=github&label=issues&color=d97706&labelColor=${labelColor}`} alt="GitHub Issues" height={badgeHeight} />
-        </a>
-        <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-          <img src={`https://img.shields.io/github/last-commit/jddunn/wunderland?style=${shieldStyle}&logo=github&label=last%20commit&color=22c55e&labelColor=${labelColor}`} alt="Last Commit" height={badgeHeight} />
+        <a
+          href="https://github.com/jddunn/wunderland/network/members"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubStat}
+        >
+          <ForkIcon /> Forks
         </a>
       </div>
     </div>
