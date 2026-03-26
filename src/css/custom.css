@@ -368,8 +368,37 @@ h2 {
   color: rgba(212, 168, 68, 0.7);
 }
 
+[data-theme='dark'] .footer {
+  color: #a1a1aa;
+}
+
+[data-theme='dark'] .footer__link-item {
+  color: #a1a1aa;
+  transition: color 0.2s ease;
+}
+
 [data-theme='dark'] .footer__link-item:hover {
   color: var(--wl-gold);
+}
+
+[data-theme='dark'] .footer__copyright {
+  color: #52525b;
+}
+
+[data-theme='light'] .footer__title {
+  font-family: 'Syne', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: #92400e;
+}
+
+[data-theme='light'] .footer__link-item {
+  color: #57534e;
+}
+
+[data-theme='light'] .footer__link-item:hover {
+  color: #b8860b;
 }
 
 /* ── Admonitions ────────────────────────────────────────────────── */
