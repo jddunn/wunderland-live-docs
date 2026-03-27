@@ -23,16 +23,6 @@
       </stop>
     </linearGradient>
 
-    <!-- Gold gradient with warm color cycling -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%">
-        <animate attributeName="stop-color" values="#a16207;#9945ff;#a16207" dur="12s" repeatCount="indefinite"/>
-      </stop>
-      <stop offset="100%">
-        <animate attributeName="stop-color" values="#eab308;#ec4899;#eab308" dur="12s" repeatCount="indefinite"/>
-      </stop>
-    </linearGradient>
-
     <!-- Frame highlight with color shift -->
     <linearGradient id="frameHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%">
@@ -97,9 +87,4 @@
         fill="none" stroke="url(#reflectionGrad)" stroke-width="5"
         stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Corner accents — color-cycling -->
-  <line x1="50" y1="2" x2="50" y2="10" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="50" y1="90" x2="50" y2="98" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="2" y1="50" x2="12" y2="50" stroke="url(#goldGrad)" stroke-width="2"/>
-  <line x1="88" y1="50" x2="98" y2="50" stroke="url(#goldGrad)" stroke-width="2"/>
 </svg>
