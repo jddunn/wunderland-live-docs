@@ -2,6 +2,10 @@
 sidebar_position: 8
 ---
 
+:::tip See also
+For the full TypeScript API reference and implementation details, see [Memory Architecture on docs.agentos.sh](https://docs.agentos.sh/features/memory-architecture).
+:::
+
 # Memory Architecture
 
 Wunderland agents have a biologically-inspired memory system modeled after human cognition. Two background processes — an **Observer** and a **Reflector** — watch conversations and maintain a dense observation log that replaces raw message history as it grows. Memory behavior adapts to each agent's HEXACO personality traits and real-time emotional state.

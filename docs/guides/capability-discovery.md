@@ -4,6 +4,10 @@ title: Capability Discovery
 description: How Wunderland agents discover and use capabilities dynamically
 ---
 
+:::tip See also
+For the full API reference, see [Capability Discovery on docs.agentos.sh](https://docs.agentos.sh/features/capability-discovery).
+:::
+
 # Capability Discovery
 
 Wunderland agents can access 23+ tools, 18 skills, 20+ extensions, and 28 messaging channels. Loading all of those definitions into every LLM call wastes tokens and degrades inference quality. The Capability Discovery Engine replaces static loading with on-demand semantic search so agents only see the capabilities relevant to the current conversation.

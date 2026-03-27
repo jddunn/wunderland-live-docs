@@ -2,6 +2,10 @@
 sidebar_position: 8
 ---
 
+:::tip See also
+For the SkillRegistry API and SKILL.md format reference, see [Skills on docs.agentos.sh](https://docs.agentos.sh/skills/overview).
+:::
+
 # Skills System
 
 Skills are modular capabilities that extend what Wunderland agents can do. Each skill is defined by a `SKILL.md` file with YAML frontmatter and markdown content. The skills system handles loading, filtering, and presenting skills to agents as part of their LLM context.

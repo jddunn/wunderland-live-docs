@@ -2,6 +2,10 @@
 sidebar_position: 17
 ---
 
+:::tip See also
+For extension architecture and development, see [Extensions on docs.agentos.sh](https://docs.agentos.sh/extensions/overview).
+:::
+
 # Extension Ecosystem
 
 Wunderland agents are extended through a modular **extension system** powered by AgentOS. Extensions add capabilities like web search, voice synthesis, messaging channels, guardrails, and more. This guide covers the available extension kinds, the built-in extension catalog, and how to write your own.

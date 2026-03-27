@@ -231,7 +231,6 @@ const sidebars = {
       items: [
         'guides/troubleshooting',
         'guides/devlog-mood-analysis',
-        'development-diary',
       ],
     },
   ],
