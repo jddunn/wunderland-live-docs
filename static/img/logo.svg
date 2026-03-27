@@ -37,8 +37,9 @@
 
     <!-- Static gradients -->
     <linearGradient id="mirrorSurface" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0c4a6e" stop-opacity="0.9"/>
-      <stop offset="50%" stop-color="#0284c7" stop-opacity="0.5"/>
+      <stop offset="0%" stop-color="#0c4a6e" stop-opacity="0.7"/>
+      <stop offset="30%" stop-color="#075985" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#075985" stop-opacity="0.3"/>
       <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0.15"/>
     </linearGradient>
 
