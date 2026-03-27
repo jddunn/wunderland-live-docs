@@ -209,6 +209,16 @@ function Badges() {
       alt: 'npm version',
     },
     {
+      href: 'https://github.com/jddunn/wunderland/blob/master/LICENSE',
+      src: `https://img.shields.io/badge/license-MIT-c9a227?style=flat-square&labelColor=${bg}`,
+      alt: 'MIT License',
+    },
+    {
+      href: 'https://www.npmjs.com/package/wunderland',
+      src: `https://img.shields.io/npm/dm/wunderland?style=flat-square&color=0ea5e9&labelColor=${bg}`,
+      alt: 'npm downloads',
+    },
+    {
       href: 'https://codecov.io/gh/jddunn/wunderland',
       src: `https://img.shields.io/codecov/c/github/jddunn/wunderland?style=${s}&logo=codecov&logoColor=white&label=coverage&color=22c55e&labelColor=${bg}`,
       alt: 'Test Coverage',
