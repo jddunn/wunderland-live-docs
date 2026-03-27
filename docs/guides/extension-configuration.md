@@ -97,7 +97,7 @@ Interactive prompts for:
 
 | Category | Options |
 |----------|---------|
-| Image generation | OpenAI (DALL-E 3), Stability AI (SDXL) |
+| Image generation | OpenAI, OpenRouter, Stability AI, Replicate |
 | Text-to-speech | OpenAI TTS, ElevenLabs |
 | Speech-to-text | OpenAI Whisper, Deepgram, Whisper-local |
 | Web search | Serper (Google), Brave Search, DuckDuckGo |
@@ -117,11 +117,13 @@ Output:
 Extension: Image Generation
 Name:        image-generation
 Category:    tool
-Description: Generate images from text prompts using DALL-E 3 or Stability AI.
+Description: Generate images from text prompts using OpenAI, OpenRouter, Stability AI, or Replicate.
 
 API Keys / Environment Variables:
   OPENAI_API_KEY      ✓ set
+  OPENROUTER_API_KEY  ✗ not set
   STABILITY_API_KEY   ✗ not set
+  REPLICATE_API_TOKEN ✗ not set
   Get keys: https://platform.openai.com/api-keys
 ```
 
@@ -129,7 +131,9 @@ Set keys in your environment or `.env` file:
 
 ```bash
 export OPENAI_API_KEY=sk-...
+export OPENROUTER_API_KEY=sk-or-...
 export STABILITY_API_KEY=sk-...
+export REPLICATE_API_TOKEN=r8_...
 ```
 
 ## Common Extensions
@@ -140,7 +144,7 @@ export STABILITY_API_KEY=sk-...
 |------|----------|-------------|
 | `web-search` | `SERPER_API_KEY` or `BRAVE_API_KEY` | Web search (DuckDuckGo works without keys) |
 | `deep-research` | `SERPER_API_KEY` | Multi-source investigation, trending, academic |
-| `image-generation` | `OPENAI_API_KEY` or `STABILITY_API_KEY` | DALL-E 3 / Stability AI text-to-image |
+| `image-generation` | `OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `STABILITY_API_KEY`, or `REPLICATE_API_TOKEN` | Multi-provider text-to-image generation |
 | `image-search` | `PEXELS_API_KEY` or `UNSPLASH_ACCESS_KEY` | Search stock photo libraries |
 | `cli-executor` | None | Shell command execution |
 | `web-browser` | None | Headless browser automation |

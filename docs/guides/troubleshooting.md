@@ -167,8 +167,8 @@ which whisper
 # List available extensions
 wunderland extensions list
 
-# Install a specific extension
-wunderland extensions add web-search
+# Enable a specific extension
+wunderland extensions enable web-search
 ```
 
 #### "Tool not found" during chat
@@ -192,6 +192,23 @@ wunderland chat --overdrive
 1. Reduce RAG auto-ingest: `wunderland config set rag.autoIngest false`
 2. Use a smaller context window for Ollama: `wunderland config set ollama.numCtx 2048`
 3. Reduce loaded extensions — only load what you need
+
+#### "Image generation not available"
+
+1. Check that at least one image provider credential is set:
+   - `OPENAI_API_KEY`
+   - `OPENROUTER_API_KEY`
+   - `STABILITY_API_KEY`
+   - `REPLICATE_API_TOKEN`
+2. Inspect current extension readiness:
+```bash
+wunderland extensions info image-generation
+```
+3. Set the shared default provider if multiple are present:
+```bash
+wunderland extensions configure
+```
+4. If you need per-agent behavior, override `image-generation.options.defaultProvider` in `agent.config.json`
 
 ---
 
@@ -303,10 +320,12 @@ Yes — run `wunderland login` to authenticate with OAuth. See `wunderland help 
 
 ```bash
 # Add extensions (runtime tool packs)
-wunderland extensions add web-search web-browser
+wunderland extensions enable web-search
+wunderland extensions enable web-browser
 
 # Add skills (prompt-based capabilities)
-wunderland skills add summarize coding-agent
+wunderland skills enable summarize
+wunderland skills enable coding-agent
 ```
 
 **Q: What's the difference between extensions and skills?**

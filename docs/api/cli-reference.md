@@ -14,6 +14,7 @@ Wunderland defaults to the interactive TUI when launched in a TTY with no subcom
 | Command | Purpose |
 | --- | --- |
 | `wunderland` | Open the TUI dashboard |
+| `wunderland quickstart` | Auto-detect your environment and scaffold the fastest working setup |
 | `wunderland setup` | Guided initial configuration (QuickStart or Advanced) |
 | `wunderland doctor` | Health and configuration checks |
 | `wunderland chat` | Interactive chat from the terminal |
@@ -37,6 +38,16 @@ wunderland setup --yes     # Auto-accept defaults
 
 **QuickStart mode** covers 5 steps: LLM provider, personality preset, channels, RAG memory, and voice.
 **Advanced mode** adds: custom HEXACO sliders, extensions/skills, security pipeline, and granular TTS/STT customization.
+
+### `wunderland quickstart`
+
+One-shot onboarding for the common case.
+
+```bash
+wunderland quickstart
+```
+
+Use this when you want the shortest path from “nothing configured” to “agent is runnable”.
 
 ### `wunderland init <dir>`
 
@@ -87,6 +98,8 @@ wunderland chat --overdrive            # Auto-approve tool calls
 wunderland chat --auto-approve-tools   # Fully autonomous
 ```
 
+Config-backed agents also write dated plain-text session logs under `./logs/YYYY-MM-DD/*.log` by default.
+
 **In-chat commands:**
 | Command | Action |
 |---------|--------|
@@ -105,9 +118,11 @@ wunderland start --port 3001        # Custom port
 wunderland start --overdrive        # Auto-approve tools
 ```
 
+`wunderland start` keeps daemon `stdout.log` / `stderr.log` in the daemon directory, and also writes dated session logs under the agent folder’s `./logs/YYYY-MM-DD/*.log` path by default.
+
 ### `wunderland status`
 
-Show runtime status and active connections.
+Show runtime status, active connections, and persisted LLM usage/cost totals. By default this reads the shared ledger at `~/.framers/usage-ledger.jsonl`. Use `AGENTOS_USAGE_LEDGER_PATH` or `WUNDERLAND_USAGE_LEDGER_PATH` when you want a different shared file.
 
 ```bash
 wunderland status
@@ -151,22 +166,61 @@ wunderland setup
 
 ```bash
 wunderland extensions list           # List available extensions
-wunderland extensions add web-search # Add an extension
-wunderland extensions remove giphy   # Remove an extension
+wunderland extensions info image-generation
+wunderland extensions enable web-search
+wunderland extensions disable giphy
+wunderland extensions configure      # Set global provider defaults
+wunderland extensions configure image-generation
 ```
 
 ### `wunderland skills`
 
 ```bash
 wunderland skills list               # List available skills
-wunderland skills add summarize      # Add a skill
-wunderland skills show web-search    # Show skill details
+wunderland skills info web-search
+wunderland skills enable summarize
+wunderland skills disable summarize
 ```
 
 ### `wunderland models`
 
 ```bash
 wunderland models                    # Show current provider/model info
+```
+
+---
+
+## Workflows & Orchestration
+
+### `wunderland workflows`
+
+```bash
+wunderland workflows list            # Find local workflow/mission definition files
+wunderland workflows examples        # Show bundled orchestration examples
+wunderland help workflows            # Authoring guide: workflow() vs AgentGraph vs mission()
+```
+
+Current CLI status:
+
+- `list` scans conventional authoring directories like `./workflows`, `./missions`, and `./orchestration`
+- `examples` points to bundled runnable examples in `packages/wunderland/examples/`
+- `run` executes local YAML workflow definitions in-process through Wunderland’s graph runtime
+- `status` and `cancel` are still backend-oriented paths
+
+For in-process orchestration today:
+
+```ts
+import { createWunderland } from 'wunderland';
+import { workflow } from 'wunderland/workflows';
+
+const app = await createWunderland({ llm: { providerId: 'openai' } });
+const compiled = workflow('demo')
+  .input({ type: 'object', properties: { topic: { type: 'string' } } })
+  .returns({ type: 'object', properties: { summary: { type: 'string' } } })
+  .step('draft', { gmi: { instructions: 'Return JSON under artifacts.summary.' } })
+  .compile();
+
+const result = await app.runGraph(compiled, { topic: 'agent orchestration' });
 ```
 
 ---
@@ -199,6 +253,22 @@ Export and import agent configurations.
 wunderland export my-agent.json
 wunderland import my-agent.json
 ```
+
+### `wunderland emergent`
+
+Inspect, export, import, and administer runtime-forged tools.
+
+```bash
+wunderland emergent list --seed <seedId>
+wunderland emergent inspect <name|id> --seed <seedId>
+wunderland emergent export <name|id> --seed <seedId> --output ./my-tool.emergent-tool.yaml
+wunderland emergent import ./my-tool.emergent-tool.yaml --seed <seedId>
+wunderland emergent promote <name|id> --seed <seedId>
+wunderland emergent demote <name|id> --seed <seedId>
+wunderland emergent audit <name|id> --seed <seedId>
+```
+
+`export` and `import` use the portable `agentos.emergent-tool.v1` package format. `compose` tools are portable by default. `sandbox` tools are portable only when source code is present. Redacted sandbox exports can still be reviewed or committed to Git, but they are intentionally not importable into another runtime.
 
 ---
 
@@ -251,11 +321,12 @@ wunderland logout
 ### `wunderland workflows`
 
 ```bash
-wunderland workflows create daily-report   # Create a workflow
-wunderland workflows list                  # List workflows
-wunderland workflows show daily-report     # Show details
-wunderland workflows run daily-report      # Run manually
-wunderland workflows delete daily-report   # Delete
+wunderland workflows list                          # Discover local workflow/mission files
+wunderland workflows examples                      # Show bundled orchestration examples
+wunderland workflows run workflows/research.workflow.yaml      # Execute a workflow
+wunderland workflows explain workflows/research.workflow.yaml  # Print the compiled graph
+wunderland workflows status <id>                  # Backend workflow status
+wunderland workflows cancel <id>                  # Backend workflow cancellation
 ```
 
 ### `wunderland cron`

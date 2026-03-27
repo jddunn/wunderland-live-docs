@@ -121,6 +121,74 @@
   }
 }
 
+/* ── SVG Logo Internal Animations ──────────────────────────────────── */
+
+/* Frame highlight — breathing glow */
+.logoFrameHighlight {
+  animation: frameGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes frameGlow {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.85; }
+}
+
+/* W letter — draw-on stroke animation */
+.logoWMain {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawW 1.5s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards,
+             wPulse 3s ease-in-out 2s infinite alternate;
+}
+
+@keyframes drawW {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes wPulse {
+  0% { opacity: 0.85; }
+  100% { opacity: 1; }
+}
+
+/* Reflected W — delayed fade-in + subtle pulse */
+.logoWReflection {
+  opacity: 0;
+  animation: reflectionFadeIn 1s ease 1.2s forwards,
+             reflectionPulse 4s ease-in-out 2.5s infinite alternate;
+}
+
+@keyframes reflectionFadeIn {
+  to { opacity: 0.6; }
+}
+
+@keyframes reflectionPulse {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.65; }
+}
+
+/* Shimmer bar sweep */
+.logoShimmerBar {
+  animation: shimmerSweep 4s ease-in-out 2s infinite;
+}
+
+@keyframes shimmerSweep {
+  0%, 100% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateX(48px); opacity: 0.6; }
+  60% { opacity: 0; }
+}
+
+/* Corner accent pulse */
+.logoCornerAccent {
+  opacity: 0;
+  animation: cornerPulse 3s ease-in-out infinite;
+}
+
+@keyframes cornerPulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.8; }
+}
+
 /* ── Badges ────────────────────────────────────────────────────────── */
 
 .badgesWrapper {

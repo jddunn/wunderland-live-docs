@@ -29,6 +29,8 @@ await app.close();
 
 `createWunderland()` reads environment variables (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `OPENROUTER_API_KEY`) automatically, loads `agent.config.json` if present, and supports tool approval callbacks for side-effect tools. See the [Library API Guide](/guides/library-first-api) for the full reference.
 
+When you run from a real agent project, Wunderland also writes dated plain-text session logs under `./logs/YYYY-MM-DD/*.log` by default.
+
 ---
 
 ## Quick Start: CLI
@@ -37,10 +39,29 @@ Or use the CLI to launch an agent interactively:
 
 ```bash
 npm install -g wunderland
+wunderland quickstart  # one-shot detection + scaffold + go
 wunderland setup       # interactive onboarding wizard
+wunderland             # TUI dashboard + onboarding tour
 wunderland chat        # terminal chat session
-wunderland             # TUI dashboard
+wunderland doctor      # verify config + provider readiness
 ```
+
+## First-Run Checklist
+
+Use this loop when you want the CLI/TUI path instead of embedding the library:
+
+```bash
+wunderland quickstart
+wunderland help getting-started
+wunderland help tui
+wunderland extensions configure
+wunderland extensions info image-generation
+```
+
+- `quickstart` is the fastest path when you just want a working agent.
+- `help getting-started` and `help tui` are the shortest built-in operator guides.
+- `extensions configure` lets you set shared defaults for image generation, TTS, STT, and web search.
+- `extensions info image-generation` shows which image provider keys are set right now.
 
 ---
 

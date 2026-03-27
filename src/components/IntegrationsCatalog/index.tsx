@@ -33,7 +33,7 @@ const SKILLS: CatalogItem[] = [
   { key: 'spotify-player', displayName: 'Spotify Player', description: 'Control Spotify playback, manage playlists, search music, and get recommendations.', category: 'media' },
   { key: 'whisper-transcribe', displayName: 'Whisper Transcription', description: 'Transcribe audio and video files to text using OpenAI Whisper.', category: 'media' },
   { key: '1password', displayName: '1Password Vault', description: 'Query and retrieve items from 1Password vaults using the 1Password CLI.', category: 'security' },
-  { key: 'image-gen', displayName: 'AI Image Generation', description: 'Generate images from text prompts using DALL-E, Stable Diffusion, or Midjourney.', category: 'creative' },
+  { key: 'image-gen', displayName: 'AI Image Generation', description: 'Generate images from text prompts using OpenAI, OpenRouter, Stability, or Replicate-backed models.', category: 'creative' },
 ];
 
 const CHANNELS: CatalogItem[] = [

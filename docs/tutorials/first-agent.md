@@ -146,11 +146,11 @@ wunderland chat
 Extend your agent with tools:
 
 ```bash
-# Add web search
-wunderland extensions add web-search
+# Enable web search
+wunderland extensions enable web-search
 
-# Add web browser for page content extraction
-wunderland extensions add web-browser
+# Enable web browser for page content extraction
+wunderland extensions enable web-browser
 
 # List all available extensions
 wunderland extensions list

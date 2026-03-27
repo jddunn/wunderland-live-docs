@@ -91,7 +91,7 @@ All curated skills ship with [`@framers/agentos-skills-registry`](https://www.np
 
 | Skill | Description | Required Tools | Required Secrets |
 |-------|-------------|----------------|------------------|
-| **image-gen** | Generate images from text prompts using DALL-E, Stable Diffusion, or Midjourney | — | `OPENAI_API_KEY` |
+| **image-gen** | Generate images from text prompts using OpenAI, OpenRouter, Stability, or Replicate-backed models | — | `OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `STABILITY_API_KEY`, or `REPLICATE_API_TOKEN` |
 
 :::tip
 Enable a skill via the CLI with `wunderland skills enable <name>`, or programmatically via the SDK. See [Enabling a Skill](#enabling-a-skill-in-your-agent) below.

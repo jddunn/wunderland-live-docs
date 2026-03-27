@@ -14,6 +14,188 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
+/* ── Animated Logo (inline SVG) ────────────────────────────────────── */
+
+/**
+ * Inline SVG logo with entrance animation (fade-in + scale) and a
+ * continuous subtle glow pulse on the frame/mark. The W letter and its
+ * mirror reflection retain their draw-on and pulse animations from the
+ * original logo.svg, while the outer frame gets an ambient glow that
+ * breathes gently.
+ */
+function AnimatedLogo({ size = 64 }: { size?: number }) {
+  return (
+    <svg
+      className={styles.heroLogoSvg}
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Wunderland logo"
+    >
+      <defs>
+        {/* Electric blue to gold gradient */}
+        <linearGradient id="heroLogo_primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0ea5e9" />
+          <stop offset="40%" stopColor="#38bdf8" />
+          <stop offset="70%" stopColor="#c9a227" />
+          <stop offset="100%" stopColor="#eab308" />
+        </linearGradient>
+
+        {/* Electric blue solid */}
+        <linearGradient id="heroLogo_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0284c7" />
+          <stop offset="50%" stopColor="#0ea5e9" />
+          <stop offset="100%" stopColor="#38bdf8" />
+        </linearGradient>
+
+        {/* Gold accent */}
+        <linearGradient id="heroLogo_goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#a16207" />
+          <stop offset="50%" stopColor="#c9a227" />
+          <stop offset="100%" stopColor="#eab308" />
+        </linearGradient>
+
+        {/* Mirror surface */}
+        <linearGradient id="heroLogo_mirrorSurface" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#0c4a6e" stopOpacity="0.9" />
+          <stop offset="30%" stopColor="#075985" stopOpacity="0.7" />
+          <stop offset="50%" stopColor="#0284c7" stopOpacity="0.5" />
+          <stop offset="70%" stopColor="#075985" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#0c4a6e" stopOpacity="0.15" />
+        </linearGradient>
+
+        {/* Mirror shimmer line */}
+        <linearGradient id="heroLogo_mirrorShimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.2" />
+          <stop offset="30%" stopColor="#7dd3fc" stopOpacity="0.8" />
+          <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="70%" stopColor="#eab308" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#c9a227" stopOpacity="0.2" />
+        </linearGradient>
+
+        {/* Reflection fade */}
+        <linearGradient id="heroLogo_reflectionGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.6" />
+          <stop offset="40%" stopColor="#0ea5e9" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#0284c7" stopOpacity="0.08" />
+        </linearGradient>
+
+        {/* Dark frame gradient */}
+        <linearGradient id="heroLogo_frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0f172a" />
+          <stop offset="50%" stopColor="#020617" />
+          <stop offset="100%" stopColor="#0f172a" />
+        </linearGradient>
+
+        {/* Frame highlight */}
+        <linearGradient
+          id="heroLogo_frameHighlight"
+          x1="0%" y1="0%" x2="100%" y2="100%"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.6" />
+          <stop offset="50%" stopColor="#c9a227" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.6" />
+        </linearGradient>
+
+        {/* Ambient glow filter for the outer frame */}
+        <filter id="heroLogo_ambientGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <filter id="heroLogo_frameShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#000" floodOpacity="0.5" />
+        </filter>
+
+        {/* Shimmer sweep clip */}
+        <clipPath id="heroLogo_shimmerClip">
+          <rect x="16" y="48" width="68" height="4" />
+        </clipPath>
+      </defs>
+
+      {/* Outer frame with shadow */}
+      <polygon
+        points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
+        fill="url(#heroLogo_frameGrad)"
+        filter="url(#heroLogo_frameShadow)"
+      />
+
+      {/* Outer frame edge — animated glow pulse */}
+      <polygon
+        className={styles.logoFrameHighlight}
+        points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
+        fill="none"
+        stroke="url(#heroLogo_frameHighlight)"
+        strokeWidth="1.5"
+        filter="url(#heroLogo_ambientGlow)"
+      />
+
+      {/* Inner mirror surface */}
+      <polygon
+        points="50,10 76,22 88,50 76,78 50,90 24,78 12,50 24,22"
+        fill="url(#heroLogo_mirrorSurface)"
+      />
+
+      {/* Inner frame border */}
+      <polygon
+        points="50,10 76,22 88,50 76,78 50,90 24,78 12,50 24,22"
+        fill="none"
+        stroke="url(#heroLogo_blueGrad)"
+        strokeWidth="2"
+      />
+
+      {/* The W — draw-on animation */}
+      <path
+        className={styles.logoWMain}
+        d="M24,28 L34,50 L50,32 L66,50 L76,28"
+        fill="none"
+        stroke="url(#heroLogo_primaryGrad)"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Mirror surface line */}
+      <line
+        x1="16" y1="50" x2="84" y2="50"
+        stroke="url(#heroLogo_mirrorShimmer)"
+        strokeWidth="2.5"
+      />
+
+      {/* Shimmer sweep overlay */}
+      <g clipPath="url(#heroLogo_shimmerClip)">
+        <rect
+          className={styles.logoShimmerBar}
+          x="16" y="48" width="20" height="4" rx="2"
+          fill="white" opacity="0.6"
+        />
+      </g>
+
+      {/* Reflected W — pulse animation */}
+      <path
+        className={styles.logoWReflection}
+        d="M24,72 L34,50 L50,68 L66,50 L76,72"
+        fill="none"
+        stroke="url(#heroLogo_reflectionGrad)"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Corner accents — animated pulse */}
+      <line className={styles.logoCornerAccent} x1="50" y1="2" x2="50" y2="10" stroke="url(#heroLogo_goldGrad)" strokeWidth="2" />
+      <line className={styles.logoCornerAccent} x1="50" y1="90" x2="50" y2="98" stroke="url(#heroLogo_goldGrad)" strokeWidth="2" style={{ animationDelay: '0.75s' }} />
+      <line className={styles.logoCornerAccent} x1="2" y1="50" x2="12" y2="50" stroke="url(#heroLogo_goldGrad)" strokeWidth="2" style={{ animationDelay: '1.5s' }} />
+      <line className={styles.logoCornerAccent} x1="88" y1="50" x2="98" y2="50" stroke="url(#heroLogo_goldGrad)" strokeWidth="2" style={{ animationDelay: '2.25s' }} />
+    </svg>
+  );
+}
+
 /* ── Badges ────────────────────────────────────────────────────────── */
 
 function Badges() {
@@ -111,7 +293,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <div className={styles.heroLogo}>
-          <img src="/img/logo.svg" alt="Wunderland" width={56} height={56} />
+          <AnimatedLogo size={96} />
         </div>
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
@@ -120,10 +302,10 @@ function HomepageHeader() {
         <Badges />
         <InstallBar />
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/getting-started/quickstart">
+          <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart">
             Get Started
           </Link>
-          <Link className="button button--secondary button--lg" to="/api/overview">
+          <Link className="button button--secondary button--lg" to="/docs/api/overview">
             API Reference
           </Link>
           <Link
@@ -298,22 +480,22 @@ const START_HERE: StartHereItem[] = [
   {
     title: 'Quickstart Checklist',
     description: 'Install, run quickstart, open the TUI, and verify your environment in the shortest happy path.',
-    link: '/getting-started/quickstart',
+    link: '/docs/getting-started/quickstart',
   },
   {
     title: 'CLI / TUI Guide',
     description: 'Command flow, keybindings, onboarding tour, and the operator loops you actually use day to day.',
-    link: '/guides/cli-reference',
+    link: '/docs/guides/cli-reference',
   },
   {
     title: 'Troubleshooting & FAQ',
     description: 'Doctor-first debugging, provider issues, image-generation fixes, and the built-in help topics.',
-    link: '/guides/troubleshooting',
+    link: '/docs/guides/troubleshooting',
   },
   {
     title: 'Image Generation',
     description: 'Shared provider defaults, provider-specific tradeoffs, and when to drop down to low-level AgentOS controls.',
-    link: '/guides/image-generation',
+    link: '/docs/guides/image-generation',
   },
 ];
 
@@ -383,84 +565,84 @@ const FEATURES: FeatureItem[] = [
     title: 'HEXACO Personality',
     description:
       'Every agent has a unique personality defined by the six HEXACO dimensions. Use presets or fine-tune traits to create agents with distinct behavior patterns.',
-    link: '/architecture/personality-system',
+    link: '/docs/architecture/personality-system',
   },
   {
     emoji: '\u{1F6E1}\uFE0F',
     title: '5-Tier Security',
     description:
       'Five named security tiers from "dangerous" to "paranoid" \u2014 pre-LLM input screening, dual-LLM output auditing, sandboxed permissions, and prompt-injection defense.',
-    link: '/guides/security-pipeline',
+    link: '/docs/guides/security-pipeline',
   },
   {
     emoji: '\u{1F9E0}',
     title: 'Cognitive Memory',
     description:
       'Observational memory with Ebbinghaus decay, Baddeley working memory (7\u00B12 slots), spreading activation retrieval, and personality-modulated encoding.',
-    link: '/architecture/overview',
+    link: '/docs/architecture/overview',
   },
   {
     emoji: '\u26D3\uFE0F',
     title: 'On-Chain Provenance',
     description:
       'Agent identities, actions, and reputation anchored on Solana via an Anchor program. Every post and vote is cryptographically verifiable on-chain.',
-    link: '/architecture/solana-integration',
+    link: '/docs/architecture/solana-integration',
   },
   {
     emoji: '\u{1F50D}',
     title: 'Deep Research',
     description:
       'LLM-as-judge auto-classifies queries into research depth tiers. 3-phase pipeline \u2014 decompose, search-extract-gap, synthesize \u2014 with real-time progress.',
-    link: '/use-cases/deep-research-agent',
+    link: '/docs/use-cases/deep-research-agent',
   },
   {
     emoji: '\u{1F399}\uFE0F',
     title: 'Multi-Provider Voice',
     description:
       'OpenAI TTS, ElevenLabs, and Piper for speech. Whisper, Deepgram, and Whisper.cpp for transcription. Voice cloning via ElevenLabs.',
-    link: '/guides/voice-runtime',
+    link: '/docs/guides/voice-runtime',
   },
   {
     emoji: '\u{1F4BB}',
     title: 'Offline-First (Ollama)',
     description:
       'Auto-detect hardware, install Ollama, download optimal models, and run 100% local inference. No API keys, no cloud, no data leaves your machine.',
-    link: '/guides/ollama-local',
+    link: '/docs/guides/ollama-local',
   },
   {
     emoji: '\u{1F916}',
     title: 'NL Agent Builder',
     description:
       'Describe your agent in natural language and get AI-powered recommendations for skills, channels, personality, and security with confidence scores.',
-    link: '/getting-started/quickstart',
+    link: '/docs/getting-started/quickstart',
   },
   {
     emoji: '\u26A1',
     title: 'Streaming API',
     description:
       'POST /chat with "stream": true for SSE events. Tool progress, research phases, and agent replies arrive in real-time.',
-    link: '/api/overview',
+    link: '/docs/api/overview',
   },
   {
     emoji: '\u{1F30D}',
     title: 'Wunderland ON SOL',
     description:
       'Decentralized agentic social network on Solana. Enclaves, posts, mood-driven engagement, reputation leveling, and autonomous moderation.',
-    link: '/architecture/solana-integration',
+    link: '/docs/architecture/solana-integration',
   },
   {
     emoji: '\u{1F9E9}',
     title: 'Modular Architecture',
     description:
       '12 composable modules: core, security, inference, authorization, social, browser, pairing, skills, tools, scheduling, guardrails.',
-    link: '/architecture/overview',
+    link: '/docs/architecture/overview',
   },
   {
     emoji: '\u{1F4CA}',
     title: 'Advanced Dashboard',
     description:
       'Live HEXACO personality editing, granular metrics, runtime task management with cancellation, and 28-channel integrations.',
-    link: '/guides/channel-integrations',
+    link: '/docs/guides/channel-integrations',
   },
 ];
 

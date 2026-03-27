@@ -14,7 +14,7 @@
     "serve": "npx docusaurus serve",
     "write-translations": "npx docusaurus write-translations",
     "write-heading-ids": "npx docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",

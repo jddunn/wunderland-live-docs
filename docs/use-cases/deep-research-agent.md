@@ -27,7 +27,8 @@ wunderland init research-copilot --preset research-assistant
 cd research-copilot
 
 # Add the tools
-wunderland extensions add web-search web-browser
+wunderland extensions enable web-search
+wunderland extensions enable web-browser
 
 # Start chatting
 wunderland chat

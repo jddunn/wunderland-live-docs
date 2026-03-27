@@ -11,7 +11,9 @@ This page is the practical operator guide. For the full command list, see the [C
 
 ```bash
 npm install -g wunderland
+wunderland quickstart     # fastest route to a runnable agent
 wunderland setup          # Interactive wizard (LLM, personality, voice, RAG)
+wunderland                # TUI dashboard + onboarding tour
 wunderland doctor         # Verify everything works
 wunderland chat           # Start chatting
 ```
@@ -29,11 +31,14 @@ wunderland chat           # Chat session (Terminal 2)
 | Command | When To Use |
 |---------|-------------|
 | `wunderland setup` | First-time config or reconfiguration |
+| `wunderland quickstart` | Fastest path when you want the CLI to detect and scaffold for you |
 | `wunderland doctor` | Something isn't working |
 | `wunderland help <topic>` | Quick inline guidance |
 | `wunderland voice status` | Check TTS/STT readiness |
 | `wunderland voice test "Hello"` | TTS smoke test |
 | `wunderland extensions list` | See available tools |
+| `wunderland extensions configure` | Set shared defaults for image generation, TTS, STT, and web search |
+| `wunderland extensions info image-generation` | Check which image provider keys are ready |
 | `wunderland skills list` | See available skills |
 | `wunderland models` | Check provider/model info |
 | `wunderland config set <key> <value>` | Change any setting |
@@ -47,6 +52,9 @@ wunderland config set llmModel claude-sonnet-4-6
 
 # Switch voice provider
 wunderland config set voiceProvider elevenlabs
+
+# Set shared image-generation/search defaults
+wunderland extensions configure
 
 # Use local models
 wunderland ollama-setup
@@ -84,6 +92,7 @@ Launch `wunderland` with no subcommand in a TTY for the interactive dashboard:
 
 ```bash
 wunderland help getting-started    # First-run guide
+wunderland help workflows          # workflow() vs AgentGraph vs mission()
 wunderland help voice              # Voice/speech setup
 wunderland help llm                # LLM provider info
 wunderland help auth               # OAuth and API keys

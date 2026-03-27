@@ -4,34 +4,47 @@ sidebar_position: 17
 
 # Image Generation
 
-Wunderland agents can generate images from text prompts using DALL-E 3 (OpenAI) or Stability AI (SDXL). The agent gets a single `generate_image` tool that routes to whichever provider you configure.
+Wunderland agents can generate images from text prompts using OpenAI, OpenRouter, Stability AI, or Replicate. The agent gets a single `generate_image` tool that routes to whichever provider you configure.
 
 ## Providers
 
-| Provider | Model | Strengths |
-|----------|-------|-----------|
-| **OpenAI** | DALL-E 3 | Strong prompt adherence, text rendering, photorealistic output |
-| **Stability AI** | SDXL 1.0 | Fine-grained style control, open-source model, competitive pricing |
+| Provider | Example Models | Strengths |
+|----------|----------------|-----------|
+| **OpenAI** | `dall-e-3`, `gpt-image-1` | Strong prompt adherence, text rendering, polished defaults |
+| **OpenRouter** | Routed image-capable models | Provider routing and unified account management |
+| **Stability AI** | `stable-image-core`, `stable-image-ultra`, `sd3-large` | Granular diffusion controls and seedable generations |
+| **Replicate** | `black-forest-labs/flux-schnell`, `flux-dev`, community models | Broad model catalog and provider-native low-level inputs |
 
 ## API Keys
 
 Set the key for your preferred provider:
 
 ```bash
-# OpenAI (DALL-E 3)
+# OpenAI
 export OPENAI_API_KEY=sk-...
 
-# Stability AI (SDXL)
+# OpenRouter
+export OPENROUTER_API_KEY=sk-or-...
+
+# Stability AI
 export STABILITY_API_KEY=sk-...
+
+# Replicate
+export REPLICATE_API_TOKEN=r8_...
 ```
 
-Both can be set simultaneously. The agent uses the configured default provider and falls back to whichever key is available.
+Any combination can be set simultaneously. The extension uses its configured default provider and falls back to the first available credentialed provider.
 
 ## Auto-Detection
 
-The image generation extension loads automatically when `OPENAI_API_KEY` is present in the environment. No need to run `wunderland extensions enable` — the agent detects the key and adds the tool at startup.
+The image generation extension loads automatically when one of these is present:
 
-To use Stability AI as the sole provider (without OpenAI), enable the extension explicitly:
+- `OPENAI_API_KEY`
+- `OPENROUTER_API_KEY`
+- `STABILITY_API_KEY`
+- `REPLICATE_API_TOKEN`
+
+No need to run `wunderland extensions enable` in the common case. If you want to force the extension on with only non-default provider credentials present, you can still enable it explicitly:
 
 ```bash
 wunderland extensions enable image-generation
@@ -45,9 +58,13 @@ The agent exposes a single tool with these options:
 |-----------|----------|---------|-------------|
 | `prompt` | Yes | — | Text description of the image to generate |
 | `size` | No | `1024x1024` | Output dimensions |
+| `aspectRatio` | No | Provider default | Explicit aspect ratio hint such as `1:1`, `16:9`, or `9:16` |
 | `quality` | No | `standard` | Image quality level |
 | `style` | No | `vivid` | Visual style |
 | `provider` | No | Configured default | Override the provider for this request |
+| `model` | No | Provider default | Use a provider-native model id for this request |
+| `seed` | No | Random | Reproducible generation for providers that support seeds |
+| `negativePrompt` | No | — | Exclude traits or artifacts for providers that support it |
 
 ### Sizes
 
@@ -71,6 +88,8 @@ The agent exposes a single tool with these options:
 | `vivid` | Hyper-real, dramatic lighting, saturated colors |
 | `natural` | Photographic, muted, realistic tones |
 
+Deep provider-native controls still live in the SDK/runtime layer. If you need raw Stability presets or Replicate model inputs from code, use AgentOS `generateImage()` with namespaced `providerOptions`.
+
 ## Configuration
 
 ### Default Provider
@@ -78,8 +97,15 @@ The agent exposes a single tool with these options:
 Set your preferred provider globally:
 
 ```bash
-wunderland extensions configure image-generation
+wunderland extensions configure
 ```
+
+The CLI provider-default picker supports:
+
+- `openai`
+- `openrouter`
+- `stability`
+- `replicate`
 
 Or in `~/.wunderland/config.json`:
 
@@ -135,20 +161,32 @@ Agent: [calls generate_image with prompt, size: 1792x1024,
 
 ## Pricing
 
-| Provider | Size | Quality | Approximate Cost |
-|----------|------|---------|-----------------|
-| OpenAI (DALL-E 3) | 1024x1024 | Standard | $0.040 |
-| OpenAI (DALL-E 3) | 1024x1024 | HD | $0.080 |
-| OpenAI (DALL-E 3) | 1792x1024 | Standard | $0.080 |
-| OpenAI (DALL-E 3) | 1792x1024 | HD | $0.120 |
-| Stability AI (SDXL) | 1024x1024 | — | $0.002–0.006 |
+Pricing varies materially by provider, model, and quality setting. Check the provider’s current pricing page before relying on cost assumptions in production.
 
-Prices as of early 2026. Check provider documentation for current rates.
+## Need Lower-Level Provider Controls?
+
+Wunderland exposes a single `generate_image` tool for agents. If you need direct provider-native knobs from code, use AgentOS `generateImage()` with namespaced `providerOptions` and keep Wunderland for orchestration:
+
+```ts
+import { generateImage } from '@framers/agentos';
+
+const result = await generateImage({
+  model: 'stability:stable-image-core',
+  prompt: 'A brutalist cabin in alpine fog',
+  providerOptions: {
+    stability: {
+      stylePreset: 'photographic',
+      seed: 42,
+      cfgScale: 8,
+    },
+  },
+});
+```
 
 ## Troubleshooting
 
-**"Image generation not available"** — Check that `OPENAI_API_KEY` or `STABILITY_API_KEY` is set. Run `wunderland extensions info image-generation` to see key status.
+**"Image generation not available"** — Check that one of `OPENAI_API_KEY`, `OPENROUTER_API_KEY`, `STABILITY_API_KEY`, or `REPLICATE_API_TOKEN` is set. Run `wunderland extensions info image-generation` to see key status.
 
 **"Content policy violation"** — Both providers enforce content safety policies. Rephrase the prompt to avoid restricted content categories.
 
-**Slow generation** — HD quality at larger sizes can take 10–15 seconds. Standard quality at 1024x1024 typically returns in 3–5 seconds.
+**Slow generation** — Larger sizes, HD quality, and routed/community models can take noticeably longer. Start with smaller sizes and standard quality until you know your provider’s latency profile.

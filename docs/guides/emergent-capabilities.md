@@ -111,9 +111,26 @@ The tool starts at **session** tier. After 5+ successful uses with >0.8 confiden
 ```bash
 wunderland emergent list              # List all emergent tools for the current agent
 wunderland emergent inspect <id>      # Show source code, judge verdicts, usage stats
+wunderland emergent export <id>       # Write a portable YAML/JSON package for reuse
+wunderland emergent import <file>     # Import a portable package into another agent
 wunderland emergent promote <id>      # Promote to shared tier (requires human approval)
 wunderland emergent demote <id>       # Deactivate a tool (preserved for audit)
 wunderland emergent audit <id>        # Show full audit trail
+```
+
+## Export and Reuse
+
+Emergent tools can be exported as portable `agentos.emergent-tool.v1` YAML or JSON packages and imported into another agent.
+
+- `compose` tools are portable by default
+- `sandbox` tools are portable only when the package includes source code
+- redacted sandbox exports remain useful for audit and Git review, but they are intentionally not importable into another runtime
+
+Typical flow:
+
+```bash
+wunderland emergent export <id> --seed <seedId> --output ./my-tool.emergent-tool.yaml
+wunderland emergent import ./my-tool.emergent-tool.yaml --seed <otherSeedId>
 ```
 
 ## Safety Invariants
@@ -121,8 +138,9 @@ wunderland emergent audit <id>        # Show full audit trail
 - Emergent tools **cannot** modify the guardrail pipeline
 - Emergent tools **cannot** access other agents' memory or credentials
 - Sandbox runs in an isolated V8 context with hard memory and timeout limits
-- All forged code is logged to the audit trail
+- Forge decisions and metadata are logged to the audit trail
 - Human approval is required for shared-tier promotion
+- Raw sandbox source is redacted at rest by default unless you explicitly enable source persistence
 
 ## Configuration Reference
 

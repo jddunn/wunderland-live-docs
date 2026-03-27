@@ -4,5 +4,14 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "exclude": [".docusaurus", "build"]
+  "include": [
+    "src/**/*",
+    "docusaurus.config.ts"
+  ],
+  "exclude": [
+    ".docusaurus",
+    "build",
+    "docs",
+    "node_modules"
+  ]
 }
