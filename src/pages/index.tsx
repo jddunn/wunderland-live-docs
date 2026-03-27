@@ -293,7 +293,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <div className={styles.heroLogo}>
-          <AnimatedLogo size={96} />
+          <AnimatedLogo size={140} />
         </div>
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
