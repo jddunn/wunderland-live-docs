@@ -222,7 +222,7 @@ const config: Config = {
     image: 'img/wunderland-social-card.png',
     colorMode: {
       defaultMode: 'dark',
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'WUNDERLAND',
