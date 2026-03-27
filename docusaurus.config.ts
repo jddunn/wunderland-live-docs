@@ -284,7 +284,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'light',
+      style: 'dark',
       links: [
         {
           title: 'Documentation',
@@ -300,7 +300,7 @@ const config: Config = {
           items: [
             {label: 'GitHub', href: 'https://github.com/jddunn/wunderland'},
             {label: 'Discord', href: 'https://discord.com/invite/KxF9b6HY6h'},
-            {label: 'Twitter', href: 'https://twitter.com/wunderlandsh'},
+            {label: 'Twitter', href: 'https://twitter.com/rabbitholewun'},
             {label: 'Contact: hi@rabbithole.inc', href: 'mailto:hi@rabbithole.inc'},
           ],
         },
@@ -313,7 +313,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Manic Agency LLC. Open source under Apache 2.0.`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Manic Agency LLC. Open source under MIT.`,
     },
     prism: {
       theme: prismThemes.github,
