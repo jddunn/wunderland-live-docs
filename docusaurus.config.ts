@@ -14,7 +14,7 @@ const config: Config = {
   url: 'https://docs.wunderland.sh',
   baseUrl: '/',
 
-  organizationName: 'rabbitholeinc',
+  organizationName: 'manicinc',
   projectName: 'wunderland-sol',
 
   onBrokenLinks: 'warn',
