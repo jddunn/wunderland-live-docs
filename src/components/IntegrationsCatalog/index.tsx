@@ -87,7 +87,7 @@ const TOOLS: CatalogItem[] = [
   { key: 'calendar-google', displayName: 'Google Calendar', description: 'Google Calendar API — event CRUD, free/busy queries, multi-calendar.', category: 'productivity', packageName: '@framers/agentos-ext-calendar-google' },
   { key: 'email-gmail', displayName: 'Gmail', description: 'Gmail API — send, read, search, reply to emails, manage labels.', category: 'productivity', packageName: '@framers/agentos-ext-email-gmail' },
   { key: 'auth', displayName: 'Authentication', description: 'User authentication and session management tools.', category: 'tool', packageName: '@framers/agentos-ext-auth' },
-  { key: 'skills', displayName: 'Skills Registry', description: 'Discover and enable curated SKILL.md prompt modules.', category: 'tool', packageName: '@framers/agentos-ext-skills' },
+  { key: 'skills', displayName: 'Skills Registry', description: 'Discover and enable curated SKILL.md prompt modules.', category: 'tool', packageName: '@framers/agentos-skills' },
 ];
 
 type TabId = 'skills' | 'channels' | 'providers' | 'tools';

@@ -708,11 +708,6 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
         description: '40+ curated skills \u2014 web search, coding, research, social media, and more.',
         npm: '@framers/agentos-skills-registry',
       },
-      {
-        name: '@framers/agentos-ext-skills',
-        description: 'Skills discovery and enablement tools \u2014 curated SKILL.md pack loading.',
-        npm: '@framers/agentos-ext-skills',
-      },
     ],
   },
   {
