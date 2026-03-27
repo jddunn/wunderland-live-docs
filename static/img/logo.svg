@@ -60,7 +60,7 @@
            fill="none" stroke="url(#blueGrad)" stroke-width="2"/>
 
   <!-- The W -->
-  <path d="M24,28 L34,50 L50,32 L66,50 L76,28"
+  <path d="M24,30 L35,48 L50,34 L65,48 L76,30"
         fill="none" stroke="url(#primaryGrad)" stroke-width="5"
         stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
