@@ -805,34 +805,18 @@ h2 {
   background: rgba(212, 168, 68, 0.35);
 }
 
-/* ── Mobile navbar: [brand] ............ [search] [hamburger] ── */
+/* ── Mobile navbar ──────────────────────────────────────────── */
+/* Keep Docusaurus default layout intact — only hide desktop links
+   and compact the search input. Do NOT reposition the hamburger
+   toggle — Docusaurus needs it in normal flow for sidebar open/close. */
 
 @media (max-width: 996px) {
-  .navbar__inner {
-    padding: 0 0.5rem;
-    position: relative;
-  }
-
-  /* Hide desktop nav links on mobile */
+  /* Hide desktop nav links — they appear in the sidebar instead */
   .navbar__items--right > .navbar__item.navbar__link {
     display: none !important;
   }
 
-  /* Hamburger: absolute position, far right */
-  .navbar__toggle {
-    position: absolute !important;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-  }
-
-  /* Search: leave room for hamburger (40px) */
-  .navbar__search,
-  [class*="searchBarContainer"] {
-    margin-right: 44px;
-  }
-
+  /* Compact search on mobile */
   .navbar__search input,
   [class*="searchBarContainer"] input {
     width: 120px !important;
