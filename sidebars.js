@@ -48,7 +48,6 @@ const sidebars = {
       items: [
         'guides/creating-agents',
         'guides/preset-agents',
-        'guides/cli-reference',
         'guides/library-first-api',
         'guides/model-providers',
         {
@@ -107,7 +106,11 @@ const sidebars = {
         'guides/stealth-browser',
         'guides/image-generation',
         'guides/image-editing',
+        'guides/video-audio-generation',
         'guides/vision-pipeline',
+        'guides/github-integration',
+        'guides/self-improving-agents',
+        'guides/provider-preferences',
         'guides/tool-failure-learning',
         'guides/scheduling',
       ],

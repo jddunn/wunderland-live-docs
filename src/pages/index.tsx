@@ -310,7 +310,7 @@ const START_HERE: StartHereItem[] = [
   {
     title: 'CLI / TUI Guide',
     description: 'Command flow, keybindings, onboarding tour, and the operator loops you actually use day to day.',
-    link: '/docs/guides/cli-reference',
+    link: '/docs/api/cli-reference',
   },
   {
     title: 'Troubleshooting & FAQ',
@@ -459,14 +459,14 @@ const FEATURES: FeatureItem[] = [
     emoji: '\u{1F9E9}',
     title: 'Modular Architecture',
     description:
-      '12 composable modules: core, security, inference, authorization, social, browser, pairing, skills, tools, scheduling, guardrails.',
+      '15 composable modules: core, security, inference, authorization, social, browser, pairing, skills, tools, scheduling, guardrails, video, audio, GitHub, and self-improvement.',
     link: '/docs/architecture/overview',
   },
   {
     emoji: '\u{1F4CA}',
     title: 'Advanced Dashboard',
     description:
-      'Live HEXACO personality editing, granular metrics, runtime task management with cancellation, and 28-channel integrations.',
+      'Live HEXACO personality editing, granular metrics, runtime task management with cancellation, and 37 channel integrations.',
     link: '/docs/guides/channel-integrations',
   },
 ];

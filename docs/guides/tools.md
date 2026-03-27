@@ -267,6 +267,63 @@ import { NewsSearchTool } from 'wunderland/tools';
 
 Requires `NEWSAPI_API_KEY`.
 
+### Video Tools
+
+Three tools for video generation, animation, and analysis. See the [Video & Audio Generation guide](./video-audio-generation) for CLI usage.
+
+- **GenerateVideoTool** (`generate_video`) -- Generate a video from a text prompt using Runway Gen-3 or Fal.ai.
+- **AnalyzeVideoTool** (`analyze_video`) -- Extract descriptions, objects, actions, and sentiment from a video file using a vision-capable LLM.
+- **DetectScenesTool** (`detect_scenes`) -- Segment a video into scenes with timestamps, descriptions, and transition types.
+
+Requires `RUNWAY_API_KEY` or `FAL_API_KEY`. Analysis tools require a vision-capable LLM (GPT-4o, Claude Sonnet, Gemini Pro).
+
+### Audio Tools
+
+Two tools for music and sound effect generation.
+
+- **GenerateMusicTool** (`generate_music`) -- Generate a music track from a text prompt using Suno or Fal.ai.
+- **GenerateSFXTool** (`generate_sfx`) -- Generate a short sound effect from a text prompt using Stable Audio or Fal.ai.
+
+Requires `SUNO_API_KEY`, `STABILITY_API_KEY`, or `FAL_API_KEY`.
+
+### OCR Tool
+
+- **PerformOCRTool** (`perform_ocr`) -- Extract text from images, PDFs, and screenshots. Uses a vision-capable LLM for layout-aware text extraction, table detection, and multi-language support.
+
+Requires a vision-capable LLM key (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, or `GOOGLE_AI_API_KEY`).
+
+### GitHub Tools
+
+26 tools for full GitHub repository management, available in `wunderland chat` when `GITHUB_TOKEN` is set. Organized into five groups:
+
+**Repository management:**
+`github_repo_list`, `github_repo_create`, `github_repo_info`, `github_repo_delete`, `github_repo_clone`
+
+**Pull requests:**
+`github_pr_list`, `github_pr_create`, `github_pr_review`, `github_pr_merge`, `github_pr_close`, `github_pr_diff`, `github_pr_comments`
+
+**Issues:**
+`github_issue_list`, `github_issue_create`, `github_issue_update`, `github_issue_close`, `github_issue_comment`
+
+**Branches and commits:**
+`github_branch_list`, `github_branch_create`, `github_branch_delete`, `github_commit_list`, `github_commit_info`
+
+**Actions and releases:**
+`github_actions_list`, `github_actions_trigger`, `github_release_list`, `github_release_create`
+
+Requires `GITHUB_TOKEN` with appropriate scopes (repo, workflow). See the [GitHub Integration guide](./github-integration) for setup details.
+
+### Self-Improvement Tools
+
+Four tools that let agents adapt and evolve within bounded safety rails. Enable via `selfImprovement.enabled: true` in `agent.config.json`. See the [Self-Improving Agents guide](./self-improving-agents) for configuration.
+
+- **AdaptPersonalityTool** (`adapt_personality`) -- Shift HEXACO personality dimensions based on interaction feedback. Changes are bounded (max delta per session) and decay toward baseline over time.
+- **ManageSkillsTool** (`manage_skills`) -- Enable, disable, or reorder skills at runtime. Changes persist to the agent's skill manifest.
+- **CreateWorkflowTool** (`create_workflow`) -- Compose multi-step workflows from existing tools. The agent builds reusable automation sequences.
+- **SelfEvaluateTool** (`self_evaluate`) -- Run a structured self-assessment against defined criteria (helpfulness, accuracy, safety). Produces a score card with improvement suggestions.
+
+`adapt_personality`, `manage_skills`, and `create_workflow` are built-in (no API key required). `self_evaluate` requires an LLM key.
+
 ## WUNDERLAND_TOOL_IDS
 
 A constant object mapping logical tool names to their string IDs for type-safe references.
@@ -287,6 +344,16 @@ const ids = WUNDERLAND_TOOL_IDS;
 //   SOCIAL_POST:        'social_post',
 //   FEED_READ:          'feed_read',
 //   MEMORY_READ:        'memory_read',
+//   GENERATE_VIDEO:     'generate_video',
+//   ANALYZE_VIDEO:      'analyze_video',
+//   DETECT_SCENES:      'detect_scenes',
+//   GENERATE_MUSIC:     'generate_music',
+//   GENERATE_SFX:       'generate_sfx',
+//   PERFORM_OCR:        'perform_ocr',
+//   ADAPT_PERSONALITY:  'adapt_personality',
+//   MANAGE_SKILLS:      'manage_skills',
+//   CREATE_WORKFLOW:    'create_workflow',
+//   SELF_EVALUATE:      'self_evaluate',
 // }
 ```
 
@@ -337,6 +404,17 @@ text_to_speech: UNAVAILABLE
 | `giphy_search` | `GIPHY_API_KEY` | None |
 | `image_search` | Any image key (Pexels/Unsplash/Pixabay) | None |
 | `text_to_speech` | `ELEVENLABS_API_KEY` | None |
+| `generate_video` | `RUNWAY_API_KEY` or `FAL_API_KEY` | None |
+| `analyze_video` | LLM key (vision model) | None |
+| `detect_scenes` | LLM key (vision model) | None |
+| `generate_music` | `SUNO_API_KEY` or `FAL_API_KEY` | None |
+| `generate_sfx` | `STABILITY_API_KEY` or `FAL_API_KEY` | None |
+| `perform_ocr` | LLM key (vision model) | None |
+| `github_*` (26 tools) | `GITHUB_TOKEN` | None |
+| `adapt_personality` | Built-in (no key required) | -- |
+| `manage_skills` | Built-in (no key required) | -- |
+| `create_workflow` | Built-in (no key required) | -- |
+| `self_evaluate` | LLM key | None |
 
 ## Integration with AgentOS Extensions
 
@@ -384,6 +462,12 @@ for (const pack of manifest.packs) {
 | `UNSPLASH_ACCESS_KEY` | Image search | Any one image key enables the tool |
 | `PIXABAY_API_KEY` | Image search | Any one image key enables the tool |
 | `NEWSAPI_API_KEY` | News search | Required for news article search |
+| `RUNWAY_API_KEY` | Video generation | Runway Gen-3 video provider |
+| `SUNO_API_KEY` | Music generation | Suno music provider |
+| `FAL_API_KEY` | Video/audio generation | Fal.ai multi-modal provider |
+| `STABILITY_API_KEY` | SFX generation | Stable Audio sound effects |
+| `BFL_API_KEY` | Image generation | Black Forest Labs Flux image provider |
+| `GITHUB_TOKEN` | GitHub tools (26) | Requires repo + workflow scopes |
 
 ## Dynamic Discovery
 

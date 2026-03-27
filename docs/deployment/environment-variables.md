@@ -146,6 +146,12 @@ Do **not** expose the IPFS API (port 5001) to the public internet. Use localhost
 | `SERPAPI_API_KEY` | Backend/CLI | SerpAPI key (alternative search provider) | -- | No |
 | `GIPHY_API_KEY` | Backend | Giphy API key for GIF search tool | -- | No |
 | `ELEVENLABS_API_KEY` | Backend | ElevenLabs API key for text-to-speech | -- | No |
+| `RUNWAY_API_KEY` | CLI/Backend | Runway Gen-3 API key for video generation | -- | No |
+| `SUNO_API_KEY` | CLI/Backend | Suno API key for music generation | -- | No |
+| `FAL_API_KEY` | CLI/Backend | Fal.ai API key for video and audio generation (multi-modal provider) | -- | No |
+| `BFL_API_KEY` | CLI/Backend | Black Forest Labs API key for Flux image generation | -- | No |
+| `STABILITY_API_KEY` | CLI/Backend | Stability AI API key for Stable Audio sound effects and image generation | -- | No |
+| `GITHUB_TOKEN` | CLI/Backend | GitHub personal access token for 26 GitHub tools (requires `repo` + `workflow` scopes) | -- | No |
 
 These keys enable optional agent tools. Agents will skip tools whose API keys are not configured. The `deep_research` tool works without search API keys (falls back to DuckDuckGo) but produces better results with Serper/Brave keys and requires an LLM key (`OPENAI_API_KEY` or `OPENROUTER_API_KEY`) for query decomposition and report synthesis.
 

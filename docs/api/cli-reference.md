@@ -160,6 +160,61 @@ wunderland setup
 
 ---
 
+## Video Commands
+
+```bash
+wunderland video generate <prompt>             # Generate a video from text
+wunderland video generate <prompt> --provider runway    # Use a specific provider
+wunderland video generate <prompt> --duration 10        # Duration in seconds
+wunderland video generate <prompt> --output ./out.mp4   # Custom output path
+wunderland video animate <image> <prompt>      # Animate a still image
+wunderland video animate photo.png "slow zoom out, cinematic"
+wunderland video analyze <file>                # Analyze a video file
+wunderland video analyze clip.mp4              # Scene descriptions, objects, sentiment
+wunderland video analyze clip.mp4 --model gpt-4o        # Override vision model
+```
+
+### Details
+
+- `generate` — Text-to-video via Runway Gen-3 or Fal.ai. Produces an MP4 file.
+- `animate` — Image-to-video. Takes a still image and a motion prompt.
+- `analyze` — Runs scene detection, object recognition, and sentiment analysis via a vision-capable LLM.
+
+Requires `RUNWAY_API_KEY` or `FAL_API_KEY` for generation. Analysis requires a vision-capable LLM key.
+
+---
+
+## Audio Commands
+
+```bash
+wunderland audio music <prompt>                # Generate a music track
+wunderland audio music "lo-fi hip hop, rainy day"
+wunderland audio music <prompt> --provider suno         # Use a specific provider
+wunderland audio music <prompt> --duration 30           # Duration in seconds
+wunderland audio music <prompt> --output ./track.mp3    # Custom output path
+wunderland audio sfx <prompt>                  # Generate a sound effect
+wunderland audio sfx "door creaking open slowly"
+wunderland audio sfx <prompt> --provider stability      # Use Stable Audio
+```
+
+### Details
+
+- `music` — Text-to-music via Suno or Fal.ai. Default duration is 30 seconds.
+- `sfx` — Text-to-sound-effect via Stable Audio or Fal.ai. Default duration is 5 seconds.
+
+Requires `SUNO_API_KEY`, `STABILITY_API_KEY`, or `FAL_API_KEY`.
+
+### Common Flags (Video & Audio)
+
+| Flag | Effect |
+|------|--------|
+| `--provider <name>` | Override the default provider (runway, fal, suno, stability) |
+| `--model <name>` | Override the model (provider-specific) |
+| `--duration <seconds>` | Set output duration |
+| `--output <path>` | Custom output file path |
+
+---
+
 ## Extensions & Skills
 
 ### `wunderland extensions`
