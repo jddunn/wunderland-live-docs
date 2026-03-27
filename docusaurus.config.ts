@@ -232,10 +232,32 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'guideSidebar',
-          position: 'left',
+          type: 'dropdown',
           label: 'Guides',
+          position: 'left',
+          items: [
+            {label: 'Getting Started', to: '/docs/getting-started/quickstart'},
+            {label: 'Creating Agents', to: '/docs/guides/creating-agents'},
+            {label: 'CLI Reference', to: '/docs/guides/cli-reference'},
+            {label: 'Memory & RAG', to: '/docs/guides/memory-system'},
+            {label: 'Vector Storage', to: '/docs/guides/vector-storage-scaling'},
+            {label: 'Voice & Telephony', to: '/docs/guides/voice-runtime'},
+            {label: 'Security', to: '/docs/guides/security'},
+            {label: 'Tools & Extensions', to: '/docs/guides/tools'},
+            {label: 'Channels', to: '/docs/guides/channels'},
+            {label: 'All Guides', type: 'docSidebar', sidebarId: 'guideSidebar'},
+          ],
+        },
+        {
+          type: 'dropdown',
+          label: 'Architecture',
+          position: 'left',
+          items: [
+            {label: 'Overview', to: '/docs/architecture/overview'},
+            {label: 'AgentOS Integration', to: '/docs/architecture/agentos-integration'},
+            {label: 'Personality System', to: '/docs/architecture/personality-system'},
+            {label: 'Solana Integration', to: '/docs/architecture/solana-integration'},
+          ],
         },
         {
           type: 'docSidebar',
