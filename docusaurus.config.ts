@@ -295,7 +295,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Wunderland. Built with Docusaurus.`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Manic Agency LLC. Open source under Apache 2.0.`,
     },
     prism: {
       theme: prismThemes.github,
