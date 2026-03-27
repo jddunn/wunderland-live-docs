@@ -1,6 +1,5 @@
 <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Primary gradient with color-cycling animation -->
     <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%">
         <animate attributeName="stop-color" values="#0ea5e9;#9945ff;#c9a227;#0ea5e9" dur="8s" repeatCount="indefinite"/>
@@ -13,7 +12,6 @@
       </stop>
     </linearGradient>
 
-    <!-- Blue gradient with subtle color shift -->
     <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%">
         <animate attributeName="stop-color" values="#0284c7;#6366f1;#0284c7" dur="10s" repeatCount="indefinite"/>
@@ -23,7 +21,6 @@
       </stop>
     </linearGradient>
 
-    <!-- Frame highlight with color shift -->
     <linearGradient id="frameHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%">
         <animate attributeName="stop-color" values="#38bdf8;#c9a227;#9945ff;#38bdf8" dur="6s" repeatCount="indefinite"/>
@@ -33,14 +30,6 @@
         <animate attributeName="stop-color" values="#c9a227;#9945ff;#38bdf8;#c9a227" dur="6s" repeatCount="indefinite"/>
         <animate attributeName="stop-opacity" values="0.6;0.3;0.6" dur="4s" repeatCount="indefinite"/>
       </stop>
-    </linearGradient>
-
-    <!-- Static gradients -->
-    <linearGradient id="mirrorSurface" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0c4a6e" stop-opacity="0.7"/>
-      <stop offset="30%" stop-color="#075985" stop-opacity="0.5"/>
-      <stop offset="70%" stop-color="#075985" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0.15"/>
     </linearGradient>
 
     <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -58,22 +47,20 @@
   <polygon points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
            fill="url(#frameGrad)" filter="url(#frameShadow)"/>
 
-  <!-- Frame edge — color-cycling highlight -->
+  <!-- Frame edge highlight -->
   <polygon points="50,2 84,18 98,50 84,82 50,98 16,82 2,50 16,18"
            fill="none" stroke="url(#frameHighlight)" stroke-width="1.5"/>
 
-  <!-- Inner mirror surface -->
+  <!-- Inner surface — uniform dark, no gradient banding -->
   <polygon points="50,10 76,22 88,50 76,78 50,90 24,78 12,50 24,22"
-           fill="url(#mirrorSurface)"/>
+           fill="#0a1628" opacity="0.85"/>
 
-  <!-- Inner frame — color-cycling border -->
+  <!-- Inner border -->
   <polygon points="50,10 76,22 88,50 76,78 50,90 24,78 12,50 24,22"
            fill="none" stroke="url(#blueGrad)" stroke-width="2"/>
 
-  <!-- The W — color-cycling gradient -->
+  <!-- The W -->
   <path d="M24,28 L34,50 L50,32 L66,50 L76,28"
         fill="none" stroke="url(#primaryGrad)" stroke-width="5"
         stroke-linecap="round" stroke-linejoin="round"/>
-
-
 </svg>
