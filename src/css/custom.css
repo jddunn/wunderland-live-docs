@@ -809,49 +809,35 @@ h2 {
 
 @media (max-width: 996px) {
   .navbar__inner {
-    display: flex !important;
-    align-items: center;
     padding: 0 0.5rem;
-    gap: 0;
+    position: relative;
   }
 
-  /* Left side: brand */
-  .navbar__items {
-    flex: 0 0 auto;
-  }
-
-  /* Right side container: push to far right */
-  .navbar__items--right {
-    display: flex !important;
-    align-items: center;
-    margin-left: auto !important;
-    gap: 4px;
-    flex-shrink: 0;
-  }
-
-  /* Hide desktop links, keep search + toggle + theme */
+  /* Hide desktop nav links on mobile */
   .navbar__items--right > .navbar__item.navbar__link {
     display: none !important;
   }
 
-  /* Search: compact, stays inline */
+  /* Hamburger: absolute position, far right */
+  .navbar__toggle {
+    position: absolute !important;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  /* Search: leave room for hamburger (40px) */
   .navbar__search,
   [class*="searchBarContainer"] {
-    max-width: 140px;
-    flex-shrink: 1;
+    margin-right: 44px;
   }
 
   .navbar__search input,
   [class*="searchBarContainer"] input {
-    width: 110px !important;
+    width: 120px !important;
     font-size: 0.8125rem;
     padding: 0.3rem 0.5rem;
-  }
-
-  /* Hamburger: rightmost element, never wraps */
-  .navbar__toggle {
-    flex-shrink: 0 !important;
-    margin-left: 2px !important;
   }
 
   /* Search modal: stay in viewport */

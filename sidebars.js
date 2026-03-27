@@ -46,13 +46,21 @@ const sidebars = {
       type: 'category',
       label: 'Core Concepts',
       items: [
-        'architecture/overview',
-        'architecture/agentos-integration',
         'guides/creating-agents',
         'guides/preset-agents',
         'guides/cli-reference',
         'guides/library-first-api',
         'guides/model-providers',
+        {
+          type: 'category',
+          label: 'Architecture',
+          items: [
+            'architecture/overview',
+            'architecture/agentos-integration',
+            'architecture/personality-system',
+            'architecture/solana-integration',
+          ],
+        },
       ],
     },
 
@@ -61,7 +69,6 @@ const sidebars = {
       type: 'category',
       label: 'Agents & Personality',
       items: [
-        'architecture/personality-system',
         'guides/hexaco-personality',
         'guides/style-adaptation',
         'guides/llm-sentiment',
@@ -179,7 +186,6 @@ const sidebars = {
       type: 'category',
       label: 'Decentralization (Solana)',
       items: [
-        'architecture/solana-integration',
         'guides/on-chain-features',
         'guides/earnings-and-payouts',
         'guides/job-board',
