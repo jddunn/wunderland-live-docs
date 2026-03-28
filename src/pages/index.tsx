@@ -525,12 +525,12 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
     packages: [
       {
         name: '@framers/agentos-skills',
-        description: 'Skills engine \u2014 parser, loader, and SkillRegistry runtime for SKILL.md modules.',
+        description: '69 curated SKILL.md prompt modules \u2014 web search, coding, research, social media, and more.',
         npm: '@framers/agentos-skills',
       },
       {
         name: '@framers/agentos-skills-registry',
-        description: '40+ curated skills \u2014 web search, coding, research, social media, and more.',
+        description: 'Catalog SDK \u2014 SKILLS_CATALOG, query helpers, factories, and workspace discovery.',
         npm: '@framers/agentos-skills-registry',
       },
     ],

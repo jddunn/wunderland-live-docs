@@ -49,10 +49,11 @@ npm install wunderland
 
 The skills system is also available as standalone NPM packages for use outside of Wunderland:
 
-| Package | Import | Key Exports |
+| Package | Role | Key Exports |
 |---|---|---|
-| `@framers/agentos-skills` | Runtime | `SkillRegistry`, `loadSkillsFromDir`, `parseSkillFrontmatter`, `resolveDefaultSkillsDirs` |
-| `@framers/agentos-skills-registry` | Data + SDK | 40 SKILL.md files, `registry.json`, `SKILLS_CATALOG`, `searchSkills`, `getSkillsByCategory`, `createCuratedSkillRegistry` |
+| `@framers/agentos/skills` | Engine | `SkillLoader`, `SkillRegistry`, `resolveDefaultSkillsDirs`, `parseSkillFrontmatter` |
+| `@framers/agentos-skills` | Content | 69 SKILL.md files + `registry.json` |
+| `@framers/agentos-skills-registry` | Catalog SDK | `SKILLS_CATALOG`, `searchSkills`, `getSkillsByCategory`, `createCuratedSkillRegistry`, `createCuratedSkillSnapshot` |
 | `@framers/agentos-skills-registry/catalog` | Lightweight | Same query helpers, zero peer deps |
 
 See [Skills System](/guides/skills-system) for full documentation.
