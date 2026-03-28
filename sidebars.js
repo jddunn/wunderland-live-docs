@@ -47,6 +47,7 @@ const sidebars = {
       label: 'Core Concepts',
       items: [
         'guides/creating-agents',
+        'guides/nl-agent-creation',
         'guides/preset-agents',
         'guides/library-first-api',
         'guides/model-providers',
