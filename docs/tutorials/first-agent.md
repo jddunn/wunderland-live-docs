@@ -215,7 +215,7 @@ wunderland voice stt
 
 You now have a working agent. Here's where to go from here:
 
-- **[NL Agent Creation](/guides/nl-agent-creation)** — Deep dive into natural language creation
+- **[NL Agent Creation](./natural-language-agents.md)** — Deep dive into natural language creation
 - **[Configuration Guide](/getting-started/configuration)** — Fine-tune your setup
 - **[LLM Provider Setup](/guides/model-providers)** — Try different providers
 - **[Extensions Guide](/guides/extensions)** — Add more capabilities

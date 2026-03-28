@@ -46,6 +46,34 @@ wunderland chat        # terminal chat session
 wunderland doctor      # verify config + provider readiness
 ```
 
+## Quick Start: Natural Language Creation
+
+Describe the agent you want in plain English and the CLI builds the full configuration for you:
+
+```bash
+npm install -g wunderland
+
+# Create from a description -- extracts preset, skills, channels, security, and personality
+wunderland create "a research assistant that monitors Hacker News and summarizes daily"
+
+# Review the generated config and start
+cd seed_research_assistant
+cp .env.example .env    # fill in your API key
+wunderland start
+```
+
+The `wunderland new` command offers the same NL path alongside presets, blank scaffolds, and manifest imports in an interactive menu:
+
+```bash
+wunderland new                                    # interactive mode
+wunderland new "customer support bot for Slack"   # NL mode (auto-detected)
+wunderland new --preset code-reviewer             # preset mode
+```
+
+See the [Natural Language Agent Creation tutorial](/tutorials/natural-language-agents) for a full walkthrough with confidence scores, extraction details, and tips for writing effective descriptions.
+
+---
+
 ## First-Run Checklist
 
 Use this loop when you want the CLI/TUI path instead of embedding the library:
