@@ -52,7 +52,7 @@ The skills system is also available as standalone NPM packages for use outside o
 | Package | Role | Key Exports |
 |---|---|---|
 | `@framers/agentos/skills` | Engine | `SkillLoader`, `SkillRegistry`, `resolveDefaultSkillsDirs`, `parseSkillFrontmatter` |
-| `@framers/agentos-skills` | Content | 69 SKILL.md files + `registry.json` |
+| `@framers/agentos-skills` | Content | 72 SKILL.md files (curated) + `registry.json` |
 | `@framers/agentos-skills-registry` | Catalog SDK | `SKILLS_CATALOG`, `searchSkills`, `getSkillsByCategory`, `createCuratedSkillRegistry`, `createCuratedSkillSnapshot` |
 | `@framers/agentos-skills-registry/catalog` | Lightweight | Same query helpers, zero peer deps |
 

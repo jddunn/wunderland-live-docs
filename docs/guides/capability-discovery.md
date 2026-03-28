@@ -10,7 +10,7 @@ For the full API reference, see [Capability Discovery on docs.agentos.sh](https:
 
 # Capability Discovery
 
-Wunderland agents can access 23+ tools, 18 skills, 20+ extensions, and 28 messaging channels. Loading all of those definitions into every LLM call wastes tokens and degrades inference quality. The Capability Discovery Engine replaces static loading with on-demand semantic search so agents only see the capabilities relevant to the current conversation.
+Wunderland agents can access 23+ tools, 72 curated skills, 20+ extensions, and 37 messaging channels. Loading all of those definitions into every LLM call wastes tokens and degrades inference quality. The Capability Discovery Engine replaces static loading with on-demand semantic search so agents only see the capabilities relevant to the current conversation.
 
 ## How It Works
 
@@ -245,7 +245,7 @@ const app = await createWunderland({
 const app = await createWunderland({
   llm: { providerId: 'openai' },
   tools: 'curated',
-  skills: 'all',  // all 40 curated skills
+  skills: 'all',  // all 72 curated skills
   extensions: {
     tools: ['web-search', 'web-browser', 'news-search', 'image-search', 'giphy', 'cli-executor'],
     voice: ['voice-synthesis'],

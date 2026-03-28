@@ -140,7 +140,7 @@ The NL builder extracts every field needed for a complete `agent.config.json`:
 | **systemPrompt** | Custom system prompt injected into LLM context | "Focus on technical accuracy..." |
 | **personality** | HEXACO traits (honesty, emotionality, extraversion, agreeableness, conscientiousness, openness) on a 0-1 scale | `{ honesty: 0.9, openness: 0.8, ... }` |
 | **preset** | Agent archetype (research-assistant, customer-support, creative-writer, code-reviewer, etc.) | "research-assistant" |
-| **skills** | Curated skills from the 40+ skill catalog | `["web-search", "summarize", "twitter-bot"]` |
+| **skills** | Curated skills from the 72-skill catalog | `["web-search", "summarize", "twitter-bot"]` |
 | **extensions** | Tool, voice, and productivity extensions | `{ tools: ["web-search", "news-search"] }` |
 | **channels** | Platform bindings from the 37-channel catalog | `["twitter", "discord"]` |
 | **securityTier** | Security posture (dangerous, permissive, balanced, strict, paranoid) | "balanced" |
@@ -238,7 +238,7 @@ The interactive mode presents a menu:
 
 The extraction pipeline uses the `NaturalLanguageAgentBuilder` module:
 
-1. **Prompt construction** -- Your description is embedded into a structured prompt containing the full catalog of presets (9), skills (40+), channels (37), security tiers (5), permission sets (5), tool access profiles (5), and execution modes (3).
+1. **Prompt construction** -- Your description is embedded into a structured prompt containing the full catalog of presets (8), skills (72), channels (37), security tiers (5), permission sets (5), tool access profiles (5), and execution modes (3).
 
 2. **LLM invocation** -- The prompt is sent to your configured provider (OpenAI, Anthropic, OpenRouter, Gemini, or Ollama) at low temperature (0.1) for deterministic extraction.
 

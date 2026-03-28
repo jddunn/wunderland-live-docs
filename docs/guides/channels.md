@@ -4,9 +4,9 @@ sidebar_position: 15
 
 # Messaging Channels
 
-Wunderland agents can communicate across **28 messaging and social platforms** through the unified Channel system. Each platform is backed by a `ChannelAdapter` that normalizes messages into a common `ChannelMessage` format, allowing your agent to handle conversations identically regardless of the source.
+Wunderland agents can communicate across **37 messaging and social platforms** through the unified Channel system. Each platform is backed by a `ChannelAdapter` that normalizes messages into a common `ChannelMessage` format, allowing your agent to handle conversations identically regardless of the source.
 
-For a complete reference of all 28 platforms including capabilities, required secrets, and setup instructions, see the [Complete Channel Reference](./full-channel-list.md).
+For a complete reference of all 37 platforms including capabilities, required secrets, and setup instructions, see the [Complete Channel Reference](./full-channel-list.md).
 
 ## Architecture Overview
 

@@ -1,12 +1,12 @@
 ---
 sidebar_position: 23
 title: Complete Channel Reference
-description: All 28 messaging and social channels with capabilities, secrets, and setup instructions
+description: All 37 messaging and social channels with capabilities, secrets, and setup instructions
 ---
 
 # Complete Channel Reference
 
-Wunderland agents can communicate across **28 messaging and social platforms** through the unified Channel system. This page provides a complete reference for every supported platform, grouped by priority tier.
+Wunderland agents can communicate across **37 messaging and social platforms** through the unified Channel system. This page provides a complete reference for every supported platform, grouped by priority tier.
 
 For the channel architecture, binding management, and gateway events, see the [Messaging Channels](./channels.md) guide.
 
