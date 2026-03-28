@@ -14,7 +14,8 @@
 # Auto-generated API reference
 docs/api-reference/
 
-# TypeDoc media files (copied to static at build time)
+# TypeDoc media files (copied at build time by pull-source.mjs)
+docs/_media/
 static/docs/_media/
 
 # Misc

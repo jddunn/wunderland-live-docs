@@ -51,6 +51,8 @@ const sidebars = {
         'guides/preset-agents',
         'guides/library-first-api',
         'guides/model-providers',
+        'guides/agent-serialization',
+        'guides/multi-agent-agency',
         {
           type: 'category',
           label: 'Architecture',
@@ -83,6 +85,9 @@ const sidebars = {
       items: [
         'guides/memory-system',
         'guides/memory-architecture',
+        'guides/working-memory',
+        'guides/unified-retrieval',
+        'guides/query-routing',
         'guides/hyde-retrieval',
         'guides/vector-storage-scaling',
         'guides/postgres-backend',
@@ -103,6 +108,7 @@ const sidebars = {
         'guides/extensions',
         'guides/extension-configuration',
         'guides/skills-system',
+        'guides/cli-tools',
         'guides/browser-automation',
         'guides/stealth-browser',
         'guides/image-generation',
@@ -138,6 +144,7 @@ const sidebars = {
         'guides/channels',
         'guides/full-channel-list',
         'guides/channel-integrations',
+        'guides/channel-oauth-setup',
         'guides/pairing',
         'guides/email-intelligence',
         'guides/social-features',
@@ -170,6 +177,8 @@ const sidebars = {
         'guides/inference-routing',
         'guides/ollama-local',
         'guides/gemini-setup',
+        'guides/gemini-cli-setup',
+        'guides/claude-code-cli-setup',
         'guides/openai-oauth',
         'guides/env-import',
       ],
@@ -182,6 +191,7 @@ const sidebars = {
       items: [
         'guides/http-streaming-api',
         'guides/chat-server',
+        'guides/observability',
       ],
     },
 
@@ -222,6 +232,9 @@ const sidebars = {
         'deployment/cloud-hosting',
         'deployment/environment-variables',
         'deployment/local-first',
+        'guides/site-deploy',
+        'guides/cloud-providers',
+        'guides/domain-registrars',
       ],
     },
 
