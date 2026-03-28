@@ -14,6 +14,8 @@ Wunderland defaults to the interactive TUI when launched in a TTY with no subcom
 | Command | Purpose |
 | --- | --- |
 | `wunderland` | Open the TUI dashboard |
+| `wunderland create <description>` | Create an agent from a natural language description |
+| `wunderland new` | Unified interactive agent creation (NL, preset, blank, or import) |
 | `wunderland quickstart` | Auto-detect your environment and scaffold the fastest working setup |
 | `wunderland setup` | Guided initial configuration (QuickStart or Advanced) |
 | `wunderland doctor` | Health and configuration checks |
@@ -49,9 +51,45 @@ wunderland quickstart
 
 Use this when you want the shortest path from “nothing configured” to “agent is runnable”.
 
+### `wunderland create <description>`
+
+Create an agent from a natural language description. The CLI sends your description to the configured LLM, extracts a full agent configuration (preset, skills, extensions, channels, HEXACO personality, security tier), previews it with confidence scores, and scaffolds a project directory.
+
+```bash
+wunderland create "A research agent that monitors Hacker News and summarizes daily"
+wunderland create "A customer support agent for my SaaS product" --yes
+wunderland create "A social media bot for Twitter and Instagram" --managed
+wunderland create "A data analyst agent" --dir ./agents/analyst
+```
+
+| Flag | Effect |
+|------|--------|
+| `--yes` / `-y` | Skip confirmation prompt |
+| `--managed` | Restrict to managed-mode capabilities (no filesystem/CLI tools) |
+| `--dir <path>` | Override output directory name |
+| `--update` | Merge with existing agent.config.json in current directory |
+
+See the [NL Agent Creation guide](/guides/nl-agent-creation) for tips on writing effective descriptions and details on confidence scores.
+
+### `wunderland new`
+
+Unified interactive agent creation entry point. Presents four modes:
+
+1. **From a preset** -- select from curated agent presets
+2. **Describe in plain English** -- NL creation (delegates to `wunderland create`)
+3. **Blank agent** -- minimal scaffold for manual configuration
+4. **Import manifest** -- load from a shared `agent.manifest.json`
+
+```bash
+wunderland new                                    # Interactive mode
+wunderland new "Build a twitter bot"              # NL mode (auto-detected for 10+ char descriptions)
+wunderland new --preset research-assistant        # Direct preset mode
+wunderland new --from ./exported-agent.json       # Direct import mode
+```
+
 ### `wunderland init <dir>`
 
-Scaffold a new agent project.
+Scaffold a new agent project from a preset (non-NL path).
 
 ```bash
 wunderland init my-agent
@@ -327,6 +365,49 @@ wunderland emergent audit <name|id> --seed <seedId>
 
 ---
 
+## Agency (Multi-Agent Teams)
+
+### `wunderland agency`
+
+Manage multi-agent collectives (agencies).
+
+```bash
+wunderland agency                                  # Show help
+wunderland agency list                             # List configured agencies
+wunderland agency list --seed <id>                 # List from backend
+wunderland agency status <name>                    # Show agency status and agents
+wunderland agency run <name> "<prompt>"            # Execute an agency
+wunderland agency run <name> "<prompt>" --stream   # Stream with agent events
+```
+
+### `wunderland agency create`
+
+Create a new agency. Accepts either a simple name (shows a manual template) or a natural language description (LLM-powered extraction).
+
+```bash
+# Manual: shows JSON template
+wunderland agency create research-team --strategy graph
+
+# NL-powered: extracts agency name, strategy, agents, roles, and dependencies
+wunderland agency create "research team with a researcher, analyst, and writer"
+wunderland agency create "debate council where an optimist and pessimist argue, then a moderator synthesizes" --yes
+```
+
+When given a description (20+ characters with spaces), the CLI:
+1. Sends the description to your configured LLM
+2. Extracts: agency name, orchestration strategy, shared goals, and named agents with roles/instructions/dependencies
+3. Previews the extracted configuration
+4. Writes the `agency` block to `agent.config.json` (creates or merges)
+
+| Flag | Effect |
+|------|--------|
+| `--strategy <name>` | Override strategy: sequential, parallel, graph, debate, review-loop, hierarchical |
+| `--yes` / `-y` | Skip confirmation prompt |
+| `--seed <id>` | Agent seed ID for backend queries |
+| `--stream` | Stream output with agent events (for `run`) |
+
+---
+
 ## Ollama (Local LLM)
 
 ### `wunderland ollama-setup`
@@ -432,6 +513,15 @@ wunderland help export             # PNG export
 ---
 
 ## Common Operator Flows
+
+### NL Agent Creation
+
+```bash
+wunderland create "A research assistant that searches the web and summarizes articles"
+cd seed_research_assistant
+cp .env.example .env
+wunderland start
+```
 
 ### First-Time Setup
 
