@@ -32,7 +32,41 @@ wunderland --version
 
 ---
 
-## Step 2: Run Setup
+## Step 2: Create Your Agent
+
+The fastest way -- describe what you want in plain English:
+
+```bash
+wunderland create "A research agent that monitors Hacker News, summarizes top stories, and posts daily digests to Slack"
+```
+
+This uses AI to generate a complete agent configuration with:
+- Preset selection (research-assistant)
+- Skills (web-search, summarize, hacker-news)
+- Extensions (web-search, news-search, slack)
+- HEXACO personality traits
+- Security tier (balanced)
+
+You'll see a preview with confidence scores. Confirm to scaffold the project.
+
+### Alternative: Create from a Preset
+
+```bash
+wunderland init my-agent --preset research-assistant
+```
+
+### Alternative: Interactive Mode
+
+```bash
+# Choose between NL describe, preset, blank, or import
+wunderland new
+```
+
+---
+
+## Step 3: Run Setup (if not using `create`)
+
+If you used `wunderland create`, your agent is already configured. Otherwise, run the setup wizard:
 
 ```bash
 wunderland setup
@@ -53,7 +87,7 @@ After setup, your configuration is saved to `~/.wunderland/config.json` and API 
 
 ---
 
-## Step 3: Verify Your Environment
+## Step 4: Verify Your Environment
 
 ```bash
 wunderland doctor
@@ -63,7 +97,7 @@ This checks your config, API keys, and provider connectivity. Everything should 
 
 ---
 
-## Step 4: Start Chatting
+## Step 5: Start Chatting
 
 ```bash
 wunderland chat
@@ -90,7 +124,7 @@ You: /help
 
 ---
 
-## Step 5: Explore the TUI Dashboard
+## Step 6: Explore the TUI Dashboard
 
 ```bash
 wunderland
@@ -108,9 +142,9 @@ The TUI (terminal user interface) provides a visual dashboard:
 
 ---
 
-## Step 6: Scaffold a Project
+## Step 7: Scaffold a Project (Manual Path)
 
-For a more structured setup, scaffold a project directory:
+For a more structured setup without the NL builder, scaffold a project directory:
 
 ```bash
 wunderland init my-agent --preset research-assistant
@@ -141,7 +175,7 @@ wunderland chat
 
 ---
 
-## Step 7: Add Extensions
+## Step 8: Add Extensions
 
 Extend your agent with tools:
 
@@ -160,7 +194,7 @@ Now your agent can search the web and read web pages during conversations.
 
 ---
 
-## Step 8: Test Voice (Optional)
+## Step 9: Test Voice (Optional)
 
 If you enabled voice during setup:
 
@@ -181,6 +215,7 @@ wunderland voice stt
 
 You now have a working agent. Here's where to go from here:
 
+- **[NL Agent Creation](/guides/nl-agent-creation)** — Deep dive into natural language creation
 - **[Configuration Guide](/getting-started/configuration)** — Fine-tune your setup
 - **[LLM Provider Setup](/guides/model-providers)** — Try different providers
 - **[Extensions Guide](/guides/extensions)** — Add more capabilities
@@ -194,6 +229,11 @@ You now have a working agent. Here's where to go from here:
 ## Quick Reference
 
 ```bash
+# Agent creation
+wunderland create "description"  # NL agent creation
+wunderland new                   # Interactive entry point
+wunderland init my-agent         # Scaffold from preset
+
 # Core commands
 wunderland setup          # Initial configuration
 wunderland doctor         # Health check
