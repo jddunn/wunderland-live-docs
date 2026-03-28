@@ -33,9 +33,30 @@ When you run from a real agent project, Wunderland also writes dated plain-text 
 
 ---
 
-## Quick Start: CLI
+## Quick Start: CLI (Natural Language)
 
-Or use the CLI to launch an agent interactively:
+The fastest CLI path -- describe your agent in plain English and the CLI generates a full configuration:
+
+```bash
+npm install -g wunderland
+
+# One-liner agent creation
+wunderland create "A customer support agent for my SaaS product"
+
+# Or interactive mode -- choose between NL describe, preset, blank, or import
+wunderland new
+
+# Then start
+cd my-agent && wunderland start
+```
+
+`wunderland create` sends your description to your configured LLM provider, extracts a complete agent configuration (preset, skills, extensions, channels, HEXACO personality, security tier), shows a preview with confidence scores, and scaffolds a ready-to-run project directory. See the [NL Agent Creation guide](/guides/nl-agent-creation) for the full reference.
+
+---
+
+## Quick Start: CLI (Traditional)
+
+Or use the existing onboarding commands for a guided wizard flow:
 
 ```bash
 npm install -g wunderland
@@ -46,37 +67,21 @@ wunderland chat        # terminal chat session
 wunderland doctor      # verify config + provider readiness
 ```
 
-## Quick Start: Natural Language Creation
-
-Describe the agent you want in plain English and the CLI builds the full configuration for you:
-
-```bash
-npm install -g wunderland
-
-# Create from a description -- extracts preset, skills, channels, security, and personality
-wunderland create "a research assistant that monitors Hacker News and summarizes daily"
-
-# Review the generated config and start
-cd seed_research_assistant
-cp .env.example .env    # fill in your API key
-wunderland start
-```
-
-The `wunderland new` command offers the same NL path alongside presets, blank scaffolds, and manifest imports in an interactive menu:
-
-```bash
-wunderland new                                    # interactive mode
-wunderland new "customer support bot for Slack"   # NL mode (auto-detected)
-wunderland new --preset code-reviewer             # preset mode
-```
-
-See the [Natural Language Agent Creation tutorial](/tutorials/natural-language-agents) for a full walkthrough with confidence scores, extraction details, and tips for writing effective descriptions.
-
 ---
 
 ## First-Run Checklist
 
-Use this loop when you want the CLI/TUI path instead of embedding the library:
+The recommended getting-started path with `create`:
+
+```bash
+wunderland create "A helpful research assistant"
+cd seed_helpful_research_assistan
+cp .env.example .env   # fill in your API key
+wunderland doctor
+wunderland chat
+```
+
+Or the traditional path:
 
 ```bash
 wunderland quickstart
@@ -86,7 +91,8 @@ wunderland extensions configure
 wunderland extensions info image-generation
 ```
 
-- `quickstart` is the fastest path when you just want a working agent.
+- `create` is the fastest path when you know what you want and can describe it.
+- `quickstart` is the fastest path when you just want a working agent with defaults.
 - `help getting-started` and `help tui` are the shortest built-in operator guides.
 - `extensions configure` lets you set shared defaults for image generation, TTS, STT, and web search.
 - `extensions info image-generation` shows which image provider keys are set right now.
@@ -421,6 +427,7 @@ console.log(result);
 
 ## Next Steps
 
+- [NL Agent Creation](/guides/nl-agent-creation) -- Deep dive into natural language agent creation
 - [Library API Guide](/guides/library-first-api) -- Programmatic API with `createWunderland()`
 - [Configuration Reference](/getting-started/configuration) -- All interfaces, presets, and defaults
 - [Architecture Overview](/architecture/overview) -- How modules interact
