@@ -116,6 +116,45 @@ The QueryRouter produces a factual, source-grounded answer. The bot's personalit
 
 This separation means the retrieval pipeline is personality-agnostic -- the same QueryRouter instance can serve multiple bots with different personalities.
 
+## Bundled Platform Knowledge
+
+Every Wunderland agent knows AgentOS out of the box. The QueryRouter ships with **243 pre-built knowledge entries** that are bundled inside the `@framers/agentos` npm package — no setup required, no external docs to configure.
+
+### What the Agent Knows
+
+| Category | Count | Coverage |
+|----------|-------|---------|
+| **Tools** | 105 | Every channel adapter (Discord, Telegram, LinkedIn, Bluesky, etc.), productivity tools, orchestration tools |
+| **Skills** | 79 | All curated skills from the registry |
+| **FAQ** | 30 | Common questions about voice, models, streaming, OCR, and more |
+| **API** | 14 | Core API functions — generateText, streamText, agent, agency, etc. |
+| **Troubleshooting** | 15 | Missing API keys, model errors, embedding failures |
+
+### How It Improves Bot Responses
+
+Without platform knowledge, a question like "What vector stores does AgentOS support?" would either get a generic LLM answer (possibly hallucinated) or return no results if your project docs don't cover it.
+
+With platform knowledge, the same question retrieves the bundled FAQ entry that lists all seven supported vector store backends (InMemory, SQL, HNSW, Qdrant, Neo4j, Postgres, Pinecone) with accurate details. The agent answers from verified platform documentation rather than guessing.
+
+This is especially useful for:
+
+- **Support bots** that need to answer questions about AgentOS features and configuration
+- **Developer assistants** that help users build with AgentOS APIs
+- **Onboarding agents** that guide new users through setup and capabilities
+
+### No Setup Needed
+
+Platform knowledge loads automatically during `router.init()`. It is merged into the same corpus as your project docs and indexed by both the vector store and keyword fallback engine. You do not need to point `knowledgeCorpus` at any AgentOS documentation directories.
+
+To disable it (e.g., if your agent is purely project-focused):
+
+```typescript
+const router = new QueryRouter({
+  knowledgeCorpus: ['./docs'],
+  includePlatformKnowledge: false,
+});
+```
+
 ## Troubleshooting
 
 ### Bot answers everything from general knowledge (never retrieves)
