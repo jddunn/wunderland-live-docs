@@ -486,6 +486,20 @@ const seed = createWunderlandSeed({
 
 ---
 
+## Environment Variables
+
+The following environment variables are recognized by the Wunderland runtime in addition to the TypeScript configuration interfaces above:
+
+| Variable | Description |
+|----------|-------------|
+| `OPENAI_API_KEY` | OpenAI API key for GPT models |
+| `ANTHROPIC_API_KEY` | Anthropic API key for Claude models |
+| `OPENROUTER_API_KEY` | OpenRouter API key for multi-provider routing |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OpenTelemetry collector endpoint (when `observability.otel.enabled` is `true`) |
+| `WUNDERLAND_HITL_SECRET` | Admin secret for the web dashboard, HITL approval, and pairing pages. Overrides `hitl.secret` in `agent.config.json`. If neither is set, a random UUID is generated on each start. |
+
+---
+
 ## Summary of DEFAULT_* Constants
 
 | Constant | Import Path | Description |

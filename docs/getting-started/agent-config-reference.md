@@ -216,6 +216,22 @@ Controls agent pairing — a mechanism for linking users or sessions together vi
 
 ---
 
+## HITL
+
+Human-in-the-loop settings for the web dashboard and approval UIs.
+
+```json
+"hitl": {
+  "secret": "my-persistent-secret"
+}
+```
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `hitl.secret` | string | *(auto-generated UUID)* | Admin secret for the dashboard, HITL approval, and pairing web UIs. If not set, a random UUID is generated on each `wunderland start`. Set this for a persistent secret across restarts. Can also be set via the `WUNDERLAND_HITL_SECRET` environment variable (env var takes precedence). |
+
+---
+
 ## Extensions
 
 Declares named extension bundles to load. Extensions add tools, voice processors, and productivity integrations.

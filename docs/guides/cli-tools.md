@@ -172,6 +172,28 @@ registry.register({
 
 ---
 
+## Web Dashboard & Built-in Pages
+
+When `wunderland start` is running, the agent server exposes several web pages alongside the API:
+
+| Route | Description |
+|-------|-------------|
+| `GET /` | Unified dashboard with 6 tabs: Overview, Chat, HITL, Graph, Events, Extensions. Light/dark mode toggle available. |
+| `GET /hitl` | Standalone HITL approval page for reviewing and approving/rejecting pending tool calls. |
+| `GET /pairing` | Standalone pairing management page for linking users or sessions. |
+| `GET /health` | JSON health check endpoint. Returns server status, uptime, and loaded extensions. |
+
+### Admin Secret
+
+All web UIs (dashboard, HITL, pairing) are protected by an **admin secret**. By default, a random UUID is generated on each server start and printed in the console output. To use a persistent secret:
+
+- **Environment variable**: `WUNDERLAND_HITL_SECRET=your-secret-here`
+- **Config file**: Set `hitl.secret` in `agent.config.json`
+
+If both are set, the environment variable takes precedence.
+
+---
+
 ## Best Practices for Agent Shell Usage
 
 1. **Use the `balanced` tier** for production agents. It allows CLI execution while preventing accidental file mutations.

@@ -167,6 +167,8 @@ Start the agent server:
 wunderland start
 ```
 
+The server starts on `http://localhost:3000/` by default. The startup output prints an **admin secret** (a UUID) used to authenticate with the web dashboard and HITL pages. You can set a persistent secret via the `WUNDERLAND_HITL_SECRET` env var or `hitl.secret` in `agent.config.json`. The dashboard provides six tabs -- Overview, Chat, HITL, Graph, Events, and Extensions -- with a light/dark mode toggle.
+
 Then connect with chat:
 
 ```bash

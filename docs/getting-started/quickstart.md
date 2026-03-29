@@ -52,6 +52,8 @@ cd my-agent && wunderland start
 
 `wunderland create` sends your description to your configured LLM provider, extracts a complete agent configuration (preset, skills, extensions, channels, HEXACO personality, security tier), shows a preview with confidence scores, and scaffolds a ready-to-run project directory. See the [NL Agent Creation guide](/guides/nl-agent-creation) for the full reference.
 
+Once the server is running, open `http://localhost:3000/` for the web dashboard (Overview, Chat, HITL, Graph, Events, Extensions tabs). The startup output prints an **admin secret** for authentication -- set a persistent one via `WUNDERLAND_HITL_SECRET` or `hitl.secret` in `agent.config.json`.
+
 ---
 
 ## Quick Start: CLI (Traditional)
