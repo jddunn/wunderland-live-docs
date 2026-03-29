@@ -267,9 +267,10 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://wunderland.sh',
-          label: 'App',
+          href: 'https://app.rabbithole.inc',
+          label: 'App (Coming Soon)',
           position: 'right',
+          className: 'navbar-app-disabled',
         },
         {
           href: 'https://www.npmjs.com/package/wunderland',
