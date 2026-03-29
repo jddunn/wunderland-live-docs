@@ -562,3 +562,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Hero Badges ──────────────────────────────────────────────────── */
+
+.heroBadges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.heroBadge {
+  display: inline-flex;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.heroBadge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 168, 68, 0.3);
+}
+
+.heroBadge img {
+  height: 28px;
+  display: block;
+}

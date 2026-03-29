@@ -81,15 +81,19 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
 
-        <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=flat-square&logo=github&label=stars&color=1a1a2e&labelColor=0d0c16" alt="GitHub stars" height="22" />
+        <div className={styles.heroBadges}>
+          <a href="https://github.com/jddunn/wunderland" className={styles.heroBadge} target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=for-the-badge&logo=github&logoColor=white&label=stars&color=b8860b&labelColor=8b6914" alt="GitHub stars" />
           </a>
-          <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&label=npm&color=1a1a2e&labelColor=0d0c16" alt="npm version" height="22" />
+          <a href="https://www.npmjs.com/package/wunderland" className={styles.heroBadge} target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/npm/v/wunderland?style=for-the-badge&logo=npm&logoColor=white&label=npm&color=b8860b&labelColor=8b6914" alt="npm version" />
           </a>
-          <img src="https://img.shields.io/badge/TypeScript-5.4+-1a1a2e?style=flat-square&logo=typescript&labelColor=0d0c16" alt="TypeScript" height="22" />
-          <img src="https://img.shields.io/badge/license-MIT-1a1a2e?style=flat-square&labelColor=0d0c16" alt="License" height="22" />
+          <span className={styles.heroBadge}>
+            <img src="https://img.shields.io/badge/TypeScript-5.4+-b8860b?style=for-the-badge&logo=typescript&logoColor=white&labelColor=8b6914" alt="TypeScript" />
+          </span>
+          <span className={styles.heroBadge}>
+            <img src="https://img.shields.io/badge/license-MIT-b8860b?style=for-the-badge&labelColor=8b6914" alt="License" />
+          </span>
         </div>
 
         <InstallBar />
