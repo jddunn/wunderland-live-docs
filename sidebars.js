@@ -36,6 +36,7 @@ const sidebars = {
       label: 'Tutorials',
       items: [
         'tutorials/first-agent',
+        'tutorials/natural-language-agents',
         'tutorials/voice-agent',
         'tutorials/ivr-phone-agent',
       ],
@@ -50,31 +51,22 @@ const sidebars = {
         'guides/nl-agent-creation',
         'guides/preset-agents',
         'guides/library-first-api',
-        'guides/model-providers',
-        'guides/agent-serialization',
         'guides/multi-agent-agency',
-        {
-          type: 'category',
-          label: 'Architecture',
-          items: [
-            'architecture/overview',
-            'architecture/agentos-integration',
-            'architecture/personality-system',
-            'architecture/solana-integration',
-          ],
-        },
+        'guides/agent-serialization',
+        'architecture/overview',
+        'architecture/agentos-integration',
       ],
     },
 
-    // ── Agents & Personality ──
+    // ── Personality ──
     {
       type: 'category',
-      label: 'Agents & Personality',
+      label: 'Personality',
       items: [
         'guides/hexaco-personality',
+        'architecture/personality-system',
         'guides/style-adaptation',
         'guides/llm-sentiment',
-        'guides/emergent-capabilities',
       ],
     },
 
@@ -84,43 +76,42 @@ const sidebars = {
       label: 'Memory & RAG',
       items: [
         'guides/memory-system',
-        'guides/memory-architecture',
         'guides/working-memory',
         'guides/unified-retrieval',
         'guides/query-routing',
-        'guides/hyde-retrieval',
-        'guides/vector-storage-scaling',
-        'guides/postgres-backend',
-        'guides/qdrant-backend',
-        'guides/pinecone-backend',
-        'guides/capability-discovery',
-        'guides/discovery-configuration',
         'guides/deep-research',
+        'guides/hyde-retrieval',
+        'guides/capability-discovery',
+        'guides/vector-storage-scaling',
       ],
     },
 
-    // ── Tools & Extensions ──
+    // ── Tools & Skills ──
     {
       type: 'category',
-      label: 'Tools & Extensions',
+      label: 'Tools & Skills',
       items: [
         'guides/tools',
-        'guides/extensions',
-        'guides/extension-configuration',
         'guides/skills-system',
+        'guides/extensions',
         'guides/cli-tools',
-        'guides/browser-automation',
-        'guides/stealth-browser',
+        'guides/emergent-capabilities',
+        'guides/self-improving-agents',
+        'guides/scheduling',
+      ],
+    },
+
+    // ── Media Generation ──
+    {
+      type: 'category',
+      label: 'Media Generation',
+      items: [
         'guides/image-generation',
         'guides/image-editing',
-        'guides/video-audio-generation',
         'guides/vision-pipeline',
-        'guides/github-integration',
-        'guides/self-improving-agents',
+        'guides/video-audio-generation',
         'guides/document-export',
-        'guides/provider-preferences',
-        'guides/tool-failure-learning',
-        'guides/scheduling',
+        'guides/browser-automation',
       ],
     },
 
@@ -137,35 +128,28 @@ const sidebars = {
       ],
     },
 
-    // ── Channels & Integrations ──
+    // ── Channels ──
     {
       type: 'category',
-      label: 'Channels & Integrations',
+      label: 'Channels',
       items: [
         'guides/channels',
         'guides/full-channel-list',
-        'guides/channel-integrations',
         'guides/channel-oauth-setup',
-        'guides/pairing',
-        'guides/email-intelligence',
         'guides/social-features',
-        'guides/agentic-engagement',
+        'guides/email-intelligence',
       ],
     },
 
-    // ── Security & Guardrails ──
+    // ── Security ──
     {
       type: 'category',
-      label: 'Security & Guardrails',
+      label: 'Security',
       items: [
         'guides/security',
         'guides/security-tiers',
-        'guides/security-pipeline',
         'guides/guardrails',
-        'guides/step-up-authorization',
-        'guides/operational-safety',
         'guides/immutability',
-        'guides/agent-signer',
       ],
     },
 
@@ -177,35 +161,7 @@ const sidebars = {
         'guides/llm-providers',
         'guides/inference-routing',
         'guides/ollama-local',
-        'guides/gemini-setup',
-        'guides/gemini-cli-setup',
-        'guides/claude-code-cli-setup',
-        'guides/openai-oauth',
-        'guides/env-import',
-      ],
-    },
-
-    // ── Backend & Streaming ──
-    {
-      type: 'category',
-      label: 'Backend & Streaming',
-      items: [
-        'guides/http-streaming-api',
-        'guides/chat-server',
-        'guides/observability',
-      ],
-    },
-
-    // ── Decentralization (Solana) ──
-    {
-      type: 'category',
-      label: 'Decentralization (Solana)',
-      items: [
-        'guides/on-chain-features',
-        'guides/earnings-and-payouts',
-        'guides/job-board',
-        'guides/ipfs-storage',
-        'guides/program-upgradeability',
+        'guides/provider-preferences',
       ],
     },
 
@@ -228,14 +184,10 @@ const sidebars = {
       type: 'category',
       label: 'Deployment',
       items: [
-        'deployment/devnet-go-live',
         'deployment/self-hosting',
         'deployment/cloud-hosting',
         'deployment/environment-variables',
         'deployment/local-first',
-        'guides/site-deploy',
-        'guides/cloud-providers',
-        'guides/domain-registrars',
       ],
     },
 
@@ -243,10 +195,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Troubleshooting',
-      items: [
-        'guides/troubleshooting',
-        'guides/devlog-mood-analysis',
-      ],
+      items: ['guides/troubleshooting'],
     },
   ],
 
