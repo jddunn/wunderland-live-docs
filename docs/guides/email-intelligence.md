@@ -18,6 +18,30 @@ wunderland connect gmail
 
 Opens your browser for Google OAuth. Authorize access, and your Gmail is connected. That's it.
 
+#### Using a downloaded client secret
+
+If you downloaded your Google OAuth credentials JSON from the Cloud Console, point directly to it:
+
+```bash
+wunderland connect gmail --credentials ~/Downloads/client_secret_*.json
+```
+
+The command accepts both `{"installed": {...}}` and `{"web": {...}}` wrapper formats.
+
+#### Auto-discovery
+
+If no credentials are configured and no `--credentials` flag is provided, `wunderland connect gmail` automatically scans `~/Downloads` for `client_secret*.json` files and offers to use the newest one. Just download the file from the Google Cloud Console and re-run the command.
+
+#### Environment variables
+
+You can also set credentials via environment variables:
+
+```bash
+export GOOGLE_CLIENT_ID=your-client-id
+export GOOGLE_CLIENT_SECRET=your-secret
+wunderland connect gmail
+```
+
 ### Dashboard (Rabbit Hole)
 
 Navigate to **Dashboard → [Your Agent] → Email** and click **Connect Gmail**.
@@ -94,9 +118,13 @@ User Query → RAG Search → LLM Summary → Response
 
 ## Self-Hosted
 
-`wunderland connect gmail` works everywhere — CLI, self-hosted, Docker. It uses browser-based OAuth with PKCE (no API keys to configure).
+`wunderland connect gmail` works everywhere — CLI, self-hosted, Docker. It uses browser-based OAuth with PKCE.
 
-For fully air-gapped deployments, set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` environment variables with your own Google Cloud OAuth credentials.
+Three ways to provide Google OAuth credentials:
+
+1. **`--credentials` flag** (easiest): `wunderland connect gmail --credentials ~/Downloads/client_secret_*.json`
+2. **Auto-discovery**: Drop the JSON in `~/Downloads` and run `wunderland connect gmail` — it finds the file automatically.
+3. **Environment variables**: Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` for fully air-gapped or CI deployments.
 
 ## Configuration
 
