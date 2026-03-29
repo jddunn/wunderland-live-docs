@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'WUNDERLAND Docs',
+  title: 'WUNDERLAND',
   tagline: 'Open-source TypeScript CLI for autonomous AI agents — cognitive memory, HEXACO personalities, multi-agent orchestration, streaming guardrails, voice pipelines, and 21 LLM providers.',
   favicon: 'img/favicon.ico',
 

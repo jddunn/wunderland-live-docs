@@ -73,6 +73,49 @@
 
 /* SVG logo has no internal animations — glow is handled by drop-shadow above */
 
+/* ── Hero title shimmer ───────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.heroTitle {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-lighter) 25%,
+    rgba(255, 255, 255, 0.9) 50%,
+    var(--ifm-color-primary-lighter) 75%,
+    var(--ifm-color-primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+:global([data-theme='light']) .heroTitle {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary-dark) 0%,
+    var(--ifm-color-primary) 25%,
+    rgba(255, 255, 255, 0.85) 50%,
+    var(--ifm-color-primary) 75%,
+    var(--ifm-color-primary-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
 /* ── Badges ────────────────────────────────────────────────────────── */
 
 .badgesWrapper {

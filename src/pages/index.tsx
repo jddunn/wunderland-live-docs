@@ -120,7 +120,15 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <Heading as="h1" className="hero__title">
+        <div className={styles.heroLogo}>
+          <img
+            src="/img/logo.svg"
+            alt="Wunderland logo"
+            width={80}
+            height={80}
+          />
+        </div>
+        <Heading as="h1" className={clsx('hero__title', styles.heroTitle)}>
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
