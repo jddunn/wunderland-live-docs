@@ -19,6 +19,7 @@ Wunderland defaults to the interactive TUI when launched in a TTY with no subcom
 | `wunderland quickstart` | Auto-detect your environment and scaffold the fastest working setup |
 | `wunderland setup` | Guided initial configuration (QuickStart or Advanced) |
 | `wunderland doctor` | Health and configuration checks |
+| `wunderland connect <service>` | Connect an external service via OAuth or guided setup |
 | `wunderland chat` | Interactive chat from the terminal |
 | `wunderland start` | Start the agent runtime/server |
 | `wunderland init <dir>` | Scaffold a new agent project |
@@ -424,6 +425,39 @@ wunderland ollama-setup mistral:7b   # Override model
 
 ---
 
+## Service Connections
+
+### `wunderland connect`
+
+Start an OAuth flow or guided setup for external services. Currently supports Gmail, WhatsApp, Slack, and Signal.
+
+```bash
+wunderland connect                     # Show available services
+wunderland connect gmail               # Gmail via Google OAuth
+wunderland connect gmail --credentials ~/Downloads/client_secret_*.json
+wunderland connect whatsapp            # WhatsApp via Twilio or Meta Cloud API
+wunderland connect slack               # Slack via OAuth (Rabbithole)
+wunderland connect signal              # Signal via signal-cli wizard
+```
+
+| Flag | Effect |
+|------|--------|
+| `--credentials <path>` | Path to a Google OAuth client secret JSON file (Gmail only). Accepts both `{"installed": {...}}` and `{"web": {...}}` wrapper formats. |
+
+After a successful OAuth flow, tokens are saved to `~/.wunderland/config.json` and automatically loaded on the next `wunderland chat` or `wunderland start`.
+
+**Agentic credential setup**: You can also ask the agent to guide you through credential setup interactively:
+
+```bash
+wunderland "help me set up Gmail"
+wunderland "I downloaded a Google client secret, help me connect"
+wunderland "configure slack integration"
+```
+
+The NL intent router detects connection-related input and routes it to the connect flow. The agent uses bundled platform knowledge to know what each service requires and can find downloaded credential files on your system.
+
+---
+
 ## Authentication
 
 ### `wunderland login`
@@ -568,11 +602,12 @@ The CLI joins all non-flag positional arguments and checks them against keyword 
 
 1. **agency** -- input mentions a collective noun (team, crew, squad, group, agency, collective) AND a creation verb (build, create, make, etc.)
 2. **create** -- input mentions a creation verb AND an agent noun (agent, bot, assistant, wunderbot)
-3. **mission** -- input contains a research/investigation verb AND is longer than 50 characters
-4. **help** -- input contains a question word (what, how, why, etc.) AND ends with `?`
-5. **chat** -- everything else (default fallback)
+3. **connect** -- input mentions a connection verb (connect, set up, configure, link, add, enable) AND a service keyword (gmail, email, google, whatsapp, slack, signal), or references credential files / client secrets
+4. **mission** -- input contains a research/investigation verb AND is longer than 50 characters
+5. **help** -- input contains a question word (what, how, why, etc.) AND ends with `?`
+6. **chat** -- everything else (default fallback)
 
-Priority matters: "Create a team of agents" routes to `agency` (not `create`) because team nouns are checked first.
+Priority matters: "Create a team of agents" routes to `agency` (not `create`) because team nouns are checked first. General credential questions ("how do I add API keys?") route to help/chat so the agent can guide interactively.
 
 ### Examples
 
@@ -600,6 +635,7 @@ wunderland "Hello, how are you today"
 |--------|-----------|----------------|
 | `create` | `wunderland create` | Creation verb + agent noun |
 | `agency` | `wunderland agency create` | Creation verb + collective noun |
+| `connect` | `wunderland connect` | Connection verb + service keyword, or credential file reference |
 | `mission` | `wunderland mission` | Research verb + 50+ char input |
 | `help` | `wunderland chat` | Question word + trailing `?` |
 | `chat` | `wunderland chat` | Everything else |

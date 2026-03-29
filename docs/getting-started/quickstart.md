@@ -487,6 +487,27 @@ const result = await handleUserMessage('What are 5 unconventional uses for AI in
 console.log(result);
 ```
 
+## Connecting Services
+
+The agent can help you set up credentials for any service -- just ask in plain English:
+
+```bash
+# Just ask the agent -- it'll guide you through it
+wunderland "help me set up Gmail"
+wunderland "I downloaded a Google client secret, help me connect"
+
+# Or use the connect command directly
+wunderland connect gmail
+wunderland connect gmail --credentials ~/Downloads/client_secret_*.json
+wunderland connect whatsapp
+wunderland connect slack
+wunderland connect signal
+```
+
+The agent knows what credentials each service needs (via bundled platform knowledge) and can find downloaded credential files on your system. For the full list of supported services and their credential requirements, see the [Email Intelligence guide](/guides/email-intelligence) and the [CLI Reference](/api/cli-reference).
+
+---
+
 ## Next Steps
 
 - [NL Agent Creation](/guides/nl-agent-creation) -- Deep dive into natural language agent creation

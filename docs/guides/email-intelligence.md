@@ -10,6 +10,18 @@ Connect your Gmail accounts to your Wunderbot for AI-powered email intelligence 
 
 ## Quick Start
 
+### Agentic Setup (Recommended)
+
+The easiest way to connect Gmail is to let the agent guide you. Just describe what you want in plain English:
+
+```bash
+wunderland "help me set up Gmail"
+wunderland "I downloaded a Google client secret, help me connect"
+wunderland "configure my email"
+```
+
+The agent knows what credentials Gmail needs (via bundled platform knowledge), can find downloaded `client_secret_*.json` files in your `~/Downloads` directory, parse them, and run the OAuth flow for you. This works from `wunderland chat` as well -- just ask during a conversation.
+
 ### CLI
 
 ```bash
