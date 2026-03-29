@@ -138,7 +138,7 @@ $ wunderland skills
   💻 coding-agent        Write, debug, and refactor code
   🛡️ pii-redaction       Detect and redact PII
   🔬 deep-research       Multi-step research pipeline
-  ... 40+ skills available
+  ... 80 curated skills available
 
 # Seal an agent config (immutable, auditable)
 $ wunderland seal --output agent-v1.sealed.json
@@ -480,7 +480,7 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
     packages: [
       {
         name: '@framers/agentos-skills',
-        description: '69 curated SKILL.md prompt modules \u2014 web search, coding, research, social media, and more.',
+        description: '80 curated SKILL.md prompt modules \u2014 web search, coding, research, social media, and more.',
         npm: '@framers/agentos-skills',
       },
       {
@@ -495,7 +495,7 @@ const ECOSYSTEM_GROUPS: EcosystemGroup[] = [
     packages: [
       {
         name: '@framers/agentos-extensions',
-        description: '45+ extensions \u2014 channel adapters, tools, voice providers, browser automation.',
+        description: '100+ extensions \u2014 channel adapters, tools, voice providers, browser automation.',
         npm: '@framers/agentos-extensions',
       },
       {
