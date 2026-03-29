@@ -36,7 +36,7 @@ wunderland create "A research agent that monitors Hacker News, summarizes top st
    - **Identity**: display name, bio, seed ID, system prompt
    - **HEXACO personality traits**: honesty, emotionality, extraversion, agreeableness, conscientiousness, openness (0--1 scale)
    - **Preset**: best-matching preset (research-assistant, customer-support, creative-writer, code-reviewer, data-analyst, security-auditor, devops-assistant, personal-assistant, ai-receptionist)
-   - **Skills**: curated skill selections from 40+ available skills
+   - **Skills**: curated skill selections from 69 available skills
    - **Extensions**: tools (web-search, web-browser, cli-executor, etc.), voice, and productivity packs
    - **Channels**: platform bindings (slack, discord, telegram, webchat, etc.)
    - **Security tier**: dangerous, permissive, balanced, strict, or paranoid
