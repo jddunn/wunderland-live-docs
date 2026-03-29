@@ -810,16 +810,19 @@ h2 {
    and compact the search input. Do NOT reposition the hamburger
    toggle — Docusaurus needs it in normal flow for sidebar open/close. */
 
+/* -- Prevent horizontal scroll on mobile --------------------------------- */
+html, body { overflow-x: hidden; }
+
 @media (max-width: 996px) {
-  /* Hide desktop nav links — they appear in the sidebar instead */
-  .navbar__items--right > .navbar__item.navbar__link {
-    display: none !important;
+  /* Hide right-side links in TOP BAR only — sidebar drawer shows them */
+  .navbar > .navbar__inner > .navbar__items--right > .navbar__link {
+    display: none;
   }
 
   /* Compact search on mobile */
   .navbar__search input,
   [class*="searchBarContainer"] input {
-    width: 120px !important;
+    width: 100px !important;
     font-size: 0.8125rem;
     padding: 0.3rem 0.5rem;
   }
@@ -829,6 +832,12 @@ h2 {
   [class*="searchResultsColumn"] {
     max-width: 95vw !important;
   }
+}
+
+/* ── Ensure sidebar drawer links are VISIBLE ──────────────────── */
+.navbar-sidebar .navbar__link,
+.navbar-sidebar .menu__link {
+  display: flex !important;
 }
 
 /* ── Mobile navbar / sidebar ───────────────────────────────────── */
