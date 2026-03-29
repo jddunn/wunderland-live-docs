@@ -80,6 +80,17 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+
+        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '1rem', flexWrap: 'wrap' }}>
+          <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=social" alt="GitHub stars" />
+          </a>
+          <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
+            <img src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&label=npm" alt="npm version" />
+          </a>
+          <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License" />
+        </div>
+
         <InstallBar />
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart">
