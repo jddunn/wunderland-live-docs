@@ -277,9 +277,16 @@ const config: Config = {
           position: 'right',
         },
         {
+          href: 'https://wunderland.sh',
+          label: 'Website',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/jddunn/wunderland',
           label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
