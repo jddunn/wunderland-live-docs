@@ -69,6 +69,44 @@ wunderland doctor      # verify config + provider readiness
 
 ---
 
+## Quick Examples
+
+Copy-paste recipes for the most common workflows.
+
+### 1. Create a Single Agent from Natural Language
+
+```bash
+# Describe what you want -- the CLI extracts a full configuration
+wunderland create "A personal assistant that manages my calendar and emails"
+cd my-agent && wunderland start
+```
+
+### 2. Create a Multi-Agent Team from Natural Language
+
+```bash
+# One line scaffolds an entire agency with roles and strategy
+wunderland agency create "DevOps team: a monitor that watches server health, an analyst that diagnoses issues, and a fixer that applies automated remediations"
+
+# Run the team against a task
+wunderland agency run devops-team "Check the production servers for any anomalies"
+```
+
+### 3. Run a Mission (Auto-Plans and Coordinates Agents)
+
+```bash
+# Missions decompose a high-level goal into a plan and coordinate agents automatically
+wunderland mission "Research the top 5 AI frameworks, compare their features, and write a blog post with code examples"
+```
+
+### 4. Interactive Chat with Tools
+
+```bash
+# Start an interactive terminal session with specific tools and model
+wunderland chat --tools web-search,github --model gpt-4o
+```
+
+---
+
 ## First-Run Checklist
 
 The recommended getting-started path with `create`:

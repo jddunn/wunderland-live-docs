@@ -200,6 +200,75 @@ wunderland create "A data analyst that processes CSV files, generates visualizat
 
 ---
 
+## Multi-Agent Teams from Natural Language
+
+Beyond single agents, Wunderland can scaffold entire multi-agent teams from a single description. The CLI parses your prompt, identifies distinct agent roles, infers an orchestration strategy, and generates a full agency block in `agent.config.json`.
+
+### Basic Usage
+
+```bash
+# One line → full agent team
+wunderland agency create "Research team: a researcher who finds AI papers on arxiv, an analyst who evaluates methodology and results, and a writer who produces executive summaries. Use sequential strategy."
+
+# This generates an agency block in agent.config.json:
+# {
+#   "agency": {
+#     "name": "research-team",
+#     "strategy": "sequential",
+#     "agents": {
+#       "researcher": { "instructions": "Find AI papers on arxiv...", "model": "gpt-4o" },
+#       "analyst": { "instructions": "Evaluate methodology...", "model": "gpt-4o" },
+#       "writer": { "instructions": "Produce executive summaries...", "model": "gpt-4o" }
+#     }
+#   }
+# }
+
+# Then run it
+wunderland agency run research-team "What are the latest advances in retrieval-augmented generation?"
+```
+
+### Team Examples
+
+#### Customer Support Team
+
+Triage, resolve, and escalate -- three agents covering the full support lifecycle.
+
+```bash
+wunderland agency create "Customer support team: a triage agent that classifies incoming tickets by severity and category, a resolver agent that looks up knowledge base articles and drafts responses, and an escalation agent that detects unresolved frustration and routes to human operators. Use sequential strategy with content-safety guardrails."
+
+wunderland agency run customer-support-team "My account was charged twice and I cannot access my dashboard."
+```
+
+#### Content Pipeline
+
+Four-stage content production from raw research through published output.
+
+```bash
+wunderland agency create "Content pipeline: a researcher who gathers sources from the web and academic papers, a writer who produces a 600-word blog post, an editor who reviews for clarity and brand voice, and a publisher who posts the final version to the CMS and social channels. Use sequential strategy."
+
+wunderland agency run content-pipeline "Write about how vector databases power semantic search in modern AI applications."
+```
+
+#### Code Review Team
+
+Parallel static analysis with a final synthesis step.
+
+```bash
+wunderland agency create "Code review team: a reviewer who checks logic, naming, and test coverage; a security auditor who scans for vulnerabilities, injection risks, and dependency issues; and a style checker who enforces linting rules, formatting, and documentation standards. Use parallel strategy so all three run concurrently."
+
+wunderland agency run code-review-team "Review the auth middleware in src/middleware/auth.ts"
+```
+
+### Flags
+
+| Flag | Effect |
+|------|--------|
+| `--yes` / `-y` | Skip confirmation and scaffold immediately |
+| `--strategy <name>` | Override the inferred strategy (sequential, parallel, hierarchical, graph) |
+| `--dir <path>` | Override the output directory |
+
+---
+
 ## Updating an Existing Agent
 
 Use the `--update` flag to modify an existing agent's configuration with a new description:
