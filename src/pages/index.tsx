@@ -81,14 +81,15 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
 
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', marginBottom: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <a href="https://github.com/jddunn/wunderland" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=social" alt="GitHub stars" />
+            <img src="https://img.shields.io/github/stars/jddunn/wunderland?style=flat-square&logo=github&label=stars&color=1a1a2e&labelColor=0d0c16" alt="GitHub stars" height="22" />
           </a>
           <a href="https://www.npmjs.com/package/wunderland" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&label=npm" alt="npm version" />
+            <img src="https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&label=npm&color=1a1a2e&labelColor=0d0c16" alt="npm version" height="22" />
           </a>
-          <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License" />
+          <img src="https://img.shields.io/badge/TypeScript-5.4+-1a1a2e?style=flat-square&logo=typescript&labelColor=0d0c16" alt="TypeScript" height="22" />
+          <img src="https://img.shields.io/badge/license-MIT-1a1a2e?style=flat-square&labelColor=0d0c16" alt="License" height="22" />
         </div>
 
         <InstallBar />
