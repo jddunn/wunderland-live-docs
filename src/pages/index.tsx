@@ -14,58 +14,6 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
-/* ── Badges ────────────────────────────────────────────────────────── */
-
-function Badges() {
-  const s = 'for-the-badge';
-  const bg = '08070e';
-
-  const badges: { href: string; src: string; alt: string }[] = [
-    {
-      href: 'https://www.npmjs.com/package/wunderland',
-      src: `https://img.shields.io/npm/v/wunderland?style=${s}&logo=npm&logoColor=white&label=npm&color=9945ff&labelColor=${bg}`,
-      alt: 'npm version',
-    },
-    {
-      href: 'https://github.com/jddunn/wunderland/blob/master/LICENSE',
-      src: `https://img.shields.io/badge/license-MIT-c9a227?style=flat-square&labelColor=${bg}`,
-      alt: 'MIT License',
-    },
-    {
-      href: 'https://www.npmjs.com/package/wunderland',
-      src: `https://img.shields.io/npm/dm/wunderland?style=flat-square&color=0ea5e9&labelColor=${bg}`,
-      alt: 'npm downloads',
-    },
-    {
-      href: 'https://codecov.io/gh/jddunn/wunderland',
-      src: `https://img.shields.io/codecov/c/github/jddunn/wunderland?style=${s}&logo=codecov&logoColor=white&label=coverage&color=22c55e&labelColor=${bg}`,
-      alt: 'Test Coverage',
-    },
-    {
-      href: 'https://github.com/jddunn/wunderland/stargazers',
-      src: `https://img.shields.io/github/stars/jddunn/wunderland?style=${s}&logo=github&logoColor=white&label=stars&color=c9a227&labelColor=${bg}`,
-      alt: 'GitHub Stars',
-    },
-    {
-      href: 'https://github.com/jddunn/wunderland/network/members',
-      src: `https://img.shields.io/github/forks/jddunn/wunderland?style=${s}&logo=github&logoColor=white&label=forks&color=6e7681&labelColor=${bg}`,
-      alt: 'GitHub Forks',
-    },
-  ];
-
-  return (
-    <div className={styles.badgesWrapper}>
-      <div className={styles.badges}>
-        {badges.map((b) => (
-          <a key={b.alt} href={b.href} target="_blank" rel="noopener noreferrer">
-            <img src={b.src} alt={b.alt} />
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 /* ── Copy button for install command ───────────────────────────────── */
 
 function CopyButton({ text }: { text: string }) {
@@ -132,7 +80,6 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Badges />
         <InstallBar />
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/getting-started/quickstart">
