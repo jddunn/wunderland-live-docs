@@ -75,9 +75,14 @@
 
 /* ── Hero title shimmer ───────────────────────────────────────────── */
 
+/* Shimmer plays for 3s then holds still for 17s (20s total cycle).
+   The sweep happens in the first 15% of the animation, then holds. */
 @keyframes shimmer {
   0% {
     background-position: -200% center;
+  }
+  15% {
+    background-position: 200% center;
   }
   100% {
     background-position: 200% center;
@@ -88,32 +93,34 @@
   background: linear-gradient(
     90deg,
     var(--ifm-color-primary) 0%,
-    var(--ifm-color-primary-lighter) 25%,
-    rgba(255, 255, 255, 0.9) 50%,
-    var(--ifm-color-primary-lighter) 75%,
+    var(--ifm-color-primary-lighter) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    var(--ifm-color-primary-lighter) 70%,
     var(--ifm-color-primary) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 5s linear infinite;
+  animation: shimmer 20s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 :global([data-theme='light']) .heroTitle {
   background: linear-gradient(
     90deg,
     var(--ifm-color-primary-dark) 0%,
-    var(--ifm-color-primary) 25%,
-    rgba(255, 255, 255, 0.85) 50%,
-    var(--ifm-color-primary) 75%,
+    var(--ifm-color-primary) 30%,
+    rgba(255, 255, 255, 0.5) 50%,
+    var(--ifm-color-primary) 70%,
     var(--ifm-color-primary-dark) 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 5s linear infinite;
+  animation: shimmer 20s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 /* ── Badges ────────────────────────────────────────────────────────── */
