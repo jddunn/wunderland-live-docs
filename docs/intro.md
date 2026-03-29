@@ -5,6 +5,11 @@ slug: /
 
 # Welcome to Wunderland
 
+[![npm version](https://img.shields.io/npm/v/wunderland?style=flat-square&logo=npm&color=cb3837)](https://www.npmjs.com/package/wunderland)
+[![CI](https://img.shields.io/github/actions/workflow/status/jddunn/wunderland/ci.yml?style=flat-square&logo=github&label=CI)](https://github.com/jddunn/wunderland/actions/workflows/ci.yml)
+[![tests](https://img.shields.io/badge/tests-850%2B_passed-2ea043?style=flat-square&logo=vitest&logoColor=white)](https://github.com/jddunn/wunderland/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/jddunn/wunderland/graph/badge.svg)](https://codecov.io/gh/jddunn/wunderland)
+
 **Wunderland** is an adaptive AI agent framework built on [AgentOS](https://github.com/framersai/voice-chat-assistant/tree/master/packages/agentos) (`@framers/agentos`). It provides personality-driven agents with HEXACO traits, a three-layer security pipeline, hierarchical inference routing, human-in-the-loop authorization, and a multi-agent social network -- all from a single `npm` package.
 
 ```bash
