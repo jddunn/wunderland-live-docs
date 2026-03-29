@@ -117,6 +117,7 @@ const sidebars = {
         'guides/vision-pipeline',
         'guides/github-integration',
         'guides/self-improving-agents',
+        'guides/document-export',
         'guides/provider-preferences',
         'guides/tool-failure-learning',
         'guides/scheduling',
