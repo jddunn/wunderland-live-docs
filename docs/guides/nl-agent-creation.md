@@ -9,6 +9,18 @@ Create fully configured Wunderland agents by describing what you want in plain E
 
 ---
 
+## You Don't Need to Know the Command
+
+You don't need to remember `wunderland create` exists. Just describe what you want at the top level:
+
+```bash
+wunderland "Build me a research agent that monitors AI news"
+```
+
+The CLI's NL intent router recognizes this as a creation intent and dispatches to `wunderland create` automatically. The same works for teams (`wunderland agency create`), missions (`wunderland mission`), and questions (`wunderland chat`). See the [CLI Reference](/api/cli-reference#natural-language-routing) for the full routing table.
+
+---
+
 ## `wunderland create`
 
 The primary command for NL agent creation:

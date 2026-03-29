@@ -56,6 +56,28 @@ Once the server is running, open `http://localhost:3000/` for the web dashboard 
 
 ---
 
+## Just Describe What You Want
+
+You don't need to memorize commands. Just tell Wunderland what you want:
+
+```bash
+wunderland "Build me a research agent that monitors AI news"
+# → Detects intent: create agent → runs create flow
+
+wunderland "Create a team: researcher, analyst, writer"
+# → Detects intent: create agency → runs agency create flow
+
+wunderland "Research the latest advances in RAG and write a report"
+# → Detects intent: mission → runs mission flow
+
+wunderland "What LLM providers do you support?"
+# → Detects intent: help → routes to chat with platform knowledge
+```
+
+The NL intent router is keyword-based and instant (no LLM call). It classifies unrecognized input into five intents -- **create**, **agency**, **mission**, **help**, or **chat** -- and dispatches to the appropriate handler. You can always use explicit commands too, but plain English works from the top level.
+
+---
+
 ## Quick Start: CLI (Traditional)
 
 Or use the existing onboarding commands for a guided wizard flow:

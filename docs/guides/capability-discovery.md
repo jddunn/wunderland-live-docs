@@ -271,6 +271,32 @@ console.log(diag.skills.names);  // ['github', 'web-search', ...]
 console.log(diag.discovery);     // { initialized: true, capabilityCount: 25, graphEdges: 42, ... }
 ```
 
+## TUI Dashboard Views
+
+The TUI dashboard (`wunderland` with no arguments, or `wunderland start`) includes two dedicated views for inspecting discovery and memory at runtime.
+
+### Discovery View
+
+Press the Discovery tab key to open the **Discovery & Catalog** dashboard. It displays:
+
+- Platform knowledge statistics (total entries, breakdown by tools/skills/FAQ/API/troubleshooting)
+- Capability catalog index counts (how many descriptors are indexed)
+- QueryRouter status (corpus chunks, embedding mode, keyword fallback state)
+- Recent capability recommendations made by the discovery engine
+
+This is useful for verifying that your capabilities loaded correctly and seeing which recommendations the engine is surfacing in real time.
+
+### Memory View
+
+Press the Memory tab key to open the **Memory & Cognitive Mechanisms** dashboard. It shows:
+
+- Memory types: episodic, semantic, procedural, prospective, working (with slot counts)
+- All 8 cognitive mechanisms with their enabled/disabled state, HEXACO modulation traits, and academic citations
+- Personality traits and their influence on memory behavior
+- Retrieval budget and infinite context configuration
+
+Both views are read-only dashboards -- they reflect the current agent's runtime state without modifying it.
+
 ## Related Guides
 
 - [Skills System](./skills-system.md) -- curated skills that feed into discovery

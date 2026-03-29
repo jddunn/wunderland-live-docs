@@ -555,3 +555,53 @@ wunderland chat     # test
 ```
 
 For the runtime-backed voice path, see the [Voice Runtime guide](../guides/voice-runtime).
+
+---
+
+## Natural Language Routing
+
+When Wunderland receives input that doesn't match a known command, it runs a **keyword-based intent classifier** to route the input to the appropriate handler. This is instant (no LLM call) and deterministic.
+
+### How It Works
+
+The CLI joins all non-flag positional arguments and checks them against keyword patterns in priority order:
+
+1. **agency** -- input mentions a collective noun (team, crew, squad, group, agency, collective) AND a creation verb (build, create, make, etc.)
+2. **create** -- input mentions a creation verb AND an agent noun (agent, bot, assistant, wunderbot)
+3. **mission** -- input contains a research/investigation verb AND is longer than 50 characters
+4. **help** -- input contains a question word (what, how, why, etc.) AND ends with `?`
+5. **chat** -- everything else (default fallback)
+
+Priority matters: "Create a team of agents" routes to `agency` (not `create`) because team nouns are checked first.
+
+### Examples
+
+```bash
+# These are all valid top-level invocations:
+wunderland "Build me a research agent that monitors AI news"
+# → Detected intent: create agent → running "wunderland create"
+
+wunderland "Create a team: researcher, analyst, writer"
+# → Detected intent: create agency → running "wunderland agency create"
+
+wunderland "Research the latest advances in RAG and write a comprehensive report"
+# → Detected intent: run mission → running "wunderland mission"
+
+wunderland "What LLM providers do you support?"
+# → Detected intent: answer question → running "wunderland chat"
+
+wunderland "Hello, how are you today"
+# → Detected intent: chat → running "wunderland chat"
+```
+
+### Intent Table
+
+| Intent | Routes to | Trigger Pattern |
+|--------|-----------|----------------|
+| `create` | `wunderland create` | Creation verb + agent noun |
+| `agency` | `wunderland agency create` | Creation verb + collective noun |
+| `mission` | `wunderland mission` | Research verb + 50+ char input |
+| `help` | `wunderland chat` | Question word + trailing `?` |
+| `chat` | `wunderland chat` | Everything else |
+
+Short unrecognized input (5 characters or fewer) still produces the standard "unknown command" error.

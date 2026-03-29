@@ -118,14 +118,14 @@ This separation means the retrieval pipeline is personality-agnostic -- the same
 
 ## Bundled Platform Knowledge
 
-Every Wunderland agent knows AgentOS out of the box. The QueryRouter ships with **243 pre-built knowledge entries** that are bundled inside the `@framers/agentos` npm package — no setup required, no external docs to configure.
+Every Wunderland agent knows AgentOS out of the box. The QueryRouter ships with **244 pre-built knowledge entries** that are bundled inside the `@framers/agentos` npm package — no setup required, no external docs to configure.
 
 ### What the Agent Knows
 
 | Category | Count | Coverage |
 |----------|-------|---------|
 | **Tools** | 105 | Every channel adapter (Discord, Telegram, LinkedIn, Bluesky, etc.), productivity tools, orchestration tools |
-| **Skills** | 79 | All curated skills from the registry |
+| **Skills** | 80 | All curated skills from the registry |
 | **FAQ** | 30 | Common questions about voice, models, streaming, OCR, and more |
 | **API** | 14 | Core API functions — generateText, streamText, agent, agency, etc. |
 | **Troubleshooting** | 15 | Missing API keys, model errors, embedding failures |
