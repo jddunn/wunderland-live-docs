@@ -328,6 +328,29 @@ Four tools that let agents adapt and evolve within bounded safety rails. Enable 
 
 `adapt_personality`, `manage_skills`, and `create_workflow` are built-in (no API key required). `self_evaluate` requires an LLM key.
 
+### Document Export Tools
+
+Two tools for generating professional documents from structured content. See the [Document Export guide](./document-export) for full usage details.
+
+- **DocumentExportTool** (`document_export`) -- Generate PDF, DOCX, PPTX, CSV, or XLSX documents from structured content with sections, tables, charts, images, and lists. Supports five visual themes and configurable page options.
+- **DocumentSuggestTool** (`document_suggest`) -- Analyse an agent response to determine whether a document export should be offered. Pure heuristic (no LLM call): checks word count, table presence, section structure, and analytical content to recommend formats.
+
+Built-in (no API key required). Loaded via `@framers/agentos-ext-document-export`.
+
+**Supported formats:**
+
+| Format | Best For | Features |
+|--------|----------|----------|
+| PDF | Reports, research | Cover page, headers/footers, page numbers, inline markdown, images, tables, charts |
+| DOCX | Editable documents | Same as PDF but editable in Word/Google Docs |
+| PPTX | Presentations | 5 themes, 7 slide layouts, native charts, speaker notes, slide numbers |
+| CSV | Data export | Tabular data with multiple table blocks |
+| XLSX | Spreadsheets | Multi-sheet, styled headers, auto SUM formulas, frozen header rows |
+
+**Themes (PPTX/PDF):** `dark`, `light` (default), `corporate`, `creative`, `minimal`
+
+**Chart types:** `bar`, `line`, `pie`, `doughnut`, `area`, `scatter`
+
 ## WUNDERLAND_TOOL_IDS
 
 A constant object mapping logical tool names to their string IDs for type-safe references.
@@ -358,6 +381,8 @@ const ids = WUNDERLAND_TOOL_IDS;
 //   MANAGE_SKILLS:      'manage_skills',
 //   CREATE_WORKFLOW:    'create_workflow',
 //   SELF_EVALUATE:      'self_evaluate',
+//   DOCUMENT_EXPORT:    'document_export',
+//   DOCUMENT_SUGGEST:   'document_suggest',
 // }
 ```
 
@@ -419,6 +444,8 @@ text_to_speech: UNAVAILABLE
 | `manage_skills` | Built-in (no key required) | -- |
 | `create_workflow` | Built-in (no key required) | -- |
 | `self_evaluate` | LLM key | None |
+| `document_export` | Built-in (no key required) | -- |
+| `document_suggest` | Built-in (no key required) | -- |
 
 ## Integration with AgentOS Extensions
 
