@@ -873,9 +873,27 @@ html, body { overflow-x: hidden; }
   color: #e2e8f0;
 }
 
-/* Overlay behind mobile sidebar */
+/* Overlay behind mobile sidebar — solid dark to hide page content */
 [data-theme='dark'] .navbar-sidebar__backdrop {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Ensure sidebar has solid background and proper z-index */
+.navbar-sidebar {
+  z-index: 100 !important;
+  background-color: var(--ifm-background-color) !important;
+}
+.navbar-sidebar__backdrop {
+  z-index: 99 !important;
+}
+
+/* Lock body scroll when mobile sidebar is open */
+.navbar-sidebar--show {
+  overflow: hidden !important;
+}
+html:has(.navbar-sidebar--show) {
+  overflow: hidden !important;
 }
 
 /* Hamburger toggle icon — always visible */
