@@ -287,6 +287,12 @@ hitl.autoReject('dry-run mode')         // always reject
 hitl.cli()                              // interactive stdin prompt
 hitl.webhook('https://my-service/ok')   // POST to HTTP endpoint
 hitl.slack({ channel: '#approvals', token: process.env.SLACK_BOT_TOKEN })
+hitl.llmJudge({                         // LLM-as-judge (new)
+  model: 'gpt-4o-mini',
+  criteria: 'Is this action safe and appropriate?',
+  confidenceThreshold: 0.8,
+  fallback: hitl.cli(),                 // uncertain decisions go to human
+})
 ```
 
 ### Approval Triggers
@@ -328,6 +334,43 @@ const custom = agency({
   },
 });
 ```
+
+### LLM-as-Judge in Multi-Agent Workflows
+
+`hitl.llmJudge()` replaces human gates with an LLM evaluator. The judge
+receives the full `ApprovalRequest` (tool name, arguments, agent context) and
+returns a structured `{ approved, confidence, reasoning }` decision. When
+confidence is below the threshold, the decision is escalated to a fallback
+handler.
+
+```typescript
+import { agency, hitl } from '@framers/agentos';
+
+// Fully automated quality pipeline with LLM-as-judge.
+const pipeline = agency({
+  model: 'openai:gpt-4o',
+  agents: {
+    researcher: { instructions: 'Research the topic.' },
+    writer:     { instructions: 'Write an article from the research.' },
+  },
+  strategy: 'sequential',
+  hitl: {
+    approvals: { beforeReturn: true },
+    handler: hitl.llmJudge({
+      model: 'gpt-4o-mini',
+      criteria: 'Is this response factually accurate and well-structured?',
+      confidenceThreshold: 0.85,
+      fallback: hitl.autoReject('Quality check failed — LLM judge uncertain'),
+    }),
+  },
+});
+
+const { text } = await pipeline.generate('Write about quantum computing advances in 2026.');
+```
+
+**Key options:** `model`, `provider`, `criteria` (custom rubric), `confidenceThreshold`
+(0-1, default 0.7), `fallback` (handler for low-confidence or failed LLM calls),
+`apiKey` (override).
 
 ## CLI Commands
 
