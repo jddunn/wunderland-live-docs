@@ -540,6 +540,8 @@ wunderland help export             # PNG export
 | `--no-color` | Disable colors |
 | `--overdrive` | Auto-approve tool calls |
 | `--auto-approve-tools` | Fully autonomous tool execution |
+| `--llm-judge` | Use an LLM as judge for tool approval decisions instead of interactive prompts |
+| `--no-guardrail-override` | Disable post-approval guardrail safety net (code-safety, pii-redaction) |
 | `--dangerously-skip-permissions` | Skip permission checks |
 | `--dangerously-skip-command-safety` | Disable shell safety checks |
 | `--export-png <path>` | Export command output as PNG |
