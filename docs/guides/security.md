@@ -162,6 +162,46 @@ const app = await createWunderland({
 
 ---
 
+## HITL & Approval Modes
+
+Wunderland supports three human-in-the-loop (HITL) modes that control how tool calls are approved at runtime.
+
+### Modes
+
+| Mode | Activation | Behaviour |
+|------|-----------|-----------|
+| **human** (default) | No flags needed | Side-effect tools prompt for interactive approval via the CLI |
+| **auto-approve** | `--auto-approve-tools` or `--overdrive`, or `permissive` security tier | All tool calls execute without asking |
+| **llm-judge** | `--llm-judge` or `hitl.mode: "llm-judge"` in agent.config.json | A secondary LLM evaluates each tool call for safety and relevance; below the confidence threshold, falls through to the CLI prompt |
+
+### Guardrail Override (Post-Approval Safety Net)
+
+Even after a tool call is approved (by human, auto-approve, or LLM judge), Wunderland runs **post-approval guardrails** as a final safety net. This catches destructive commands and PII leaks that slip through the approval gate.
+
+- **Enabled by default** — guardrails `code-safety` and `pii-redaction` run after every approval
+- **Disable with** `--no-guardrail-override` or `hitl.guardrailOverride: false` in agent.config.json
+
+### Mode x Guardrail Matrix
+
+| Mode | Guardrail Override ON (default) | Guardrail Override OFF |
+|------|-------------------------------|----------------------|
+| **human** | User approves, guardrails can still veto | User approves, no post-veto |
+| **auto-approve** | All approved, guardrails catch dangerous calls | Full autonomy, no safety net |
+| **llm-judge** | LLM approves, guardrails add second check | LLM approves, no post-veto |
+
+### Available HITL Handlers (Library API)
+
+When using the `createWunderland()` library API, you can configure any of these built-in handlers:
+
+- `hitl.autoApprove()` — approve everything
+- `hitl.autoReject(reason?)` — reject everything (dry-run mode)
+- `hitl.cli()` — interactive terminal prompt
+- `hitl.webhook(url)` — POST approval requests to an external URL
+- `hitl.slack({ channel, token })` — send approval requests to a Slack channel
+- `hitl.llmJudge({ model, provider, criteria, confidenceThreshold, apiKey })` — LLM-as-judge
+
+---
+
 ## Guardrails
 
 ### Content Filtering
