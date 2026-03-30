@@ -40,7 +40,7 @@ const config: Config = {
     ],
   ],
 
-  clientModules: ['./src/theme-sync.js'],
+  clientModules: ['./src/theme-sync.js', './src/mermaid-zoom.js'],
 
   headTags: [
     {
