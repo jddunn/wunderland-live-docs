@@ -129,6 +129,21 @@ wunderland mission "Research the top 5 AI frameworks, compare their features, an
 wunderland chat --tools web-search,github --model gpt-4o
 ```
 
+### 5. HITL Approval Modes
+
+```bash
+# Auto-approve all tool calls (permissive)
+wunderland chat --auto-approve-tools
+
+# Use LLM as judge for approvals
+wunderland chat --llm-judge
+
+# Full autonomy (no guardrail safety net)
+wunderland chat --overdrive --no-guardrail-override
+```
+
+See the [Security & Approvals guide](/guides/security) for details on HITL modes and guardrail overrides.
+
 ---
 
 ## First-Run Checklist
