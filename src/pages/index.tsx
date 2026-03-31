@@ -112,6 +112,10 @@ function HomepageHeader() {
           >
             GitHub
           </Link>
+          <span className={styles.appComingSoon}>
+            <span className={styles.appComingSoonIcon}>✦</span>
+            App — Coming Soon
+          </span>
         </div>
       </div>
     </header>

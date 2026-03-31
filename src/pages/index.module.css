@@ -246,6 +246,74 @@
   background: rgba(201, 162, 39, 0.08) !important;
 }
 
+/* ── App Coming Soon pill ─────────────────────────────────────────── */
+
+.appComingSoon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(212, 168, 68, 0.7);
+  background: linear-gradient(
+    135deg,
+    rgba(153, 69, 255, 0.06) 0%,
+    rgba(212, 168, 68, 0.06) 100%
+  );
+  border: 1px solid rgba(212, 168, 68, 0.2);
+  box-shadow:
+    0 0 20px rgba(153, 69, 255, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  cursor: default;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.appComingSoon:hover {
+  border-color: rgba(153, 69, 255, 0.35);
+  color: rgba(212, 168, 68, 0.9);
+  box-shadow:
+    0 0 30px rgba(153, 69, 255, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.appComingSoonIcon {
+  font-size: 1rem;
+  background: linear-gradient(135deg, #9945ff, #d4a844);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: appIconPulse 3s ease-in-out infinite;
+}
+
+@keyframes appIconPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+[data-theme='light'] .appComingSoon {
+  color: rgba(139, 92, 246, 0.7);
+  background: linear-gradient(
+    135deg,
+    rgba(153, 69, 255, 0.04) 0%,
+    rgba(201, 162, 39, 0.04) 100%
+  );
+  border-color: rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+[data-theme='light'] .appComingSoon:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  color: rgba(139, 92, 246, 0.9);
+}
+
 [data-theme='light'] .githubButton:hover {
   background: rgba(201, 162, 39, 0.15) !important;
 }
