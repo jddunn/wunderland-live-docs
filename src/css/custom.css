@@ -989,6 +989,25 @@ html:has(.navbar-sidebar--show) {
   );
 }
 
+/* -- Navbar — prevent wrapping, keep all items on one line --------------- */
+.navbar__items {
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+}
+.navbar__link,
+.navbar__item {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+/* Hide npm + Website on screens below 1200px — too crowded */
+@media (max-width: 1200px) {
+  .navbar-hide-mobile {
+    display: none !important;
+  }
+}
+
 /* -- GitHub navbar link with icon (inline, same line) -------------------- */
 .header-github-link {
   display: flex !important;
