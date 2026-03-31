@@ -1008,25 +1008,15 @@ html:has(.navbar-sidebar--show) {
     display: none !important;
   }
 
-  /* Hide non-essential right-side links on mobile */
-  .navbar__items--right .navbar__link:not(.header-github-link) {
+  /* Hide ALL right-side links on mobile — they're in the sidebar drawer */
+  .navbar__items--right .navbar__link,
+  .navbar__items--right .header-github-link {
     display: none !important;
-  }
-
-  /* Shrink search bar on mobile */
-  .navbar__search {
-    max-width: 140px;
-  }
-  .navbar__search-input {
-    width: 100% !important;
-    padding: 0.3rem 0.5rem !important;
-    font-size: 0.8rem !important;
   }
 
   /* Prevent navbar overflow */
   .navbar__items--right {
     gap: 0.25rem !important;
-    flex-shrink: 0;
     overflow: hidden;
   }
   .navbar {
@@ -1034,14 +1024,16 @@ html:has(.navbar-sidebar--show) {
   }
 }
 
-/* Inside mobile sidebar drawer */
-.navbar-sidebar .header-github-link {
-  font-size: 0.9rem !important;
-  gap: 6px;
+/* Sidebar drawer — contain everything */
+.navbar-sidebar {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
 }
-.navbar-sidebar .header-github-link::before {
-  width: 20px !important;
-  height: 20px !important;
+.navbar-sidebar__brand {
+  overflow: hidden !important;
+}
+.navbar-sidebar__brand .header-github-link {
+  display: none !important;
 }
 .header-github-link::before {
   content: '';
