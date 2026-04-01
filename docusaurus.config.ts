@@ -235,7 +235,6 @@ const config: Config = {
           type: 'dropdown',
           label: 'Guides',
           position: 'left',
-          to: '/docs/getting-started/quickstart',
           items: [
             {label: 'Getting Started', to: '/docs/getting-started/quickstart'},
             {label: 'Creating Agents', to: '/docs/guides/creating-agents'},
@@ -246,13 +245,10 @@ const config: Config = {
             {label: 'Security', to: '/docs/guides/security'},
             {label: 'Tools & Extensions', to: '/docs/guides/tools'},
             {label: 'Channels', to: '/docs/guides/channels'},
-            {label: '─── Architecture ───', to: '/docs/architecture/overview', className: 'dropdown-separator'},
             {label: 'System Overview', to: '/docs/architecture/overview'},
             {label: 'AgentOS Integration', to: '/docs/architecture/agentos-integration'},
             {label: 'Personality System', to: '/docs/architecture/personality-system'},
             {label: 'Solana Integration', to: '/docs/architecture/solana-integration'},
-            {label: '───────────', to: '/docs/', className: 'dropdown-separator'},
-            {label: 'All Guides & Docs', type: 'docSidebar', sidebarId: 'guideSidebar'},
           ],
         },
         {
