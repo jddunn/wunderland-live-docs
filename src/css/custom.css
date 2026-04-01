@@ -814,24 +814,30 @@ h2 {
 html, body { overflow-x: hidden; }
 
 @media (max-width: 996px) {
-  /* Hide right-side NAV links in top bar — BUT keep theme toggle + GitHub icon */
-  .navbar > .navbar__inner > .navbar__items--right > .navbar__link:not(.header-github-link) {
-    display: none;
+  /* Hide right-side NAV links in top bar */
+  .navbar > .navbar__inner > .navbar__items--right > .navbar__link {
+    display: none !important;
   }
 
-  /* Ensure theme toggle stays visible */
-  .navbar > .navbar__inner > .navbar__items--right [class*="colorModeToggle"],
-  .navbar > .navbar__inner > .navbar__items--right [class*="toggle_"],
-  .navbar > .navbar__inner > .navbar__items--right .clean-btn[title] {
-    display: flex !important;
+  /* Hide search on mobile */
+  .navbar__search,
+  [class*="searchBar"],
+  [class*="searchBarContainer"] {
+    display: none !important;
   }
 
-  /* Keep GitHub icon visible */
-  .navbar > .navbar__inner > .navbar__items--right .header-github-link {
-    display: flex !important;
+  /* Hide left-side items except brand */
+  .navbar__items:not(.navbar__items--right) > .navbar__item:not(.navbar__brand) {
+    display: none !important;
   }
 
-  /* Compact search on mobile */
+  /* Move hamburger to the right */
+  .navbar__toggle {
+    order: 999;
+    margin-left: auto;
+  }
+
+  /* Compact search on mobile (if ever shown) */
   .navbar__search input,
   [class*="searchBarContainer"] input {
     width: 100px !important;

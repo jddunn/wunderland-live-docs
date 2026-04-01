@@ -1,0 +1,228 @@
+.drawer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--ifm-font-color-base);
+  background: #ffffff;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  z-index: 10000;
+}
+
+.drawerVisible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+:global([data-theme='dark']) .drawer {
+  color: #e2e8f0;
+  background: #0b1020;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.9rem;
+  border-bottom: 1px solid rgba(212, 168, 68, 0.14);
+}
+
+:global([data-theme='dark']) .header {
+  border-bottom-color: rgba(212, 168, 68, 0.14);
+}
+
+.brand {
+  min-width: 0;
+  flex: 1;
+}
+
+.brand :global(.navbar__brand) {
+  margin-right: 0;
+}
+
+.brand :global(.navbar__logo) {
+  display: flex;
+  align-items: center;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.colorModeToggle {
+  margin: 0;
+}
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  color: inherit;
+  background: rgba(212, 168, 68, 0.08);
+  border: 1px solid rgba(212, 168, 68, 0.14);
+}
+
+.closeButton:hover {
+  background: rgba(212, 168, 68, 0.14);
+}
+
+:global([data-theme='dark']) .closeButton {
+  background: rgba(212, 168, 68, 0.12);
+  border-color: rgba(212, 168, 68, 0.18);
+}
+
+:global([data-theme='dark']) .closeButton:hover {
+  background: rgba(212, 168, 68, 0.18);
+}
+
+.content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.85rem 0.85rem 1.25rem;
+  -webkit-overflow-scrolling: touch;
+  background: inherit;
+}
+
+.menuList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menuList :global(.menu__list-item) {
+  margin: 0;
+}
+
+.menuList :global(.menu__list-item + .menu__list-item) {
+  margin-top: 0.2rem;
+}
+
+.menuList :global(.menu__list-item-collapsible) {
+  border-radius: 0.9rem;
+}
+
+.menuList :global(.menu__link),
+.menuList :global(.menu__link--sublist),
+.secondaryMenuContent :global(.menu__link),
+.secondaryMenuContent :global(.menu__link--sublist) {
+  min-height: 3rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.menuList :global(.menu__link:hover),
+.menuList :global(.menu__list-item-collapsible:hover),
+.secondaryMenuContent :global(.menu__link:hover),
+.secondaryMenuContent :global(.menu__list-item-collapsible:hover) {
+  background: rgba(212, 168, 68, 0.08);
+  color: inherit;
+}
+
+.menuList :global(.menu__link--active),
+.secondaryMenuContent :global(.menu__link--active) {
+  background: rgba(212, 168, 68, 0.12);
+  color: var(--ifm-color-primary);
+}
+
+.menuList :global(.menu__caret),
+.secondaryMenuContent :global(.menu__caret) {
+  border-radius: 0.9rem;
+}
+
+:global([data-theme='dark']) .menuList :global(.menu__link:hover),
+:global([data-theme='dark']) .menuList :global(.menu__list-item-collapsible:hover),
+:global([data-theme='dark']) .secondaryMenuContent :global(.menu__link:hover),
+:global([data-theme='dark']) .secondaryMenuContent :global(.menu__list-item-collapsible:hover) {
+  background: rgba(212, 168, 68, 0.12);
+}
+
+:global([data-theme='dark']) .menuList :global(.menu__link--active),
+:global([data-theme='dark']) .secondaryMenuContent :global(.menu__link--active) {
+  background: rgba(212, 168, 68, 0.14);
+  color: #d4a844;
+}
+
+.secondaryMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  width: 100%;
+  border-radius: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: rgba(212, 168, 68, 0.08);
+  color: inherit;
+  border: 1px solid rgba(212, 168, 68, 0.12);
+}
+
+.backButton:hover {
+  background: rgba(212, 168, 68, 0.12);
+}
+
+:global([data-theme='dark']) .backButton {
+  background: rgba(212, 168, 68, 0.12);
+  border-color: rgba(212, 168, 68, 0.18);
+}
+
+:global([data-theme='dark']) .backButton:hover {
+  background: rgba(212, 168, 68, 0.18);
+}
+
+.secondaryMenuContent :global(.menu__list) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.secondaryMenuContent :global(.menu__list-item) {
+  margin: 0;
+}
+
+.secondaryMenuContent :global(.menu__list-item + .menu__list-item) {
+  margin-top: 0.2rem;
+}
+
+/* Backdrop overlay */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.backdropVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 997px) {
+  .drawer,
+  .backdrop {
+    display: none;
+  }
+}
