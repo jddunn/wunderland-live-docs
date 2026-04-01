@@ -814,9 +814,21 @@ h2 {
 html, body { overflow-x: hidden; }
 
 @media (max-width: 996px) {
-  /* Hide right-side links in TOP BAR only — sidebar drawer shows them */
-  .navbar > .navbar__inner > .navbar__items--right > .navbar__link {
+  /* Hide right-side NAV links in top bar — BUT keep theme toggle + GitHub icon */
+  .navbar > .navbar__inner > .navbar__items--right > .navbar__link:not(.header-github-link) {
     display: none;
+  }
+
+  /* Ensure theme toggle stays visible */
+  .navbar > .navbar__inner > .navbar__items--right [class*="colorModeToggle"],
+  .navbar > .navbar__inner > .navbar__items--right [class*="toggle_"],
+  .navbar > .navbar__inner > .navbar__items--right .clean-btn[title] {
+    display: flex !important;
+  }
+
+  /* Keep GitHub icon visible */
+  .navbar > .navbar__inner > .navbar__items--right .header-github-link {
+    display: flex !important;
   }
 
   /* Compact search on mobile */
@@ -838,6 +850,54 @@ html, body { overflow-x: hidden; }
 .navbar-sidebar .navbar__link,
 .navbar-sidebar .menu__link {
   display: flex !important;
+}
+
+/* ── Mobile drawer (Docusaurus CSS module classes) ────────────── */
+/* Target hashed classes like .drawer_XXXX via attribute selectors */
+[class*="drawer_"] {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4rem !important;
+}
+
+[data-theme='dark'] [class*="drawer_"] {
+  background: #0d0c16 !important;
+  color: #e2e8f0 !important;
+}
+
+[class*="drawer_"] .menu__link,
+[class*="drawer_"] .menu__link--sublist {
+  display: flex !important;
+  padding: 0.85rem 1.25rem !important;
+  font-size: 0.95rem !important;
+  min-height: 2.75rem !important;
+}
+
+[data-theme='dark'] [class*="drawer_"] .menu__link {
+  color: #e2e8f0 !important;
+}
+
+[data-theme='dark'] [class*="drawer_"] .menu__link:hover {
+  color: var(--wl-gold, #d4a844) !important;
+  background: rgba(212, 168, 68, 0.08) !important;
+}
+
+[data-theme='dark'] [class*="drawer_"] .menu__link--active {
+  color: var(--wl-gold, #d4a844) !important;
+  font-weight: 600;
+}
+
+[class*="drawer_"] .menu__list,
+[class*="drawer_"] [class*="menuList_"] {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+[class*="drawer_"] [class*="dropdownNavbarItemMobile_"] .menu__list {
+  display: block !important;
+  max-height: none !important;
 }
 
 /* ── Mobile navbar / sidebar ───────────────────────────────────── */
