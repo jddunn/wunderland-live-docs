@@ -814,9 +814,18 @@ h2 {
 html, body { overflow-x: hidden; }
 
 @media (max-width: 996px) {
-  /* Hide right-side NAV links in top bar */
+  /* Hide right-side NAV links in TOP BAR only — drawer re-shows them */
   .navbar > .navbar__inner > .navbar__items--right > .navbar__link {
     display: none !important;
+  }
+
+  /* Re-show ALL links inside the mobile drawer */
+  [class*="drawer_"] .navbar__link,
+  [class*="drawer_"] .navbar__item,
+  [class*="drawer_"] [class*="dropdownNavbarItemMobile_"],
+  .navbar-sidebar .navbar__link,
+  .navbar-sidebar .navbar__item {
+    display: flex !important;
   }
 
   /* Hide search on mobile */
@@ -1067,10 +1076,15 @@ html:has(.navbar-sidebar--show) {
   font-size: 0.875rem;
 }
 
-/* Hide npm + Website on screens below 1200px — too crowded */
+/* Hide npm + Website in TOP BAR on small screens — but show in drawer */
 @media (max-width: 1200px) {
-  .navbar-hide-mobile {
+  .navbar__inner .navbar-hide-mobile {
     display: none !important;
+  }
+  /* Re-show inside mobile drawer */
+  [class*="drawer_"] .navbar-hide-mobile,
+  .navbar-sidebar .navbar-hide-mobile {
+    display: flex !important;
   }
 }
 
