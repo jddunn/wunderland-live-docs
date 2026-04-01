@@ -835,8 +835,8 @@ html, body { overflow-x: hidden; }
     display: none !important;
   }
 
-  /* Hide left-side items except brand */
-  .navbar__items:not(.navbar__items--right) > .navbar__item:not(.navbar__brand) {
+  /* Hide left-side items except brand — scoped to TOP BAR only, not the mobile drawer */
+  .navbar > .navbar__inner > .navbar__items:not(.navbar__items--right) > .navbar__item:not(.navbar__brand) {
     display: none !important;
   }
 
