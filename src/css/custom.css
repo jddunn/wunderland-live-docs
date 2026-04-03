@@ -819,12 +819,10 @@ html, body { overflow-x: hidden; }
     display: none !important;
   }
 
-  /* Re-show ALL links inside the mobile drawer */
+  /* Re-show ALL links inside the custom mobile drawer */
   [class*="drawer_"] .navbar__link,
   [class*="drawer_"] .navbar__item,
-  [class*="drawer_"] [class*="dropdownNavbarItemMobile_"],
-  .navbar-sidebar .navbar__link,
-  .navbar-sidebar .navbar__item {
+  [class*="drawer_"] [class*="dropdownNavbarItemMobile_"] {
     display: flex !important;
   }
 
@@ -861,193 +859,11 @@ html, body { overflow-x: hidden; }
   }
 }
 
-/* ── Ensure sidebar drawer links are VISIBLE ──────────────────── */
-.navbar-sidebar .navbar__link,
-.navbar-sidebar .menu__link {
-  display: flex !important;
-}
-
-/* ── Mobile drawer (Docusaurus CSS module classes) ────────────── */
-/* Target hashed classes like .drawer_XXXX via attribute selectors */
-[class*="drawer_"] {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overflow-y: auto !important;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 4rem !important;
-}
-
-[data-theme='dark'] [class*="drawer_"] {
-  background: #0d0c16 !important;
-  color: #e2e8f0 !important;
-}
-
-[class*="drawer_"] .menu__link,
-[class*="drawer_"] .menu__link--sublist {
-  display: flex !important;
-  padding: 0.85rem 1.25rem !important;
-  font-size: 0.95rem !important;
-  min-height: 2.75rem !important;
-}
-
-[data-theme='dark'] [class*="drawer_"] .menu__link {
-  color: #e2e8f0 !important;
-}
-
-[data-theme='dark'] [class*="drawer_"] .menu__link:hover {
-  color: var(--wl-gold, #d4a844) !important;
-  background: rgba(212, 168, 68, 0.08) !important;
-}
-
-[data-theme='dark'] [class*="drawer_"] .menu__link--active {
-  color: var(--wl-gold, #d4a844) !important;
-  font-weight: 600;
-}
-
-[class*="drawer_"] .menu__list,
-[class*="drawer_"] [class*="menuList_"] {
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-[class*="drawer_"] [class*="dropdownNavbarItemMobile_"] .menu__list {
-  display: block !important;
-  max-height: none !important;
-}
-
-/* ── Mobile navbar / sidebar ───────────────────────────────────── */
-/* Docusaurus mobile sidebar must have visible bg, text, and links */
-[data-theme='dark'] .navbar-sidebar {
-  background-color: #0d0c16;
-  border-right: 1px solid rgba(212, 168, 68, 0.15);
-}
-
-[data-theme='dark'] .navbar-sidebar .menu__link {
-  color: #e2e8f0;
-}
-
-[data-theme='dark'] .navbar-sidebar .menu__link:hover {
-  color: var(--wl-gold);
-  background-color: rgba(212, 168, 68, 0.08);
-}
-
-[data-theme='dark'] .navbar-sidebar .menu__link--active {
-  color: var(--wl-gold);
-  font-weight: 600;
-}
-
-[data-theme='dark'] .navbar-sidebar__brand {
-  border-bottom: 1px solid rgba(212, 168, 68, 0.15);
-}
-
-[data-theme='dark'] .navbar-sidebar__close {
-  color: #e2e8f0;
-}
-
-[data-theme='dark'] .navbar-sidebar__back {
-  color: #e2e8f0;
-}
-
-/* Overlay behind mobile sidebar — solid dark to hide page content */
-[data-theme='dark'] .navbar-sidebar__backdrop {
-  background-color: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(4px);
-}
-
-/* Ensure sidebar — FULL WIDTH on mobile */
-.navbar-sidebar {
-  z-index: 100 !important;
-  background-color: var(--ifm-background-color) !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  right: 0 !important;
-  left: 0 !important;
-  overflow-x: hidden !important;
-}
-.navbar-sidebar__backdrop {
-  z-index: 99 !important;
-}
-
-/* Lock body scroll when mobile sidebar is open */
-.navbar-sidebar--show {
-  overflow: hidden !important;
-}
-html:has(.navbar-sidebar--show) {
-  overflow: hidden !important;
-}
-
-/* Hamburger toggle icon — always visible */
-[data-theme='dark'] .navbar__toggle {
-  color: #e2e8f0;
-}
-
-/* Navbar items in mobile sidebar */
-[data-theme='dark'] .navbar-sidebar .navbar__link {
-  color: #e2e8f0;
-  padding: 0.75rem 1rem;
-}
-
-[data-theme='dark'] .navbar-sidebar .navbar__link:hover {
-  color: var(--wl-gold);
-  background-color: rgba(212, 168, 68, 0.06);
-}
-
-[data-theme='dark'] .navbar-sidebar .navbar__link--active {
-  color: var(--wl-gold);
-}
-
-/* Light mode mobile sidebar — full styling */
-[data-theme='light'] .navbar-sidebar {
-  background-color: #faf8f3;
-  border-right: 1px solid rgba(201, 162, 39, 0.15);
-}
-
-[data-theme='light'] .navbar-sidebar .menu__link,
-[data-theme='light'] .navbar-sidebar .navbar__link {
-  color: #1e293b;
-  padding: 0.75rem 1rem;
-}
-
-[data-theme='light'] .navbar-sidebar .menu__link:hover,
-[data-theme='light'] .navbar-sidebar .navbar__link:hover {
-  color: #92710a;
-  background-color: rgba(201, 162, 39, 0.06);
-}
-
-[data-theme='light'] .navbar-sidebar .menu__link--active,
-[data-theme='light'] .navbar-sidebar .navbar__link--active {
-  color: #92710a;
-  font-weight: 600;
-}
-
-[data-theme='light'] .navbar-sidebar__brand {
-  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
-}
-
-[data-theme='light'] .navbar-sidebar__close {
-  color: #1e293b;
-}
-
-[data-theme='light'] .navbar-sidebar__back {
-  color: #1e293b;
-}
-
-[data-theme='light'] .navbar-sidebar__backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-[data-theme='light'] .navbar__toggle {
-  color: #1e293b;
-}
-
-/* Ensure sidebar appears above content on both themes */
-.navbar-sidebar {
-  z-index: 100 !important;
-}
-
-.navbar-sidebar__backdrop {
-  z-index: 99 !important;
-}
+/* ── Mobile sidebar — handled by swizzled MobileSidebar component ── */
+/* All styling is in src/theme/Navbar/MobileSidebar/styles.module.css */
+/* Only toggle icon color kept here: */
+[data-theme='dark'] .navbar__toggle { color: #e2e8f0; }
+[data-theme='light'] .navbar__toggle { color: #1e293b; }
 
 /* ── Art Deco decorative divider (utility class) ────────────────── */
 .art-deco-divider {
@@ -1076,15 +892,10 @@ html:has(.navbar-sidebar--show) {
   font-size: 0.875rem;
 }
 
-/* Hide npm + Website in TOP BAR on small screens — but show in drawer */
+/* Hide npm + Website in TOP BAR on small screens */
 @media (max-width: 1200px) {
   .navbar__inner .navbar-hide-mobile {
     display: none !important;
-  }
-  /* Re-show inside mobile drawer */
-  [class*="drawer_"] .navbar-hide-mobile,
-  .navbar-sidebar .navbar-hide-mobile {
-    display: flex !important;
   }
 }
 
@@ -1128,37 +939,7 @@ html:has(.navbar-sidebar--show) {
   }
 }
 
-/* Sidebar drawer — contain everything */
-.navbar-sidebar {
-  overflow-x: hidden !important;
-  max-width: 100% !important;
-}
-.navbar-sidebar__brand {
-  overflow: hidden !important;
-  max-width: 100% !important;
-  width: 100% !important;
-}
-
-/* Hide GitHub icon EVERYWHERE inside the sidebar */
-.navbar-sidebar .header-github-link {
-  display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  left: -9999px !important;
-}
-.navbar-sidebar .navbar__item:has(.header-github-link) {
-  display: none !important;
-}
-.navbar-sidebar [class*="iconExternalLink"] {
-  display: none !important;
-}
-.navbar-sidebar .navbar-sidebar__items {
-  overflow-x: hidden !important;
-  max-width: 100% !important;
-}
+/* (legacy .navbar-sidebar rules removed — swizzled component handles everything) */
 .header-github-link::before {
   content: '';
   width: 20px;
