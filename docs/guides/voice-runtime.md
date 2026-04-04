@@ -436,9 +436,95 @@ wunderland config set voiceProvider openai
 
 ---
 
+## Streaming Voice Pipeline — Provider Options
+
+The streaming voice pipeline (`VoicePipelineOrchestrator`) forwards `sttOptions` and `ttsOptions` to providers as `providerOptions`. This enables provider-specific features without changing core interfaces.
+
+### Deepgram STT Options
+
+```typescript
+const orchestrator = new VoicePipelineOrchestrator({
+  stt: 'deepgram-streaming',
+  tts: 'elevenlabs-streaming',
+  sttOptions: {
+    sentiment: true,           // Per-utterance sentiment (positive/negative/neutral)
+    smart_format: true,        // Auto-punctuation, capitalization, number formatting
+    diarize: true,             // Speaker identification labels
+    utterance_end_ms: 1000,    // Server-side silence endpoint (ms)
+    keywords: [                // Keyword boosting (name:weight)
+      'Gideon:2',
+      'fireball:1.5',
+    ],
+  },
+});
+```
+
+| Option | Type | Effect |
+|--------|------|--------|
+| `sentiment` | `boolean` | Returns `TranscriptEvent.sentiment` with label + confidence |
+| `smart_format` | `boolean` | Auto-punctuates, capitalizes, formats numbers |
+| `diarize` | `boolean` | Labels `speaker: 0`, `speaker: 1` per word |
+| `utterance_end_ms` | `number` | Server-side silence detection (supplements client heuristic) |
+| `keywords` | `string[]` | Boosts recognition of specific terms (`name:weight` format) |
+
+**Sentiment in transcripts:** When `sentiment: true` is enabled, each `TranscriptEvent` includes:
+
+```typescript
+event.sentiment = {
+  label: 'positive' | 'negative' | 'neutral',
+  confidence: 0.95,
+};
+```
+
+### ElevenLabs TTS Expressiveness
+
+```typescript
+const orchestrator = new VoicePipelineOrchestrator({
+  stt: 'deepgram-streaming',
+  tts: 'elevenlabs-streaming',
+  ttsOptions: {
+    stability: 0.3,            // 0.0-1.0: lower = more expressive intonation
+    similarityBoost: 0.75,     // 0.0-1.0: voice clone fidelity
+    style: 0.6,                // 0.0-1.0: style exaggeration
+    useSpeakerBoost: true,     // Clarity enhancement
+    speed: 0.85,               // 0.1-5.0: speaking rate
+  },
+});
+```
+
+| Option | Range | Default | Effect |
+|--------|-------|---------|--------|
+| `stability` | 0.0-1.0 | 0.5 | Intonation variability |
+| `similarityBoost` | 0.0-1.0 | 0.75 | Voice clone fidelity |
+| `style` | 0.0-1.0 | 0.0 | Exaggeration of the voice's natural style |
+| `useSpeakerBoost` | boolean | true | Clarity filter |
+| `speed` | 0.1-5.0 | 1.0 | Speaking rate multiplier |
+
+These are sent in the ElevenLabs WebSocket BOS message as `voice_settings` and `generation_config.speed`. Change `ttsOptions` between turns for per-utterance expressiveness modulation (mood-reactive voices, character-specific delivery).
+
+### ElevenLabs Style Directives
+
+ElevenLabs v2 models interpret parenthetical directives in the text:
+
+```typescript
+// These affect synthesis delivery
+"(whispering) The door creaks open..."     // Quiet, breathy
+"(shouting) RUN!"                          // Loud, intense
+"(excitedly) I found it!"                  // Upbeat delivery
+"(sadly) She's gone."                      // Somber tone
+"(angrily) How dare you!"                  // Aggressive delivery
+"(in a hushed, tense voice) Something moved in the dark..."
+```
+
+Prepend these to the TTS input text based on scene context, character emotion, or game state.
+
+---
+
 ## Next Steps
 
 - [CLI Command Reference](/api/cli-reference) — Full command surface
 - [Voice Concierge Use Case](/use-cases/voice-concierge) — Build a speech-enabled assistant
+- [Telephony Setup](/guides/telephony-setup) — Phone call integration with Twilio/Telnyx/Plivo
+- [Voice Production](/guides/voice-production) — TLS, scaling, and deployment checklist
 - [LLM Provider Setup](/guides/model-providers) — Configure your LLM backend
 - [Configuration](/getting-started/configuration) — Full config reference
