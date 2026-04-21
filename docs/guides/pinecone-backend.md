@@ -5,7 +5,7 @@ title: "Pinecone Backend"
 
 # Pinecone Backend
 
-The Pinecone backend stores embeddings in [Pinecone](https://www.pinecone.io/), a fully managed vector database. This is the simplest backend to set up — no infrastructure to manage — but has limitations compared to self-hosted options.
+The Pinecone backend stores embeddings in [Pinecone](https://www.pinecone.io/), a fully managed vector database. Pinecone remains fully supported, but it is the optional managed-cloud path rather than the default production recommendation. If you want the recommended open-source production backend, use Qdrant.
 
 ## Prerequisites
 
@@ -155,4 +155,4 @@ Self-hosted alternatives for comparison:
 | **Qdrant (Docker)** | 10M+ | Cost of your VM (~$5-20) | Built-in BM25, quantization |
 | **Qdrant Cloud** | 1M+ | ~$25+ | Managed Qdrant, auto-scaling |
 
-Pinecone is the easiest to start with but becomes expensive at scale. For production agents processing large knowledge bases, self-hosted Postgres or Qdrant offer better cost efficiency and more features (hybrid search, knowledge graph).
+Pinecone is the easiest managed path to start with but becomes expensive at scale. For production agents processing large knowledge bases, Postgres or Qdrant usually offer better cost efficiency and more features, and Qdrant is the default OSS production recommendation.

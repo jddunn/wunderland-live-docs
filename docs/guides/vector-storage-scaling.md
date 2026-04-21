@@ -135,7 +135,7 @@ wunderland memory migrate --to qdrant
 
 ## Tier 4: Pinecone (Cloud)
 
-For teams that want fully managed infrastructure.
+Optional managed-cloud backend for teams that do not want to run Qdrant or Postgres themselves.
 
 ```typescript
 import { PineconeVectorStore } from '@framers/agentos';
@@ -151,6 +151,8 @@ const store = new PineconeVectorStore({
 
 **Pros:** Zero ops, SSO + SOC 2, scales to billions, generous free tier.
 **Cons:** Not open source, not self-hostable, data leaves your infra.
+
+Use Pinecone when managed-cloud convenience matters more than self-hosting. For the default production OSS path, use Qdrant.
 
 Migration from Pinecone to self-hosted:
 ```bash

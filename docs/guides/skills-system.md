@@ -16,10 +16,10 @@ The skills system is split across three packages with increasing levels of funct
 
 | Package | What | Install |
 |---------|------|---------|
-| [`@framers/agentos-skills-registry`](https://www.npmjs.com/package/@framers/agentos-skills-registry) | 72 SKILL.md files + typed SDK — catalog queries, search, factories | `npm install @framers/agentos-skills-registry` |
+| [`@framers/agentos-skills-registry`](https://www.npmjs.com/package/@framers/agentos-skills-registry) | 88 SKILL.md files + typed SDK — catalog queries, search, factories | `npm install @framers/agentos-skills-registry` |
 | `wunderland/advanced/skills` | Full runtime — SkillRegistry, loading, snapshots | `npm install wunderland` |
 
-**`@framers/agentos-skills-registry`** is the catalog package for AgentOS skills. It bundles 72 curated SKILL.md prompt modules, a `registry.json` index, and a typed SDK with query helpers (`searchSkills`, `getSkillsByCategory`, `getSkillsByTag`, etc.) and factory functions that lazy-load `@framers/agentos` for live registry/snapshot creation.
+**`@framers/agentos-skills-registry`** is the catalog package for AgentOS skills. It bundles 88 curated SKILL.md prompt modules, a `registry.json` index, and a typed SDK with query helpers (`searchSkills`, `getSkillsByCategory`, `getSkillsByTag`, etc.) and factory functions that lazy-load `@framers/agentos` for live registry/snapshot creation.
 
 ```typescript
 // Lightweight — no peer deps needed
@@ -672,7 +672,7 @@ See the full [`CONTRIBUTING.md`](https://github.com/framersai/agentos-skills/blo
 
 ## Semantic Discovery
 
-Instead of loading all 72 curated SKILL.md files into every LLM call, the Capability Discovery Engine indexes skills as `CapabilityDescriptor` entries and retrieves only relevant ones per turn.
+Instead of loading all 88 curated SKILL.md files into every LLM call, the Capability Discovery Engine indexes skills as `CapabilityDescriptor` entries and retrieves only relevant ones per turn.
 
 ### How Skills Are Indexed
 
@@ -720,7 +720,7 @@ Skill prompts are injected into the system prompt and indexed by the discovery e
 ```ts
 const app = await createWunderland({
   llm: { providerId: 'openai' },
-  skills: 'all',  // loads all 72 curated skills
+  skills: 'all',  // loads all 88 curated skills
 });
 ```
 

@@ -118,7 +118,7 @@ This separation means the retrieval pipeline is personality-agnostic -- the same
 
 ## Bundled Platform Knowledge
 
-Every Wunderland agent knows AgentOS out of the box. The QueryRouter ships with **244 pre-built knowledge entries** that are bundled inside the `@framers/agentos` npm package — no setup required, no external docs to configure.
+Every Wunderland agent knows AgentOS out of the box. The QueryRouter ships with **260 pre-built knowledge entries** that are bundled inside the `@framers/agentos` npm package — no setup required, no external docs to configure.
 
 ### What the Agent Knows
 
