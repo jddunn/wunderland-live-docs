@@ -174,7 +174,7 @@ $ wunderland export --format docker
     label: '🚀 Quick Start',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
-import { workflow } from 'wunderland/workflows';
+import { workflow } from 'wunderland';
 
 const app = await createWunderland({
   llm: { providerId: 'openai' },
@@ -209,7 +209,7 @@ console.log(result);`,
     label: '🧠 Orchestration',
     language: 'typescript',
     code: `import { createWunderland } from 'wunderland';
-import { AgentGraph, START, END, gmiNode } from 'wunderland/workflows';
+import { AgentGraph, START, END, gmiNode } from 'wunderland';
 
 const app = await createWunderland({
   llm: { providerId: 'openai' },
