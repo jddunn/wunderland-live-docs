@@ -2,6 +2,7 @@
   "name": "docs-site",
   "version": "0.0.0",
   "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "pull-source": "node scripts/pull-source.mjs",
     "prebuild": "npm run pull-source",
