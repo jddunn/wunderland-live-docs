@@ -163,7 +163,7 @@ export default function IntegrationsCatalog(): JSX.Element {
                   )}
                   {item.packageName && (
                     <Link
-                      href="https://github.com/framersai/agentos-extensions"
+                      href="https://github.com/framerslab/agentos-extensions"
                       className={styles.cardLink}
                     >
                       GitHub
