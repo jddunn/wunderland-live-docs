@@ -92,7 +92,7 @@ function HomepageHeader() {
             <img src="https://img.shields.io/badge/TypeScript-5.4+-b8860b?style=for-the-badge&logo=typescript&logoColor=white&labelColor=8b6914" alt="TypeScript" />
           </span>
           <span className={styles.heroBadge}>
-            <img src="https://img.shields.io/badge/license-MIT-b8860b?style=for-the-badge&labelColor=8b6914" alt="License" />
+            <img src="https://img.shields.io/badge/license-Apache--2.0-b8860b?style=for-the-badge&labelColor=8b6914" alt="License" />
           </span>
         </div>
 

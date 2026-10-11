@@ -14,8 +14,8 @@ const config: Config = {
   url: 'https://docs.wunderland.sh',
   baseUrl: '/',
 
-  organizationName: 'manicinc',
-  projectName: 'wunderland-sol',
+  organizationName: 'jddunn',
+  projectName: 'wunderland-live-docs',
 
   onBrokenLinks: 'warn',
   trailingSlash: false,
@@ -201,7 +201,7 @@ const config: Config = {
           sidebarPath: './sidebars.js',
           showLastUpdateTime: true,
           editUrl:
-            'https://github.com/manicinc/wunderland-sol/tree/master/docs-site/',
+            'https://github.com/jddunn/wunderland-live-docs/tree/master/',
         },
         blog: false,
         theme: {
@@ -238,7 +238,7 @@ const config: Config = {
           items: [
             {label: 'Getting Started', to: '/docs/getting-started/quickstart'},
             {label: 'Creating Agents', to: '/docs/guides/creating-agents'},
-            {label: 'CLI Reference', to: '/docs/guides/cli-reference'},
+            {label: 'CLI Reference', to: '/docs/api/cli-reference'},
             {label: 'Memory & RAG', to: '/docs/guides/memory-system'},
             {label: 'Vector Storage', to: '/docs/guides/vector-storage-scaling'},
             {label: 'Voice & Telephony', to: '/docs/guides/voice-runtime'},
@@ -313,7 +313,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Manic Agency LLC. Open source under MIT.`,
+      copyright: `Copyright \u00a9 ${new Date().getFullYear()} Manic Agency LLC. Open source under Apache-2.0.`,
     },
     prism: {
       theme: prismThemes.github,
