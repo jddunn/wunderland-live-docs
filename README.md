@@ -18,7 +18,7 @@ npm install
 npm start
 ```
 
-`npm start` fetches the `wunderland` source the API reference is generated from, then serves the site and reloads it when a file changes.
+`npm start` puts the `wunderland` source the API reference is generated from in `.source/`, then serves the site and reloads it when a file changes. The first run clones that source. Later runs reuse the clone, so delete `.source/` to fetch it again.
 
 ## Build
 
@@ -26,7 +26,7 @@ npm start
 npm run build
 ```
 
-The build fetches the source first ([`scripts/pull-source.mjs`](https://github.com/jddunn/wunderland-live-docs/blob/master/scripts/pull-source.mjs)), generates the API reference and writes the static site to `build/`. `npm run serve` serves that folder.
+The build runs [`scripts/pull-source.mjs`](https://github.com/jddunn/wunderland-live-docs/blob/master/scripts/pull-source.mjs) first, which clones the source when `.source/` does not hold it, then generates the API reference and writes the static site to `build/`. `npm run serve` serves that folder.
 
 ## What is where
 
@@ -35,7 +35,7 @@ The build fetches the source first ([`scripts/pull-source.mjs`](https://github.c
 | `docs/` | The guides: getting started, tutorials, guides, architecture, use cases, deployment and the API overview |
 | `sidebars.js` | The sidebar, which lists every page by hand |
 | `docusaurus.config.ts` | The site's configuration, including the two TypeDoc runs that generate the API reference |
-| `scripts/pull-source.mjs` | Fetches the `wunderland` source into `.source/` and copies four of its documents into this site |
+| `scripts/pull-source.mjs` | Puts the `wunderland` source in `.source/` and copies four of its documents into this site |
 | `src/` | The home page, the 404 page, React components and the theme's styles |
 | `static/` | Images, screenshots, demo videos, `CNAME` and `robots.txt` |
 

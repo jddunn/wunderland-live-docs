@@ -30,14 +30,14 @@ npm start
 
 | Command | What it does |
 |---|---|
-| `npm start` | Fetches the `wunderland` source, then serves the site and reloads it when a file changes. |
-| `npm run build` | Fetches the `wunderland` source, generates the API reference and builds the site into `build/`. |
+| `npm start` | Puts the `wunderland` source in `.source/`, then serves the site and reloads it when a file changes. |
+| `npm run build` | Puts the `wunderland` source in `.source/`, generates the API reference and builds the site into `build/`. |
 | `npm run serve` | Serves `build/`. |
 | `npm run typecheck` | Runs `tsc --noEmit` on the site's own TypeScript. |
 
-`scripts/pull-source.mjs` clones the `master` branch of wunderland into `.source/wunderland/`, a folder git ignores. When the repository sits inside a workspace that has the package at `../../../packages/wunderland`, the script links that folder in place of cloning.
+`scripts/pull-source.mjs` clones the `master` branch of wunderland into `.source/wunderland/`, a folder git ignores. When the repository sits inside a workspace that has the package at `../../../packages/wunderland`, the script links that folder in place of cloning. A clone that is already there is reused and not updated: delete `.source/` to fetch the source again.
 
-CI ([`ci.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/ci.yml)) runs one job, "Build", on Node 22 for every pull request to `master`: `npm install`, `node scripts/pull-source.mjs`, then `npm run build`. A broken link between pages prints a warning and does not fail the build (`onBrokenLinks: 'warn'` in [`docusaurus.config.ts`](https://github.com/jddunn/wunderland-live-docs/blob/master/docusaurus.config.ts)), so read the build log for warnings about the pages you changed. CI does not run the type check. The link check ([`links.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/links.yml)) covers the Markdown files at the repository root and under `.github/`, and runs on every pull request too. Maintainers merge a pull request only when both are green.
+CI ([`ci.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/ci.yml)) runs one job, "Build", on Node 22 for every pull request to `master`: `npm install`, `node scripts/pull-source.mjs`, then `npm run build`. The deploy passes a token to the script; the pull request build clones the public repository without one. A broken link between pages prints a warning and does not fail the build (`onBrokenLinks: 'warn'` in [`docusaurus.config.ts`](https://github.com/jddunn/wunderland-live-docs/blob/master/docusaurus.config.ts)), so read the build log for warnings about the pages you changed. CI does not run the type check. The link check ([`links.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/links.yml)) runs on every pull request too: it checks the links into this repository from the Markdown files at the root and under `.github/`. It does not read `docs/`. Maintainers merge a pull request only when both are green.
 
 ## Commit messages
 
@@ -52,7 +52,7 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.
 
 ## Automated review threads
 
-Review bots may review pull requests. Before a pull request merges, every unresolved thread from a bot, including threads GitHub marks as outdated, is settled in one of three ways:
+A review bot (Sourcery) reviews pull requests. Before a pull request merges, every unresolved thread from a bot, including threads GitHub marks as outdated, is settled in one of three ways:
 
 - **Fixed:** reply with the commit that fixes it.
 - **Answered:** reply with the reason, from the code, that it does not apply. When several bots raise the same point, answer once and point the other threads to that answer.
@@ -70,7 +70,7 @@ This repository is Apache-2.0. By submitting a contribution you agree it is prov
 
 ## Deployment
 
-Every push to `master`, including a merged pull request, starts the [deploy workflow](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/deploy-docs.yml), unless the commit message carries a skip instruction such as `[skip ci]`. It installs, fetches the `wunderland` source, builds the site and publishes `build/` to GitHub Pages, which serves docs.wunderland.sh. The API reference therefore follows wunderland's `master` as of the last deploy. Maintainers can also start the workflow by hand.
+Every push to `master`, including a merged pull request, starts the [deploy workflow](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/deploy-docs.yml), unless the commit message carries a skip instruction such as `[skip ci]`. It installs, clones the `wunderland` source, builds the site and publishes `build/` to GitHub Pages, which serves docs.wunderland.sh. The API reference therefore follows wunderland's `master` as of the last deploy. Maintainers can also start the workflow by hand.
 
 ## Code of Conduct
 

@@ -31,14 +31,15 @@ CI (job "Build" in [`.github/workflows/ci.yml`](https://github.com/jddunn/wunder
 2. `node scripts/pull-source.mjs`
 3. `npm run build` (runs the script again through `prebuild`, generates the API reference, then `docusaurus build` into `build/`)
 
-The link check ([`links.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/links.yml)) checks the links in the Markdown files at the repository root and under `.github/`. It does not read `docs/`.
+The link check ([`links.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/links.yml)) checks, on a pull request, the links into this repository from the Markdown files at the root and under `.github/`. Links to the project's other repositories are checked on pushes to `master`, weekly and on manual dispatch. It does not read `docs/`.
 
-Scripts CI does not run: `npm start` (fetches the source, then serves the site), `npm run serve` (serves `build/`), `npm run typecheck` (`tsc --noEmit`).
+Scripts CI does not run: `npm start` (prepares the source, then serves the site), `npm run serve` (serves `build/`), `npm run typecheck` (`tsc --noEmit`).
 
 ## Conventions
 
 - A guide is one Markdown file under `docs/`. A new page is added to `sidebars.js`, or it has no sidebar entry.
 - Never edit `docs/api-reference/`, `docs/_media/` or `src/pages/typedoc-media/`: a build rewrites them from the wunderland repository. Fix the comment or the document there.
+- `scripts/pull-source.mjs` reuses `.source/wunderland/` once it exists. Delete `.source/` to build against wunderland's `master` as it is now.
 - `onBrokenLinks` is `'warn'`: a broken link between pages does not fail the build. Read the build log for warnings about the pages you changed.
 - `trailingSlash` is `false`, and the docs are served under `/docs`. Link to another guide with a relative path to its `.md` file, as the existing pages do.
 - Diagrams are Mermaid code blocks.
@@ -53,7 +54,7 @@ Scripts CI does not run: `npm start` (fetches the source, then serves the site),
 
 ## Deployment
 
-Every push to `master` deploys the site, unless the commit message carries a skip instruction such as `[skip ci]`: [`deploy-docs.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/deploy-docs.yml) installs, fetches the `wunderland` source, builds and publishes `build/` to GitHub Pages. The workflow also runs on manual dispatch. There is no versioned release.
+Every push to `master` deploys the site, unless the commit message carries a skip instruction such as `[skip ci]`: [`deploy-docs.yml`](https://github.com/jddunn/wunderland-live-docs/blob/master/.github/workflows/deploy-docs.yml) installs, clones the `wunderland` source, builds and publishes `build/` to GitHub Pages. The workflow also runs on manual dispatch. There is no versioned release.
 
 ## Automated review threads
 

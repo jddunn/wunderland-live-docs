@@ -26,7 +26,7 @@
 
 ## Checklist
 
-- [ ] Tests cover the changed behavior.
+- [ ] CI is green: the site builds, and the build log shows no new broken-link warning.
 - [ ] Docs are updated.
 - [ ] The title follows Conventional Commits, with `!` before the colon for a change that breaks users (`feat!:` or `feat(api)!:`).
 - [ ] No secrets or private data are included.
