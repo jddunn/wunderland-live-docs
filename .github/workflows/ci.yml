@@ -1,8 +1,9 @@
 name: CI
 
 # A pull request is checked by building the site the way the deploy builds it:
-# the wunderland source is fetched, TypeDoc generates the API reference and
-# Docusaurus builds every page.
+# the wunderland source is cloned, TypeDoc generates the API reference and
+# Docusaurus builds every page. The deploy passes a token to the clone; this
+# build clones the public repository without one.
 on:
   pull_request:
     branches: [master]
@@ -22,6 +23,8 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: false
+          # Each page's "Last updated" date is read from git history.
+          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
