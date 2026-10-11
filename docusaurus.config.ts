@@ -14,8 +14,8 @@ const config: Config = {
   url: 'https://docs.wunderland.sh',
   baseUrl: '/',
 
-  organizationName: 'manicinc',
-  projectName: 'wunderland-sol',
+  organizationName: 'jddunn',
+  projectName: 'wunderland-live-docs',
 
   onBrokenLinks: 'warn',
   trailingSlash: false,
@@ -201,7 +201,7 @@ const config: Config = {
           sidebarPath: './sidebars.js',
           showLastUpdateTime: true,
           editUrl:
-            'https://github.com/manicinc/wunderland-sol/tree/master/docs-site/',
+            'https://github.com/jddunn/wunderland-live-docs/tree/master/',
         },
         blog: false,
         theme: {
