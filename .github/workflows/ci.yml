@@ -1,0 +1,32 @@
+name: CI
+
+# A pull request is checked by building the site the way the deploy builds it:
+# the wunderland source is fetched, TypeDoc generates the API reference and
+# Docusaurus builds every page.
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: node scripts/pull-source.mjs
+      - run: npm run build
+        env:
+          NODE_ENV: production
