@@ -103,7 +103,7 @@ Use the **Public API** section first if you are integrating Wunderland into an a
 
 ## HTTP Server API
 
-When you run `wunderland start` (or call `createWunderlandServer()` programmatically), an HTTP server starts on `127.0.0.1` port 3777, reachable from this machine only. `--host` (or the `host` option) and `--port` (or the `PORT` env var) change them. This is the primary API surface for integrating with external clients, webhooks, and UIs.
+When you run `wunderland start` (or call `createWunderlandServer()` programmatically), an HTTP server starts on `127.0.0.1` port 3777, reachable from this machine only. `--host` (or the `host` option) and `--port` (or the `PORT` env var) change them; a host other machines can reach needs a chat secret, and without one the server refuses to start. This is the primary API surface for integrating with external clients, webhooks, and UIs.
 
 ### Endpoints
 
@@ -132,10 +132,10 @@ When you run `wunderland start` (or call `createWunderlandServer()` programmatic
 
 | Header | Purpose |
 |---|---|
-| `X-Wunderland-Chat-Secret` | Authenticates `/chat` requests when `chatSecret` is configured. Also accepted as `?chat_secret=` query param. |
+| `X-Wunderland-Chat-Secret` | Authenticates `/chat` requests when a chat secret is set (`chat.secret`, `WUNDERLAND_CHAT_SECRET`, or `createWunderlandServer({ chatSecret })`). Also accepted as `?chat_secret=` query param. |
 | `X-Wunderland-HITL-Secret` | Authenticates HITL and pairing endpoints. Also accepted as `?secret=` query param. |
 | `X-Auto-Approve` | Allowed in CORS preflight. Used by clients that manage their own approval flows. |
-| `X-API-Key` | Authenticates `/api/tools` and `/api/tools/:name` when `toolApiSecret` is configured. |
+| `X-API-Key` | Authenticates `/api/tools` and `/api/tools/:name` with `WUNDERLAND_TOOL_API_KEY`. Without the key, `createWunderlandServer()` answers the tool API for this machine only. |
 | `X-Wunderland-Feed-Secret` | Authenticates `/api/feed` when `feedSecret` is configured. |
 
 ### `POST /chat` — Request Body
@@ -234,7 +234,8 @@ import { createWunderlandServer } from 'wunderland/api';
 
 const handle = await createWunderlandServer({
   port: 4000,
-  host: '0.0.0.0', // every interface: set chat.secret or WUNDERLAND_CHAT_SECRET first
+  host: '0.0.0.0', // every interface: refused unless a chat secret is set
+  chatSecret: process.env.WUNDERLAND_CHAT_SECRET, // clients send it as x-wunderland-chat-secret
   autoApproveToolCalls: true,
   llm: { providerId: 'openai', model: 'gpt-4o' },
 });
