@@ -86,7 +86,7 @@ When prompted for the LLM provider, select **Ollama**.
 wunderland start
 ```
 
-This launches the Wunderland HTTP server on port **3777**. Your agent is now running.
+This launches the Wunderland HTTP server on `127.0.0.1` port **3777**, so only this machine can reach it. Your agent is now running. To use it from another device on your network, set a chat secret (`WUNDERLAND_CHAT_SECRET`) and run `wunderland start --host 0.0.0.0`; see [Chat Server](../guides/chat-server.md#authentication).
 
 ```
   Wunderland v1.x.x

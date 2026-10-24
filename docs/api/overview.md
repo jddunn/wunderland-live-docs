@@ -103,7 +103,7 @@ Use the **Public API** section first if you are integrating Wunderland into an a
 
 ## HTTP Server API
 
-When you run `wunderland start` (or call `createWunderlandServer()` programmatically), an HTTP server starts on port 3777 (configurable via `PORT` env var). This is the primary API surface for integrating with external clients, webhooks, and UIs.
+When you run `wunderland start` (or call `createWunderlandServer()` programmatically), an HTTP server starts on `127.0.0.1` port 3777, reachable from this machine only. `--host` (or the `host` option) and `--port` (or the `PORT` env var) change them. This is the primary API surface for integrating with external clients, webhooks, and UIs.
 
 ### Endpoints
 
@@ -230,11 +230,11 @@ curl -X POST http://localhost:3777/api/tools/web_search \
 ### Programmatic Server Creation
 
 ```typescript
-import { createWunderlandServer } from 'wunderland/advanced';
+import { createWunderlandServer } from 'wunderland/api';
 
 const handle = await createWunderlandServer({
   port: 4000,
-  host: '0.0.0.0',
+  host: '0.0.0.0', // every interface: set chat.secret or WUNDERLAND_CHAT_SECRET first
   autoApproveToolCalls: true,
   llm: { providerId: 'openai', model: 'gpt-4o' },
 });
