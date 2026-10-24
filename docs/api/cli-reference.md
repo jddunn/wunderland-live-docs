@@ -70,7 +70,7 @@ wunderland create "A data analyst agent" --dir ./agents/analyst
 | `--dir <path>` | Override output directory name |
 | `--update` | Merge with existing agent.config.json in current directory |
 
-See the [NL Agent Creation guide](/guides/nl-agent-creation) for tips on writing effective descriptions and details on confidence scores.
+See the [NL Agent Creation guide](../guides/nl-agent-creation.md) for tips on writing effective descriptions and details on confidence scores.
 
 ### `wunderland new`
 
