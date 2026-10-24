@@ -70,7 +70,7 @@ wunderland create "A data analyst agent" --dir ./agents/analyst
 | `--dir <path>` | Override output directory name |
 | `--update` | Merge with existing agent.config.json in current directory |
 
-See the [NL Agent Creation guide](/guides/nl-agent-creation) for tips on writing effective descriptions and details on confidence scores.
+See the [NL Agent Creation guide](../guides/nl-agent-creation.md) for tips on writing effective descriptions and details on confidence scores.
 
 ### `wunderland new`
 
@@ -152,10 +152,13 @@ Config-backed agents also write dated plain-text session logs under `./logs/YYYY
 Start the agent runtime server.
 
 ```bash
-wunderland start                    # Default port
+wunderland start                    # 127.0.0.1:3777, this machine only
 wunderland start --port 3001        # Custom port
+wunderland start --host 0.0.0.0     # Let other machines connect (needs a chat secret)
 wunderland start --overdrive        # Auto-approve tools
 ```
+
+`POST /chat` answers without a secret unless `chat.secret` (in `agent.config.json`) or `WUNDERLAND_CHAT_SECRET` is set, so the server listens on `127.0.0.1` unless `--host` names another address, and refuses a host other machines can reach until a chat secret is set. `wunderland serve --host` passes the address to the daemon it starts.
 
 `wunderland start` keeps daemon `stdout.log` / `stderr.log` in the daemon directory, and also writes dated session logs under the agent folder’s `./logs/YYYY-MM-DD/*.log` path by default.
 

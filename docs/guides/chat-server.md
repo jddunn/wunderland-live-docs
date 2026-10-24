@@ -158,20 +158,20 @@ curl http://localhost:3777/chat
 ## Server Options
 
 ```bash
-wunderland start --port 4000 --host 127.0.0.1
+wunderland start --port 4000 --host 0.0.0.0
 ```
 
 | Flag | Default | Description |
 |------|---------|-------------|
 | `--port <number>` | `3777` | Server port |
-| `--host <address>` | `0.0.0.0` | Bind address |
+| `--host <address>` | `127.0.0.1` | Address to listen on. The default lets only this machine connect; `0.0.0.0` accepts every machine that can reach the port, and `wunderland start` refuses it until a chat secret is set (below). |
 | `--no-webchat` | — | Disable the built-in WebChat UI |
 | `--detach` | — | Run in the background |
 | `--auto-approve-tools` | — | Skip tool approval prompts (autonomous mode) |
 
 ## Authentication
 
-By default, the chat endpoint is open (no auth required). To secure it, set a chat secret:
+By default, the chat endpoint takes no secret, and the server listens on `127.0.0.1`, so only this machine can reach it. A host other machines can reach needs a chat secret: without one, `wunderland start --host 0.0.0.0` refuses to start. Set it one of two ways:
 
 **Environment variable:**
 
