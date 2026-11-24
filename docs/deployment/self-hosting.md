@@ -115,7 +115,7 @@ WorkingDirectory=/opt/wunderland/backend
 Environment=NODE_ENV=production
 Environment=PORT=3001
 EnvironmentFile=/opt/wunderland/backend/.env
-ExecStart=/usr/bin/node --experimental-specifier-resolution=node dist/src/main.js
+ExecStart=/usr/bin/node dist/src/main.js
 Restart=on-failure
 RestartSec=5
 StandardOutput=journal

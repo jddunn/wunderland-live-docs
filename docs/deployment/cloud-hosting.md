@@ -182,7 +182,7 @@ builder = "nixpacks"
 buildCommand = "pnpm install && pnpm build"
 
 [deploy]
-startCommand = "node --experimental-specifier-resolution=node dist/src/main.js"
+startCommand = "node dist/src/main.js"
 healthcheckPath = "/api/wunderland/health"
 healthcheckTimeout = 30
 restartPolicyType = "on_failure"
