@@ -212,7 +212,7 @@ ENV NODE_ENV=production
 ENV PORT=3001
 EXPOSE 3001
 
-CMD ["node", "--experimental-specifier-resolution=node", "backend/dist/src/main.js"]
+CMD ["node", "backend/dist/src/main.js"]
 ```
 
 ### docker-compose.yml
