@@ -14,7 +14,7 @@ The Pinecone backend stores embeddings in [Pinecone](https://www.pinecone.io/), 
 | Pinecone account | Free tier available at [pinecone.io](https://www.pinecone.io/) |
 | API key | Found in the Pinecone console under "API Keys" |
 | Index created | Create an index in the console or via the Pinecone API |
-| Node.js 18+ | Uses native `fetch` (no SDK dependency) |
+| Node.js 22+ | Uses native `fetch` (no SDK dependency) |
 
 ## Configuration
 

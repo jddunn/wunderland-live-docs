@@ -13,7 +13,7 @@ The Postgres backend stores embeddings, metadata, and full-text content in a sin
 |---|---|
 | PostgreSQL | 14+ (15+ recommended for `HNSW` index type) |
 | pgvector extension | 0.5.0+ (`CREATE EXTENSION vector`) |
-| Node.js | 18+ (uses the `pg` npm package) |
+| Node.js | 22+ (uses the `pg` npm package) |
 
 ## Quick start — Docker
 

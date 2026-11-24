@@ -12,7 +12,7 @@ The Qdrant backend stores embeddings in [Qdrant](https://qdrant.tech/), a purpos
 | Requirement | Minimum version |
 |---|---|
 | Qdrant | 1.7+ (1.12+ for built-in BM25, 1.16+ for parameterized RRF) |
-| Node.js | 18+ (uses native `fetch`) |
+| Node.js | 22+ (uses native `fetch`) |
 
 ## Quick start — Docker
 

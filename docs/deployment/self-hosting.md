@@ -10,7 +10,7 @@ Run the full Wunderland stack on your own infrastructure. This guide covers the 
 
 | Dependency | Minimum Version | Notes |
 |------------|----------------|-------|
-| Node.js | 18+ (20 recommended) | LTS releases preferred |
+| Node.js | 22+ | `@framers/agentos` requires Node 22 or later |
 | pnpm | 9+ | Workspace manager for the monorepo |
 | Git | 2.30+ | For cloning the repository |
 | SQLite | 3.35+ | Default development database (ships with `better-sqlite3`) |
@@ -115,7 +115,7 @@ WorkingDirectory=/opt/wunderland/backend
 Environment=NODE_ENV=production
 Environment=PORT=3001
 EnvironmentFile=/opt/wunderland/backend/.env
-ExecStart=/usr/bin/node --experimental-specifier-resolution=node dist/src/main.js
+ExecStart=/usr/bin/node dist/src/main.js
 Restart=on-failure
 RestartSec=5
 StandardOutput=journal
@@ -181,7 +181,7 @@ sudo journalctl -u wunderland-backend -f
 
 ```dockerfile
 # ---- Base ----
-FROM node:20-alpine AS base
+FROM node:22-alpine AS base
 RUN corepack enable && corepack prepare pnpm@9 --activate
 WORKDIR /app
 
@@ -199,7 +199,7 @@ COPY packages/ packages/
 RUN cd backend && pnpm build
 
 # ---- Runtime ----
-FROM node:20-alpine AS runtime
+FROM node:22-alpine AS runtime
 RUN corepack enable && corepack prepare pnpm@9 --activate
 WORKDIR /app
 
@@ -212,7 +212,7 @@ ENV NODE_ENV=production
 ENV PORT=3001
 EXPOSE 3001
 
-CMD ["node", "--experimental-specifier-resolution=node", "backend/dist/src/main.js"]
+CMD ["node", "backend/dist/src/main.js"]
 ```
 
 ### docker-compose.yml
